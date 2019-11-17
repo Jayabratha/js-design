@@ -1,0 +1,68 @@
+<html style='font-size: 14px;'>
+
+<head>
+    <style>
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
+            box-sizing: border-box;
+            font-feature-settings: "kern";
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1 {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .button-wrapper {
+            display: flex;
+        }
+        .button-wrapper>* {
+            margin: 10px;
+        }
+    </style>
+    <script type='module' src='../components/button/src/jsd-button.js'></script>
+    <script>
+        function test() {
+            console.log('Testing', event.target);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Buttons</h1>
+    <div class='button-wrapper'>
+        <div>
+            <h3>Default button</h3>
+            <jsd-button label='Testing' onclick="test()"></jsd-button>
+        </div>
+        <div>
+            <h3>Primary button</h3>
+            <jsd-button primary label='Primary'></jsd-button>
+        </div>
+        <div>
+            <h3>Secondary button</h3>
+            <jsd-button secondary label='Secondary'></jsd-button>
+        </div>
+        <div>
+            <h3>Tertiary button</h3>
+            <jsd-button tertiary label='Tertiary'></jsd-button>
+        </div>
+        <div>
+            <h3>Prefix Icon button</h3>
+            <jsd-button primary iconPrefix label='Icon Button'>
+                <span slot='iconPrefix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Suffix Icon button</h3>
+            <jsd-button primary iconSuffix label='Icon Button'>
+                <span slot='iconSuffix'>&hearts;</span>
+            </jsd-button>
+        </div>
+    </div>
+
+</body>
+
+</html>

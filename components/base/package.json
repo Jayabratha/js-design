@@ -1,0 +1,14 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "description": "JS Design Core",
+  "main": "base.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jayabratha Saha",
+  "license": "ISC",
+  "dependencies": {
+    "lit-element": "^2.2.1"
+  }
+}
