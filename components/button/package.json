@@ -1,5 +1,5 @@
 {
-  "name": "jsd-button",
+  "name": "@jsdesign/jsd-button",
   "version": "1.0.0",
   "description": "JS Design button web component ",
   "main": "jsd-button.js",
