@@ -37,3 +37,9 @@ testem.log
 
 # System Files
 .DS_Store
+
+# Typescript
+*.d.ts
+*.js
+*.js.map
+.tsbuildinfo

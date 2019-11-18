@@ -1,5 +1,6 @@
 import { css } from 'lit-element';
-export const baseStyles = css `
+
+export const baseStyles = css`
     :host {
         --color-primary: #50a2f4;
         --color-primary-dark: #107ce8;
@@ -24,4 +25,3 @@ export const baseStyles = css `
         -webkit-font-smoothing: antialiased;
     }
 `;
-//# sourceMappingURL=base.js.map

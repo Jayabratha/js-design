@@ -1,0 +1,23 @@
+{
+  "name": "js-design",
+  "version": "1.0.0",
+  "description": "JS Design web components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build components/**/tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jayabratha/js-design.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jayabratha/js-design/issues"
+  },
+  "homepage": "https://github.com/Jayabratha/js-design#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}

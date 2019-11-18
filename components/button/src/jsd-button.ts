@@ -1,23 +1,15 @@
-import { LitElement, html, css } from 'lit-element';
-import { baseStyles } from '../../base/base';
+import { LitElement, customElement, property, html, css } from 'lit-element';
+import { baseStyles } from 'jsd-base';
 
-class Button extends LitElement {
+@customElement('jsd-button')
+export class Button extends LitElement {
 
-    static get properties() {
-        return {
-            label: { type: String },
-            primary: { type: Boolean },
-            secondary: { type: Boolean },
-            tertiary: { type: Boolean },
-            iconPrefix: { type: Boolean },
-            iconSuffix: { type: Boolean }
-        }
-    }
-
-    constructor() {
-        super();
-        this.label = 'Button'
-    }
+    @property({ type: String }) label = 'Button';
+    @property({ type: Boolean }) primary = false;
+    @property({ type: Boolean }) secondary = false;
+    @property({ type: Boolean }) tertiary = false;
+    @property({ type: Boolean }) iconPrefix = false;
+    @property({ type: Boolean }) iconSuffix = false;
 
     static get styles() {
         return [
@@ -118,12 +110,10 @@ class Button extends LitElement {
 
         return html`
                 <button class='${type}'>
-                    ${ this.iconPrefix && html`<slot name='iconPrefix'></slot>&nbsp;`}
+                    ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
                     <span class='label'>${this.label}</span>
-                    ${ this.iconSuffix && html`&nbsp;<slot name='iconSuffix'></slot> `}
+                    ${ this.iconSuffix ? html`&nbsp;<slot name='iconSuffix'></slot> ` : ''}
                 </button>
                 `
     }
 }
-
-customElements.define('jsd-button', Button);
