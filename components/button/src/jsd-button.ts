@@ -11,6 +11,7 @@ export class Button extends LitElement {
     @property({ type: Boolean }) iconPrefix = false;
     @property({ type: Boolean }) iconSuffix = false;
     @property({ type: Boolean }) fullWidth = false;
+    @property({ type: Boolean, reflect: true }) disabled = false;
     @property({ type: String }) type = 'button';
     @property({ type: String }) formId = '';
 
@@ -36,35 +37,34 @@ export class Button extends LitElement {
                 outline-width: 1px;
                 outline-color: transparent;
             }
-            button:hover {
+            button[disabled] {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+            button.primary {
+                color: var(--color-white);
+                box-shadow: inset 0px 0px 0px 0px var(--color-primary);
+                background-color: var(--color-primary);
+            }
+            button.primary:not([disabled]):hover {
                 background-color: var(--color-primary-dark);
                 box-shadow: inset 0px 0px 0px 4px var(--color-primary);
             }
-            
-            button:active {
+            button.primary:not([disabled]):active {
                 box-shadow: inset 0px 0px 20px 10px var(--color-primary);
             }
-            button.full-width {
-                width: 100%;
-                padding: 0;
-            }
-            button.half-width {
-                width: 49%;
-                padding: 0;
-            }
             button.secondary {
-                color: var(--color-label);
+                color: var(--color-primary);
                 background-color: var(--color-secondary);
                 box-shadow: inset 0px 0px 0px 0px var(--color-secondary-dark);
             }
-            button.secondary:hover {
+            button.secondary:not([disabled]):hover {
                 color: var(--color-primary);
                 box-shadow: inset 0px 0px 0px 4px var(--color-secondary-dark);
             }
-            button.secondary:active {
+            button.secondary:not([disabled]):active {
                 box-shadow: inset 0px 0px 20px 10px var(--color-secondary-dark);
-            }
-        
+            }      
             button.tertiary {
                 padding: 0;
                 background: transparent;
@@ -75,7 +75,11 @@ export class Button extends LitElement {
                 border-radius: 0;
                 height: 3.3rem;
             }
-            button.tertiary::after {
+            button.secondary[disabled],
+            button.tertiary[disabled] {
+                color: var(--color-label);
+            }
+            button.tertiary:not([disabled])::after {
                 content: '';
                 background: var(--color-primary);
                 position: absolute;
@@ -85,17 +89,19 @@ export class Button extends LitElement {
                 width: 0%;
                 transition: width 0.3s;
             }
-            button.tertiary:hover::after {
+            button.tertiary:not([disabled]):hover::after {
                 width: 100%;
             }
-            
+            button.full-width {
+                width: 100%;
+                padding: 0;
+            }
             button.btn-icon {
                 display: inline-block;
                 vertical-align: middle;
                 height: 1.8rem;
                 padding-right: 0.5rem;
-            }
-            
+            }    
             ::slotted(.prefix) {
                 margin: 0 5px;
             }
@@ -125,6 +131,7 @@ export class Button extends LitElement {
 
         return html`
                 <button type='${this.type}' class='${style} ${this.fullWidth ? 'full-width' : ''}'
+                    ?disabled="${this.disabled}"
                     @click="${this.handleEvent}">
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
                     <span class='label'>${this.label}</span>
