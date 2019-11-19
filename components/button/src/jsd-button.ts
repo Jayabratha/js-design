@@ -11,8 +11,8 @@ export class Button extends LitElement {
     @property({ type: Boolean }) iconPrefix = false;
     @property({ type: Boolean }) iconSuffix = false;
     @property({ type: Boolean }) fullWidth = false;
-    @property({ type: Boolean }) halfWidth = false;
     @property({ type: String }) type = 'button';
+    @property({ type: String }) formId = '';
 
     static get styles() {
         return [
@@ -102,17 +102,30 @@ export class Button extends LitElement {
         `]
     }
 
+    handleEvent() {
+        if (this.formId && (this.type === 'submit' || this.type === 'reset')) {
+            const form: any = document.getElementById(this.formId);
+            if (form) {
+                form.dispatchEvent(new Event(this.type));
+                if (this.type === 'reset') {
+                    form.reset();
+                }
+            }
+        }
+    }
+
     render() {
-        let type = 'primary';
+        let style = 'primary';
 
         if (this.secondary) {
-            type = 'secondary';
+            style = 'secondary';
         } else if (this.tertiary) {
-            type = 'tertiary';
+            style = 'tertiary';
         }
 
         return html`
-                <button type='${this.type}' class='${type} ${this.fullWidth ? 'full-width' : ''} ${this.halfWidth ? 'half-width' : ''}'>
+                <button type='${this.type}' class='${style} ${this.fullWidth ? 'full-width' : ''}'
+                    @click="${this.handleEvent}">
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
                     <span class='label'>${this.label}</span>
                     ${ this.iconSuffix ? html`&nbsp;<slot name='iconSuffix'></slot> ` : ''}

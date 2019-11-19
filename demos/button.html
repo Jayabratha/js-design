@@ -15,17 +15,26 @@
             font-weight: 700;
             letter-spacing: -1px;
         }
+
         .button-wrapper {
             display: flex;
+            flex-wrap: wrap;
         }
+
         .button-wrapper>* {
             margin: 10px;
         }
     </style>
     <script type='module' src='../components/button/jsd-button.js'></script>
     <script>
-        function test() {
-            console.log('Testing', event.target);
+        // function submit(event) {
+        //     console.log('Testing', event.target);
+        //     // event.preventDefault();
+        //     return false;
+        // }
+
+        function test(event) {
+            alert('Test');
         }
     </script>
 </head>
@@ -35,7 +44,7 @@
     <div class='button-wrapper'>
         <div>
             <h3>Default button</h3>
-            <jsd-button label='Testing' onclick="test()"></jsd-button>
+            <jsd-button type='submit' label='Testing'></jsd-button>
         </div>
         <div>
             <h3>Primary button</h3>
@@ -61,13 +70,19 @@
                 <span slot='iconSuffix'>&hearts;</span>
             </jsd-button>
         </div>
-        <div>
-            <h3>Full Width button</h3>
-            <jsd-button primary fullWidth label='Icon Button'>
-            </jsd-button>
-        </div>
     </div>
-
+    <div>
+        <h3>Full Width button</h3>
+        <jsd-button primary fullWidth label='Icon Button'>
+        </jsd-button>
+    </div>
+    <div>
+        <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+            <input type='text' name='test' />
+            <jsd-button formId='test' type='reset'></jsd-button>
+            <!-- <button type="reset">Reset</button> -->
+        </form>
+    </div>
 </body>
 
 </html>
