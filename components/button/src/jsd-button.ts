@@ -10,7 +10,9 @@ export class Button extends LitElement {
     @property({ type: Boolean }) tertiary = false;
     @property({ type: Boolean }) iconPrefix = false;
     @property({ type: Boolean }) iconSuffix = false;
-    @property({ type: Boolean}) fullWidth = false;
+    @property({ type: Boolean }) fullWidth = false;
+    @property({ type: Boolean }) halfWidth = false;
+    @property({ type: String }) type = 'button';
 
     static get styles() {
         return [
@@ -110,7 +112,7 @@ export class Button extends LitElement {
         }
 
         return html`
-                <button class='${type} ${this.fullWidth ? 'full-width' : ''}'>
+                <button type='${this.type}' class='${type} ${this.fullWidth ? 'full-width' : ''} ${this.halfWidth ? 'half-width' : ''}'>
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
                     <span class='label'>${this.label}</span>
                     ${ this.iconSuffix ? html`&nbsp;<slot name='iconSuffix'></slot> ` : ''}
