@@ -27,12 +27,6 @@
     </style>
     <script type='module' src='../components/button/jsd-button.js'></script>
     <script>
-        // function submit(event) {
-        //     console.log('Testing', event.target);
-        //     // event.preventDefault();
-        //     return false;
-        // }
-
         function test(event) {
             alert('Test');
         }
@@ -44,7 +38,7 @@
     <div class='button-wrapper'>
         <div>
             <h3>Default button</h3>
-            <jsd-button type='submit' label='Testing'></jsd-button>
+            <jsd-button type='submit' label='Testing' onclick="test()"></jsd-button>
         </div>
         <div>
             <h3>Primary button</h3>

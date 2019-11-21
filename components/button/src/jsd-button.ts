@@ -37,6 +37,9 @@ export class Button extends LitElement {
                 outline-width: 1px;
                 outline-color: transparent;
             }
+            button::-moz-focus-inner {
+                border: 0;
+            }
             button[disabled] {
                 opacity: 0.5;
                 cursor: not-allowed;
@@ -46,7 +49,8 @@ export class Button extends LitElement {
                 box-shadow: inset 0px 0px 0px 0px var(--color-primary);
                 background-color: var(--color-primary);
             }
-            button.primary:not([disabled]):hover {
+            button.primary:not([disabled]):hover,
+            button.primary:not([disabled]):focus {
                 background-color: var(--color-primary-dark);
                 box-shadow: inset 0px 0px 0px 4px var(--color-primary);
             }
@@ -58,7 +62,8 @@ export class Button extends LitElement {
                 background-color: var(--color-secondary);
                 box-shadow: inset 0px 0px 0px 0px var(--color-secondary-dark);
             }
-            button.secondary:not([disabled]):hover {
+            button.secondary:not([disabled]):hover,
+            button.secondary:not([disabled]):focus {
                 color: var(--color-primary);
                 box-shadow: inset 0px 0px 0px 4px var(--color-secondary-dark);
             }
@@ -89,7 +94,8 @@ export class Button extends LitElement {
                 width: 0%;
                 transition: width 0.3s;
             }
-            button.tertiary:not([disabled]):hover::after {
+            button.tertiary:not([disabled]):hover::after,
+            button.tertiary:not([disabled]):focus::after {
                 width: 100%;
             }
             button.full-width {
@@ -130,7 +136,7 @@ export class Button extends LitElement {
         }
 
         return html`
-                <button type='${this.type}' class='${style} ${this.fullWidth ? 'full-width' : ''}'
+                <button role='button' aria-labelledby='${this.label}' type='${this.type}' class='${style} ${this.fullWidth ? 'full-width' : ''}'
                     ?disabled="${this.disabled}"
                     @click="${this.handleEvent}">
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
