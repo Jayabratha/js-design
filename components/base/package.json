@@ -1,6 +1,6 @@
 {
-  "name": "jsd-base",
-  "version": "0.1.3",
+  "name": "@jsdesign/jsd-base",
+  "version": "0.0.1",
   "description": "JS Design Base",
   "main": "base.js",
   "scripts": {
@@ -11,5 +11,10 @@
   "dependencies": {
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jayabratha/js-design/tree/master/components/base"
   }
 }

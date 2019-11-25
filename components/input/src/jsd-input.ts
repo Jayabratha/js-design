@@ -1,5 +1,5 @@
 import { LitElement, customElement, property, html, css, query } from 'lit-element';
-import { baseStyles } from 'jsd-base';
+import { baseStyles } from '@jsdesign/jsd-base';
 
 export type TextFieldType = 'text' | 'search' | 'tel' | 'url' | 'email' | 'password' |
     'date' | 'month' | 'week' | 'time' | 'datetime-local' | 'number' | 'color';
