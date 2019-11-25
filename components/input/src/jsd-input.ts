@@ -49,8 +49,9 @@ export class Input extends LitElement {
                 padding: 1rem;
                 border: 1px solid var(--color-input);
                 background-color: var(--color-secondary);
-                color: var(--color-balck);
+                color: var(--color-black);
                 transition: all 0.4s;
+                box-sizing: border-box;
             }
             .text-input input.error{
                 color: var(--color-error, true);
@@ -68,7 +69,7 @@ export class Input extends LitElement {
             }
             .text-input input.error:focus,
             .text-input input.error:active {
-                color: var(--color-balck);
+                color: var(--color-black);
             }
             .text-input input::placeholder {
                 color: var(--color-label);
