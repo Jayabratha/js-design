@@ -1,0 +1,55 @@
+<html style='font-size: 14px;'>
+
+<head>
+    <style>
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol";
+            box-sizing: border-box;
+            font-feature-settings: "kern";
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1 {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .input-wrapper>* {
+            margin: 10px;
+            width: 300px;
+        }
+    </style>
+    <script type='module' src='../components/input/jsd-input.js'></script>
+    <script>
+        function test(event) {
+            console.log('Test', event);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Inputs</h1>
+
+    <div class='input-wrapper'>
+        <div>
+            <input name="name" type="text" autocomplete="off" onchange="test()" />
+        </div>
+        <div>
+            <h3>Basic Input</h3>
+            <jsd-input id="name" name="name" label="name" placeholder="Enter your name" oninput="test()"
+                onchange="test(event)" value='Jay'></jsd-input>
+        </div>
+        <div>
+            <h3>Error Input</h3>
+            <jsd-input id="error" name="error" label="error" placeholder="Enter your name" errorMsg='Name is required'>
+            </jsd-input>
+        </div>
+    </div>
+</body>

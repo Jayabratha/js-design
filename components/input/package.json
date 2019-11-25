@@ -1,0 +1,15 @@
+{
+  "name": "jsd-input",
+  "version": "1.0.0",
+  "description": "JS Design Input web component",
+  "main": "jsd-input",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsd-base": "^0.1.3",
+    "tslib": "^1.10.0"
+  }
+}
