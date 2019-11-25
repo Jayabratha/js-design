@@ -1,0 +1,52 @@
+<script>
+    <Formik validateOnBlur={true} validateOnChange={false}
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
+        validate={validateForm}
+        onSubmit={handleSubmit}
+    >
+        {(formik) => {
+            return (
+                <form id='authform' ref={authForm} onSubmit={formik.handleSubmit}>
+                    <jsd-input
+                        ref={email}
+                        type='email'
+                        name='email'
+                        placeholder='Please enter your email'
+                        onInput={formik.handleChange}
+                        value={formik.values.email}
+                        label='email'
+                        id='email'
+                        formId='authform'
+                        errorMsg={formik.errors.email}
+                        required
+                    ></jsd-input>
+                    {(showLogin || showSignUp) &&
+                        <jsd-input className={`form-item ${(showLogin || showSignUp) ? 'show' : ''}`}
+                            type='password'
+                            name='password'
+                            placeholder={showSignUp ? 'Set your password' : 'Please enter your password'}
+                            onInput={formik.handleChange}
+                            value={formik.values.password}
+                            label='password'
+                            id='password'
+                            formId='authform'
+                            errorMsg={formik.errors.password}
+                        ></jsd-input>}
+                    {showSignUp &&
+                        <jsd-input className={`form-item ${showSignUp ? 'show' : ''}`}
+                            type='password'
+                            name='confirmPassword'
+                            placeholder='Confirm your password'
+                            onInput={formik.handleChange}
+                            value={formik.values.confirmPassword}
+                            label='confirm password'
+                            id='confirm-password'
+                            formId='authform'
+                            errorMsg={formik.errors.confirmPassword}
+                        ></jsd-input>}
+                    <jsd-button formId='authform' type='submit' fullWidth label={submitText}></jsd-button>
+                </form>
+            );
+        }}
+    </Formik>
+</script>

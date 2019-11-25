@@ -27,6 +27,7 @@
         }
     </style>
     <script type='module' src='../components/input/jsd-input.js'></script>
+    <script type='module' src='../components/button/jsd-button.js'></script>
     <script>
         function test(event) {
             console.log('Test', event);
@@ -39,9 +40,6 @@
 
     <div class='input-wrapper'>
         <div>
-            <input name="name" type="text" autocomplete="off" onchange="test()" />
-        </div>
-        <div>
             <h3>Basic Input</h3>
             <jsd-input id="name" name="name" label="name" placeholder="Enter your name" oninput="test()"
                 onchange="test(event)" value='Jay'></jsd-input>
@@ -50,6 +48,13 @@
             <h3>Error Input</h3>
             <jsd-input id="error" name="error" label="error" placeholder="Enter your name" errorMsg='Name is required'>
             </jsd-input>
+        </div>
+        <div>
+            <h3>Form Demo</h3>
+            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+                <jsd-input formId='test' type='text' name='test'></jsd-input>
+                <jsd-button formId='test' type='submit' fullWidth label='Submit'></jsd-button>
+            </form>
         </div>
     </div>
 </body>

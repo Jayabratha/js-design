@@ -53,11 +53,6 @@ export class Input extends LitElement {
                 transition: all 0.4s;
                 box-sizing: border-box;
             }
-            .text-input input.error{
-                color: var(--color-error, true);
-                border: 1px solid var(--color-error);
-                background-color: var(--color-error-background);
-            }
             .text-input input:hover {
                 border: 1px solid var(--color-input);
                 background-color: var(--color-white);
@@ -67,9 +62,10 @@ export class Input extends LitElement {
                 border: 1px solid var(--color-primary);
                 background-color: var(--color-white);
             }
-            .text-input input.error:focus,
-            .text-input input.error:active {
-                color: var(--color-black);
+            .text-input input.error{
+                color: var(--color-error, true);
+                border: 1px solid var(--color-error);
+                background-color: var(--color-error-background);
             }
             .text-input input::placeholder {
                 color: var(--color-label);
@@ -91,13 +87,22 @@ export class Input extends LitElement {
 
     handleValueChange(event) {
         console.log(event);
-        let newEvent = new CustomEvent('change', {
-            detail: { message: 'custom change event.' },
+        let newEvent = new Event('change', {
             bubbles: true,
             composed: true
         });
         console.log(newEvent);
         this.dispatchEvent(newEvent);
+    }
+
+    handleFormSubmit(event) {
+        let key = event.which || event.keyCode;
+        if (this.formId && key === 13) {
+            const form: any = document.getElementById(this.formId);
+            if (form) {
+                form.dispatchEvent(new Event('submit'));
+            }
+        }
     }
 
     render() {
@@ -114,6 +119,7 @@ export class Input extends LitElement {
                        placeholder="${this.placeholder}" 
                        @input="${this.handleInputChange}"
                        @change="${this.handleValueChange}"
+                       @keypress="${this.handleFormSubmit}"
                        autocomplete="off" />
                 ${this.errorMsg ? html`<div class="error-message">${this.errorMsg}</div>` : ''}
             </div>
