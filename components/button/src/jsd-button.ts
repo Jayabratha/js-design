@@ -1,5 +1,5 @@
 import { LitElement, customElement, property, html, css } from 'lit-element';
-import { baseStyles } from 'jsd-base';
+import { baseStyles } from '@jsdesign/jsd-base';
 
 @customElement('jsd-button')
 export class Button extends LitElement {
