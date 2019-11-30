@@ -1,6 +1,7 @@
 <html style='font-size: 14px;'>
 
 <head>
+    <script type='module' src='../components/select/jsd-select.js'></script>
     <style>
         html {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
@@ -37,6 +38,7 @@
         }
 
         .wrapper>* {
+            position: relative;
             margin: 10px;
             width: 300px;
         }
@@ -51,7 +53,8 @@
         }
 
         .select-wrapper {
-            position: relative;
+            position: absolute;
+            width: 100%;
             border: 1px solid var(--color-input);
             background-color: var(--color-secondary);
             border-radius: 0.5rem;
@@ -162,6 +165,7 @@
             transform: rotate(45deg);
         }
 
+        ul.custom-select>li.selected,
         ul.custom-select>li.current,
         ul.custom-select>li:hover {
             background-color: var(--color-secondary);
@@ -191,7 +195,7 @@
         <div>
             <h3>JS select</h3>
             <div class='custom-select-wrapper'>
-                <div id='state' class='label' role='label'>State</div>
+                <div for='select' class='label' role='label'>State</div>
                 <div id='select' class='select-wrapper'>
                     <button id='select-button' tabindex="0" aria-haspopup="listbox" aria-labelledby="state state-button"
                         onclick='select.handleClick()' onfocus="select.handleHover()"
@@ -209,6 +213,10 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div>
+            <h3>JS Design select</h3>
+            <jsd-select id='state' list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'></jsd-select>
         </div>
     </div>
     <script>
@@ -264,6 +272,7 @@
                 }
             }
             function handleBlur(event) {
+                console.log(event);
                 if (event.relatedTarget !== selectButton) {
                     handleClick(event, true);
                 }
@@ -332,6 +341,7 @@
                 }
 
                 if (selectList.scrollHeight > selectList.clientHeight) {
+                    console.log(currentItem);
                     var currentItemBottom = currentItem.offsetTop + currentItem.offsetHeight;
                     if (currentItemBottom > (selectList.clientHeight + selectList.scrollTop)) {
                         selectList.scrollTop = currentItem.offsetTop;
