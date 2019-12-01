@@ -185,7 +185,7 @@
     <div class='wrapper'>
         <div>
             <h3>Default select</h3>
-            <select>
+            <select onchange='test(event)'>
                 <option>Select your state</option>
                 <option>West Bengal</option>
                 <option>Karnataka</option>
@@ -216,7 +216,7 @@
         </div>
         <div>
             <h3>JS Design select</h3>
-            <jsd-select id='state' list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'></jsd-select>
+            <jsd-select id='state' value='Karnataka' onchange='test(event)' list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'></jsd-select>
         </div>
     </div>
     <script>
@@ -360,5 +360,11 @@
                 handleKeyPress: handleKeyPress
             }
         })();
+        
+        function test(event) {
+            var elem = event.target;
+            var newVal = elem.getAttribute('value');
+            console.log('change', event, newVal);
+        }
     </script>
 </body>

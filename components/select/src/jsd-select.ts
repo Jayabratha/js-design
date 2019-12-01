@@ -4,8 +4,6 @@ import { baseStyles } from '@jsdesign/jsd-base';
 @customElement('jsd-select')
 export class Select extends LitElement {
 
-    // @query('ul') protected listElement!: HTMLInputElement;
-
     @property({ type: String }) id = '';
     @property({ type: String }) name = '';
     @property({ type: String }) formId = '';
@@ -22,7 +20,7 @@ export class Select extends LitElement {
                             selected: false,
                             current: false
                         }
-                    })
+                    });
                 }
             }
         }
@@ -32,9 +30,6 @@ export class Select extends LitElement {
     listElement: HTMLElement | null;
     selectButton: HTMLElement | null;
 
-    // @property({ type: String, attribute: false }) listClasses: string = 'select-wrapper';
-    // @property({ type: Object, attribute: false }) currentItem: any = null;
-    // @property({ type: Object, attribute: false }) selectedItem: any = null;
     constructor() {
         super();
         this.listWrapper = null;
@@ -52,8 +47,6 @@ export class Select extends LitElement {
             this.listElement = document.getElementById(`${this.id}-list`);
             this.selectButton = document.getElementById(`${this.id}-button`);
         }
-
-        console.log(this.listWrapper, this.listElement);
     }
 
 
@@ -210,7 +203,6 @@ export class Select extends LitElement {
     }
 
     toggleClick(close) {
-        console.log('click', close);
         if (close) {
             this.isExpanded = false;
         } else {
@@ -267,10 +259,15 @@ export class Select extends LitElement {
                 i.selected = false;
                 i.current = false;
             }
-        })
+        });
         
         setTimeout(() => {
+            let changeEvent = new Event('change', {
+                bubbles: true,
+                composed: true
+            });
             this.toggleClick(true);
+            this.dispatchEvent(changeEvent);
         }, 200);
     }
 
@@ -320,7 +317,6 @@ export class Select extends LitElement {
             }
 
             if (this.listElement && this.listElement.scrollHeight > this.listElement.clientHeight) {
-                console.log('new', currentItem);
                 if (currentItem) {
                     var currentItemBottom = currentItem.offsetTop + currentItem.offsetHeight;
                     if (currentItemBottom > (this.listElement.clientHeight + this.listElement.scrollTop)) {
