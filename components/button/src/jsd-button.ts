@@ -52,7 +52,7 @@ export class Button extends LitElement {
             button.primary:not([disabled]):hover,
             button.primary:not([disabled]):focus {
                 background-color: var(--color-primary-dark);
-                box-shadow: inset 0px 0px 0px 4px var(--color-primary);
+                box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-primary);
             }
             button.primary:not([disabled]):active {
                 box-shadow: inset 0px 0px 20px 10px var(--color-primary);
@@ -65,7 +65,7 @@ export class Button extends LitElement {
             button.secondary:not([disabled]):hover,
             button.secondary:not([disabled]):focus {
                 color: var(--color-primary);
-                box-shadow: inset 0px 0px 0px 4px var(--color-secondary-dark);
+                box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-secondary-dark);
             }
             button.secondary:not([disabled]):active {
                 box-shadow: inset 0px 0px 20px 10px var(--color-secondary-dark);

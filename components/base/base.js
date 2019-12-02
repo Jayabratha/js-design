@@ -12,9 +12,11 @@ export const baseStyles = css `
         --color-black: #2c2c2c;
         --color-header-black: #252525;
         --color-header-tag: #747373;
-        --color-input: #edebeb;
         --color-white: #ffffff;
+        --color-border: #edebeb;
         --border-radius: 0.5rem;
+        --border-width: 1px;
+        --border-width-hover: 3px;
 
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
             "Segoe UI Emoji", "Segoe UI Symbol";
@@ -24,4 +26,20 @@ export const baseStyles = css `
         -webkit-font-smoothing: antialiased;
     }
 `;
+export const keyCode = {
+    BACKSPACE: 8,
+    TAB: 9,
+    RETURN: 13,
+    ESC: 27,
+    SPACE: 32,
+    PAGE_UP: 33,
+    PAGE_DOWN: 34,
+    END: 35,
+    HOME: 36,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+    DELETE: 46
+};
 //# sourceMappingURL=base.js.map

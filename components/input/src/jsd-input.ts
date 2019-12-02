@@ -47,14 +47,14 @@ export class Input extends LitElement {
                 border-radius: 0.5rem;
                 font-size: 1rem;
                 padding: 1rem;
-                border: 1px solid var(--color-input);
+                border: 1px solid var(--color-border);
                 background-color: var(--color-secondary);
                 color: var(--color-black);
                 transition: all 0.4s;
                 box-sizing: border-box;
             }
             .text-input input:hover {
-                border: 1px solid var(--color-input);
+                border: 1px solid var(--color-border);
                 background-color: var(--color-white);
             }
             .text-input input:focus,

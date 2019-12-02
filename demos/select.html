@@ -21,7 +21,7 @@
             --color-black: #2c2c2c;
             --color-header-black: #252525;
             --color-header-tag: #747373;
-            --color-input: #edebeb;
+            --color-border: #edebeb;
             --color-white: #ffffff;
             --border-radius: 0.5rem;
         }
@@ -55,7 +55,7 @@
         .select-wrapper {
             position: absolute;
             width: 100%;
-            border: 1px solid var(--color-input);
+            border: 1px solid var(--color-border);
             background-color: var(--color-secondary);
             border-radius: 0.5rem;
             height: 3.3rem;
@@ -71,7 +71,7 @@
 
         .select-wrapper:hover,
         .select-wrapper.hover {
-            border: 1px solid var(--color-primary);
+            background: #ffffff;
         }
 
         .select-wrapper:focus {
@@ -79,7 +79,7 @@
             border: 1px solid var(--color-primary);
         }
 
-        .select-wrapper>button {
+        .select-wrapper>.button {
             position: absolute;
             width: 100%;
             height: calc(3.3rem - 2px);
@@ -90,16 +90,21 @@
             cursor: pointer;
             text-align: left;
             font-size: 1rem;
+            box-sizing: border-box;
             outline: solid 1px transparent;
             line-height: calc(1.3rem - 2px);
             color: var(--color-placeholder);
         }
 
-        .select-wrapper.selected:not(.expanded)>button {
+        .select-wrapper>.button::-moz-focus-inner {
+            border: 0;
+        }
+
+        .select-wrapper.selected:not(.expanded)>.button {
             color: var(--color-black);
         }
 
-        .select-wrapper>button::after {
+        .select-wrapper>.button::after {
             content: '';
             border: solid var(--color-label);
             border-width: 0 2px 2px 0;
@@ -131,15 +136,15 @@
             overflow: hidden;
             transition: max-height 0.3s;
             overflow-y: auto;
-            border-top: 1px solid var(--color-input);
         }
 
         .select-wrapper.expanded ul.custom-select {
             height: auto;
             max-height: 200px;
+            border-top: 1px solid var(--color-border);
         }
 
-        .select-wrapper.expanded button::after {
+        .select-wrapper.expanded .button::after {
             transform: rotate(-135deg);
         }
 
@@ -191,18 +196,19 @@
                 <option>Karnataka</option>
                 <option>Uttar Pradesh</option>
             </select>
+            <button>Test</button>
         </div>
         <div>
             <h3>JS select</h3>
             <div class='custom-select-wrapper'>
                 <div for='select' class='label' role='label'>State</div>
                 <div id='select' class='select-wrapper'>
-                    <button id='select-button' tabindex="0" aria-haspopup="listbox" aria-labelledby="state state-button"
-                        onclick='select.handleClick()' onfocus="select.handleHover()"
+                    <div id='select-button' class="button" tabindex="0" aria-haspopup="listbox" aria-labelledby="state state-button"
+                        onclick='select.handleClick()' onkeydown='select.handleButtonPress(event)' onfocus="select.handleHover()"
                         onblur="select.handleMouseOut()">Select your
-                        state</button>
-                    <ul id='select-list' tabindex="-1" class='custom-select' role='listbox' tabindex="0"
-                        aria-labelledby="state" onblur='select.handleBlur(event)'
+                        state</div>
+                    <ul id='select-list' class='custom-select' role='listbox' tabindex='-1' aria-labelledby="state"
+                        onblur='select.handleBlur(event)'
                         onclick='select.handleSelect(event.target)' onkeydown='select.handleKeyPress(event)'>
                         <li role='option' value='West Bengal'>West Bengal</li>
                         <li role='option' value='Karnataka'>Karnataka</li>
@@ -216,7 +222,9 @@
         </div>
         <div>
             <h3>JS Design select</h3>
-            <jsd-select id='state' value='Karnataka' onchange='test(event)' list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'></jsd-select>
+            <jsd-select id='state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
         </div>
     </div>
     <script>
@@ -253,7 +261,7 @@
                 selectWrapper.classList.remove('hover');
             }
             function handleClick(event, close) {
-                console.log('click');
+                console.log('click', event);
                 if (close) {
                     isExpanded = false;
                 } else {
@@ -272,10 +280,11 @@
                 }
             }
             function handleBlur(event) {
-                console.log(event);
+                console.log('blur', event);
                 if (event.relatedTarget !== selectButton) {
                     handleClick(event, true);
                 }
+                handleMouseOut();
             }
             function handleSelect(element) {
                 var li = element;
@@ -309,7 +318,19 @@
                     }
                 });
 
-                setTimeout(handleClick, 200);
+                setTimeout(() => {
+                    handleClick();
+                }, 200);
+            }
+
+            function handleButtonPress(event) {
+                var key = event.which || event.code;
+
+                console.log('keydown');
+
+                if (key === keyCode.SPACE || key === keyCode.RETURN) {
+                    handleClick();
+                }
             }
 
             function handleKeyPress(event) {
@@ -357,10 +378,11 @@
                 handleClick: handleClick,
                 handleBlur: handleBlur,
                 handleSelect: handleSelect,
-                handleKeyPress: handleKeyPress
+                handleKeyPress: handleKeyPress,
+                handleButtonPress: handleButtonPress
             }
         })();
-        
+
         function test(event) {
             var elem = event.target;
             var newVal = elem.getAttribute('value');

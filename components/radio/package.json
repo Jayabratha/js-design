@@ -1,8 +1,8 @@
 {
-  "name": "@jsdesign/jsd-select",
-  "version": "0.1.1",
-  "description": "custom select web-component jsdesign",
-  "main": "jsd-input",
+  "name": "@jsdesign/jsd-radio",
+  "version": "0.1.0",
+  "description": "custom radio web-component jsdesign",
+  "main": "jsd-radio",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,12 +13,12 @@
     "url": "https://github.com/Jayabratha/js-design/tree/master/components/select"
   },
   "keywords": [
-    "input",
+    "radio",
     "field",
     "web-component"
   ],
   "dependencies": {
-    "@jsdesign/jsd-base": "0.0.3",
+    "@jsdesign/jsd-base": "0.0.1",
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
   }

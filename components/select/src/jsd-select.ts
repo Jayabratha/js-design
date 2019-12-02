@@ -1,5 +1,6 @@
 import { LitElement, customElement, html, css, property } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
+import { keyCode } from '@jsdesign/jsd-base';
 
 @customElement('jsd-select')
 export class Select extends LitElement {
@@ -9,6 +10,7 @@ export class Select extends LitElement {
     @property({ type: String }) formId = '';
     @property({ type: String }) label = 'select';
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
+    @property({ type: Boolean, attribute: false }) inFocus = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
     @property({
         type: Array, converter: {
@@ -47,6 +49,14 @@ export class Select extends LitElement {
             this.listElement = document.getElementById(`${this.id}-list`);
             this.selectButton = document.getElementById(`${this.id}-button`);
         }
+
+        if (this.selectedValue) {
+            let selectedItem = this.list.find(item => item.value === this.selectedValue);
+            selectedItem.selected = true;
+            selectedItem.current = true;
+        } else {
+            this.list[0].current = true;
+        }
     }
 
 
@@ -65,7 +75,7 @@ export class Select extends LitElement {
     
             .select-wrapper {
                 position: relative;
-                border: 1px solid var(--color-input);
+                border: 1px solid var(--color-border);
                 background-color: var(--color-secondary);
                 border-radius: 0.5rem;
                 height: 3.3rem;
@@ -82,7 +92,7 @@ export class Select extends LitElement {
     
             .select-wrapper:hover,
             .select-wrapper.hover {
-                border: 1px solid var(--color-primary);
+                background: #ffffff;
             }
     
             .select-wrapper:focus {
@@ -90,7 +100,7 @@ export class Select extends LitElement {
                 border: 1px solid var(--color-primary);
             }
     
-            .select-wrapper>button {
+            .select-wrapper>.button {
                 position: absolute;
                 width: 100%;
                 height: calc(3.3rem - 2px);
@@ -104,13 +114,18 @@ export class Select extends LitElement {
                 outline: solid 1px transparent;
                 line-height: calc(1.3rem - 2px);
                 color: var(--color-placeholder);
+                box-sizing: border-box;
+            }
+
+            .select-wrapper>button::-moz-focus-inner {
+                border: 0;
             }
     
-            .select-wrapper.selected:not(.expanded)>button {
+            .select-wrapper.selected:not(.expanded)>.button {
                 color: var(--color-black);
             }
     
-            .select-wrapper>button::after {
+            .select-wrapper>.button::after {
                 content: '';
                 border: solid var(--color-label);
                 border-width: 0 2px 2px 0;
@@ -121,6 +136,10 @@ export class Select extends LitElement {
                 right: 1rem;
                 transform: rotate(45deg);
                 transition: transform 0.3s;
+            }
+
+            .select-wrapper.expanded .button::after {
+                transform: rotate(-135deg);
             }
     
             ul.custom-select {
@@ -142,16 +161,12 @@ export class Select extends LitElement {
                 overflow: hidden;
                 transition: max-height 0.3s;
                 overflow-y: auto;
-                border-top: 1px solid var(--color-input);
             }
     
             .select-wrapper.expanded ul.custom-select {
                 height: auto;
                 max-height: 200px;
-            }
-    
-            .select-wrapper.expanded button::after {
-                transform: rotate(-135deg);
+                border-top: 1px solid var(--color-border);
             }
     
             ul.custom-select>li {
@@ -175,11 +190,14 @@ export class Select extends LitElement {
                 left: 1rem;
                 transform: rotate(45deg);
             }
-    
-            ul.custom-select>li.selected,
+
             ul.custom-select>li.current,
             ul.custom-select>li:hover {
                 background-color: var(--color-secondary);
+            }
+
+            ul.custom-select>li.selected {
+                background-color: var(--color-secondary-dark);
             }
     
             ul.custom-select::before {
@@ -192,17 +210,15 @@ export class Select extends LitElement {
         ]
     }
 
-    toggleFocus() {
-        if (this.listWrapper) {
-            if (this.listWrapper.classList.contains('hover')) {
-                this.listWrapper.classList.remove('hover');
-            } else {
-                this.listWrapper.classList.add('hover');
-            }
+    toggleFocus(defocus = false) {
+        if (defocus) {
+            this.inFocus = false;
+        } else {
+            this.inFocus = !this.inFocus;
         }
     }
 
-    toggleClick(close) {
+    toggleClick(close = false) {
         if (close) {
             this.isExpanded = false;
         } else {
@@ -210,14 +226,12 @@ export class Select extends LitElement {
         }
         if (this.listWrapper && this.listElement && this.selectButton) {
             if (this.isExpanded) {
-                this.listWrapper.classList.add('expanded');
                 this.listElement.focus();
                 if (!this.selectedValue) {
                     this.list[0].current = true;
                 }
             } else {
                 this.selectButton.focus();
-                this.listWrapper.classList.remove('expanded');
                 this.list.forEach((item) => {
                     if (!item.selected) {
                         item.current = false;
@@ -238,6 +252,7 @@ export class Select extends LitElement {
     handleBlur(event: any) {
         if (!event.relatedTarget || (event.relatedTarget && event.relatedTarget.id !== `${this.id}-button`)) {
             this.toggleClick(true);
+            this.toggleFocus(true);
         }
     }
 
@@ -245,22 +260,15 @@ export class Select extends LitElement {
         this.selectedValue = '';
         this.list.forEach(i => {
             if (i === item) {
-                if (item.selected) {
-                    this.selectedValue = '';
-                    this.list[0].current = true;
-                    i.current = false;
-                    i.selected = false;
-                } else {
-                    this.selectedValue = item.value;
-                    i.selected = true;
-                    i.current = true;
-                }
+                this.selectedValue = item.value;
+                i.selected = true;
+                i.current = true;
             } else {
                 i.selected = false;
                 i.current = false;
             }
         });
-        
+
         setTimeout(() => {
             let changeEvent = new Event('change', {
                 bubbles: true,
@@ -269,6 +277,15 @@ export class Select extends LitElement {
             this.toggleClick(true);
             this.dispatchEvent(changeEvent);
         }, 200);
+    }
+
+    handleButtonPress(event) {
+        let key = event.which || event.code;
+        event.preventDefault();
+
+        if (key === keyCode.SPACE || key === keyCode.RETURN) {
+            this.toggleClick();
+        }
     }
 
     handleKeyPress(event) {
@@ -285,7 +302,7 @@ export class Select extends LitElement {
             event.preventDefault();
 
             switch (key) {
-                case 38: {
+                case keyCode.UP: {
                     if (currentIndex !== 0) {
                         let prevIndex = currentIndex - 1;
                         this.list[currentIndex].current = false;
@@ -297,7 +314,7 @@ export class Select extends LitElement {
                     }
                     break;
                 }
-                case 40: {
+                case keyCode.DOWN: {
                     if (currentIndex < (this.list.length - 1)) {
                         let nextIndex = currentIndex + 1;
                         this.list[currentIndex].current = false;
@@ -309,8 +326,8 @@ export class Select extends LitElement {
                     }
                     break;
                 }
-                case 32:
-                case 13: {
+                case keyCode.SPACE:
+                case keyCode.RETURN: {
                     this.list[currentIndex].current = false;
                     this.handleSelect(this.list[currentIndex]);
                 }
@@ -331,17 +348,27 @@ export class Select extends LitElement {
     }
 
     render() {
+        if (this.selectedValue) {
+            let selectedItem = this.list.find(item => item.value === this.selectedValue);
+            selectedItem.selected = true;
+        }
         return html`
             <div class='custom-select-wrapper'>
                 <div class='label' role='label'>State</div>
-                <div id='${this.id}' class='select-wrapper'> 
-                    <button id='${this.id}-button' aria-haspopup='listbox'
+                <div id='${this.id}' class='select-wrapper 
+                    ${this.selectedValue ? 'selected' : ''} 
+                    ${this.isExpanded ? 'expanded' : ''}
+                    ${this.inFocus ? 'hover' : ''}'> 
+                    <div id='${this.id}-button' 
+                        class='button'
+                        aria-haspopup='listbox'
                         tabindex='0'
-                        @focus='${this.toggleFocus}'
-                        @blur='${this.toggleFocus}'
+                        @focus='${() => this.toggleFocus(false)}'
+                        @blur='${() => this.toggleFocus(true)}'
                         @click='${() => this.toggleClick(false)}' 
+                        @keydown='${this.handleButtonPress}'
                         aria-expanded='${this.isExpanded}'
-                        aria-labelledby='state state-button'>${this.selectedValue ? this.selectedValue : 'Select your state'}</button>   
+                        aria-labelledby='state state-button'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>   
                     <ul id='${this.id}-list' tabindex='-1' class='custom-select' role='listbox'
                         aria-labelledby="state"
                         @blur='${this.handleBlur}'
