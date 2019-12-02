@@ -72,9 +72,15 @@ export class Select extends LitElement {
                 letter-spacing: 0.2rem;
                 color: var(--color-label);
             }
+
+            .custom-select-wrapper {
+                position: relative;
+                height: 6rem;
+            }
     
             .select-wrapper {
-                position: relative;
+                position: absolute;
+                width: 100%;
                 border: 1px solid var(--color-border);
                 background-color: var(--color-secondary);
                 border-radius: 0.5rem;
@@ -88,6 +94,7 @@ export class Select extends LitElement {
                 height: auto;
                 background: #ffffff;
                 border: 1px solid var(--color-primary);
+                z-index: 10;
             }
     
             .select-wrapper:hover,

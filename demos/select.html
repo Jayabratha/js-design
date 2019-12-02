@@ -199,6 +199,12 @@
             <button>Test</button>
         </div>
         <div>
+            <h3>JS Design select</h3>
+            <jsd-select id='state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
             <h3>JS select</h3>
             <div class='custom-select-wrapper'>
                 <div for='select' class='label' role='label'>State</div>
@@ -219,12 +225,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div>
-            <h3>JS Design select</h3>
-            <jsd-select id='state' onchange='test(event)'
-                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
-            </jsd-select>
         </div>
     </div>
     <script>
