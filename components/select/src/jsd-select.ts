@@ -92,14 +92,17 @@ export class Select extends LitElement {
     
             .select-wrapper.expanded {
                 height: auto;
-                background: #ffffff;
+                background: var(--color-white);
                 border: 1px solid var(--color-primary);
                 z-index: 10;
             }
     
-            .select-wrapper:hover,
-            .select-wrapper.hover {
-                background: #ffffff;
+            .select-wrapper:hover {
+                background: var(--color-white);
+            }
+            .select-wrapper.focus {
+                background: var(--color-white);
+                border: 1px solid var(--color-primary);
             }
     
             .select-wrapper:focus {
@@ -365,7 +368,7 @@ export class Select extends LitElement {
                 <div id='${this.id}' class='select-wrapper 
                     ${this.selectedValue ? 'selected' : ''} 
                     ${this.isExpanded ? 'expanded' : ''}
-                    ${this.inFocus ? 'hover' : ''}'> 
+                    ${this.inFocus ? 'focus' : ''}'> 
                     <div id='${this.id}-button' 
                         class='button'
                         aria-haspopup='listbox'
