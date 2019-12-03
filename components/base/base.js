@@ -25,6 +25,14 @@ export const baseStyles = css `
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
     }
+    .label {
+        display: block;
+        font-size: 0.8rem;
+        padding: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        color: var(--color-label);
+    }
 `;
 export const keyCode = {
     BACKSPACE: 8,

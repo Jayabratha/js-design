@@ -18,7 +18,7 @@
     "web-component"
   ],
   "dependencies": {
-    "@jsdesign/jsd-base": "0.0.3",
+    "@jsdesign/jsd-base": "0.0.4",
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
   }

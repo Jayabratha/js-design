@@ -1,57 +1,10 @@
 <html style='font-size: 14px;'>
 
 <head>
+    <title>JSD Select</title>
+    <link rel='stylesheet' type='text/css' href='./base-style.css'>
     <script type='module' src='../components/select/jsd-select.js'></script>
     <style>
-        html {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-                "Segoe UI Emoji", "Segoe UI Symbol";
-            box-sizing: border-box;
-            font-feature-settings: "kern";
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            --color-primary: #50a2f4;
-            --color-primary-dark: #107ce8;
-            --color-secondary: #f6f6f6;
-            --color-secondary-dark: #efefef;
-            --color-error: #c12316;
-            --color-error-background: #f9e8e8;
-            --color-placeholder: #737373;
-            --color-label: #909090;
-            --color-black: #2c2c2c;
-            --color-header-black: #252525;
-            --color-header-tag: #747373;
-            --color-border: #edebeb;
-            --color-white: #ffffff;
-            --border-radius: 0.5rem;
-        }
-
-
-        h1 {
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .wrapper {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .wrapper>* {
-            position: relative;
-            margin: 10px;
-            width: 300px;
-        }
-
-        .label {
-            display: block;
-            font-size: 0.8rem;
-            padding: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2rem;
-            color: var(--color-label);
-        }
-
         .select-wrapper {
             position: absolute;
             width: 100%;
@@ -209,13 +162,14 @@
             <div class='custom-select-wrapper'>
                 <div for='select' class='label' role='label'>State</div>
                 <div id='select' class='select-wrapper'>
-                    <div id='select-button' class="button" tabindex="0" aria-haspopup="listbox" aria-labelledby="state state-button"
-                        onclick='select.handleClick()' onkeydown='select.handleButtonPress(event)' onfocus="select.handleHover()"
+                    <div id='select-button' class="button" tabindex="0" aria-haspopup="listbox"
+                        aria-labelledby="state state-button" onclick='select.handleClick()'
+                        onkeydown='select.handleButtonPress(event)' onfocus="select.handleHover()"
                         onblur="select.handleMouseOut()">Select your
                         state</div>
                     <ul id='select-list' class='custom-select' role='listbox' tabindex='-1' aria-labelledby="state"
-                        onblur='select.handleBlur(event)'
-                        onclick='select.handleSelect(event.target)' onkeydown='select.handleKeyPress(event)'>
+                        onblur='select.handleBlur(event)' onclick='select.handleSelect(event.target)'
+                        onkeydown='select.handleKeyPress(event)'>
                         <li role='option' value='West Bengal'>West Bengal</li>
                         <li role='option' value='Karnataka'>Karnataka</li>
                         <li role='option' value='Uttar Pradesh'>Uttar Pradesh</li>

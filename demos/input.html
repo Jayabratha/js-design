@@ -1,31 +1,8 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <style>
-        html {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-                "Segoe UI Emoji", "Segoe UI Symbol";
-            box-sizing: border-box;
-            font-feature-settings: "kern";
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1 {
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .input-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .input-wrapper>* {
-            margin: 10px;
-            width: 300px;
-        }
-    </style>
+    <title>JSD Input</title>
+    <link rel='stylesheet' type='text/css' href='./base-style.css'>
     <script type='module' src='../components/input/jsd-input.js'></script>
     <script type='module' src='../components/button/jsd-button.js'></script>
     <script>
@@ -38,7 +15,7 @@
 <body>
     <h1>Inputs</h1>
 
-    <div class='input-wrapper'>
+    <div class='wrapper'>
         <div>
             <h3>Basic Input</h3>
             <jsd-input id="name" name="name" label="name" placeholder="Enter your name" oninput="test()"
