@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-radio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "custom radio web-component jsdesign",
   "main": "jsd-radio",
   "scripts": {
