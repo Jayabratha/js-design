@@ -137,8 +137,8 @@ export class Select extends LitElement {
     
             .select-wrapper>.button::after {
                 content: '';
-                border: solid var(--color-label);
-                border-width: 0 2px 2px 0;
+                border: solid var(--color-placeholder);
+                border-width: 0 1px 1px 0;
                 display: inline-block;
                 padding: 3px;
                 position: absolute;
@@ -191,7 +191,7 @@ export class Select extends LitElement {
     
             ul.custom-select>li.selected::before {
                 content: '';
-                border: solid var(--color-label);
+                border: solid var(--color-primary);
                 border-width: 0 2px 2px 0;
                 display: inline-block;
                 padding: 5px 2px;
@@ -207,7 +207,7 @@ export class Select extends LitElement {
             }
 
             ul.custom-select>li.selected {
-                background-color: var(--color-secondary-dark);
+                background-color: var(--color-secondary);
             }
     
             ul.custom-select::before {
