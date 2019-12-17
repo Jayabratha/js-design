@@ -13,25 +13,27 @@ export class Datepicker extends LitElement {
     @property({ type: String }) label = 'select';
     @property({ type: String }) placeholder = 'Select date'
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
-    @property({ type: Boolean, attribute: false }) inFocus = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
+    @property({ type: Boolean, attribute: false }) inFocus = false;
+    @property({ type: String, attribute: false }) currentTab = 'day';
+    @property({ type: Number, attribute: false }) day;
+    @property({ type: Number, attribute: false }) month;
+    @property({ type: Number, attribute: false }) year;
 
     datepickerElement: HTMLElement | null;
     dates: any[] = [];
-    today: number;
-    day: number;
-    month: number;
-    year: number;
+    today: Date;
 
     constructor() {
         super();
-        let date = new Date();
-        this.today = date.getDate();
         this.datepickerElement = null;
-        this.day = this.today;
-        this.month = date.getMonth();
-        this.year = 2021;
+        let now = new Date();
+        this.day = now.getDate();     
+        this.month = now.getMonth();
+        this.year = now.getFullYear();
+        this.today = new Date(this.year, this.month, this.day);
         this.createDates(this.year, this.month);
+        console.log(this.today.getTime());
     }
 
     firstUpdated() {
@@ -212,12 +214,6 @@ export class Datepicker extends LitElement {
                 cursor: pointer;
             }
     
-            .row>.month {
-                font-size: 1rem;
-                width: 62px;
-                border-radius: 5px;
-            }
-    
             .row>*.selected {
                 background-color: var(--color-primary);
                 color: var(--color-white);
@@ -242,6 +238,32 @@ export class Datepicker extends LitElement {
                 margin: 0;
                 color: var(--color-label);
             }
+
+            .month-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin: 0 0.5rem;
+            }
+            .month-wrapper .month {
+                width: 30%;
+                height: 25px;
+                line-height: 25px;
+                border: 1px solid transparent;
+                cursor: pointer;
+                font-size: 1rem;
+                border-radius: 5px;
+                margin: 1rem 0;
+                text-align: center;
+            }
+            .month-wrapper .month:hover {
+                border-color: var(--color-primary);
+            }
+            .month-wrapper .month.selected {
+                background-color: var(--color-primary);
+                color: var(--color-white);
+                box-shadow: 0 0 0 5px var(--color-secondary);
+            }
             `
         ]
     }
@@ -253,9 +275,8 @@ export class Datepicker extends LitElement {
         let startDay = startDate.getDay();
         let lastDay = lastDate.getDate();
 
-        console.log(startDate, lastDate, startDay, lastDay);
-
-        for (let weekCount = 0; weekCount < 5; weekCount++) {
+        this.dates = [];
+        for (let weekCount = 0; (weekCount <= 4 || dayCount <= lastDay); weekCount++) {
             let week: any[] = [];
             for (let day = 0; day < 7; day++) {
                 if (dayCount > lastDay) {
@@ -263,7 +284,6 @@ export class Datepicker extends LitElement {
                     dayCount++;
                 } else if (weekCount === 0 && day < startDay) {
                     week.push(new Date(year, month, (day - startDay) + 1));
-                    //week.push('');
                 } else {
                     week.push(new Date(year, month, dayCount));
                     dayCount++;
@@ -304,6 +324,50 @@ export class Datepicker extends LitElement {
         }
     }
 
+    selectTab(tab) {
+        this.currentTab = tab;
+    }
+
+    next() {
+        if (this.currentTab === 'day') {
+            if (this.month === 11) {
+                this.month = 0;
+                this.year = this.year + 1;
+            } else {
+                this.month = this.month + 1;
+            }
+        }
+        if (this.currentTab === 'month') {
+            this.year = this.year + 1;
+        }
+        this.createDates(this.year, this.month);
+    }
+
+    prev() {
+        if (this.currentTab === 'day') {
+            if (this.month === 0) {
+                this.month = 11;
+                this.year = this.year - 1;
+            } else {
+                this.month = this.month - 1;
+            }
+        }
+        if (this.currentTab === 'month') {
+            this.year = this.year - 1;
+        }
+        this.createDates(this.year, this.month);
+    }
+
+    selectDate(day) {
+        this.day = day.getDate();
+    }
+
+    selectMonth(month) {
+        this.month = month;
+        this.createDates(this.year, this.month);
+        this.currentTab = 'day';
+    }
+
     render() {
         return html`
                 <div class='jsd-datepicker'>
@@ -324,18 +388,18 @@ export class Datepicker extends LitElement {
                             tabindex='-1' 
                             @blur='${this.handleBlur}'>
                             <div class='date-nav'>
-                                <div class='arrow prev'></div>
+                                <div class='arrow prev' @click='${this.prev}'></div>
                                 <div class='preview'>
-                                    <div class='date-link day selected'>${this.day}</div>
+                                    <div class='date-link day ${this.currentTab === 'day' ? 'selected' : ''}' @click='${() => this.selectTab('day')}'>${this.day}</div>
                                     <div class='separator'></div>
-                                    <div class='date-link month'>${months[this.month]}</div>
+                                    <div class='date-link month ${this.currentTab === 'month' ? 'selected' : ''}' @click='${() => this.selectTab('month')}'>${months[this.month]}</div>
                                     <div class='separator'></div>
-                                    <div class='date-link year'>${this.year}</div>
+                                    <div class='date-link year ${this.currentTab === 'year' ? 'selected' : ''}' @click='${() => this.selectTab('year')}'>${this.year}</div>
                                 </div>
-                                <div class='arrow next'></div>
+                                <div class='arrow next' @click='${this.next}'></div>
                             </div>
                             <div class='calender'>
-                                <div class='date-wrapper'>
+                                <div class='date-wrapper' ?hidden='${this.currentTab !== 'day'}'>
                                     <div class='header row'>
                                         <div>S</div>
                                         <div>M</div>
@@ -348,36 +412,20 @@ export class Datepicker extends LitElement {
                                     ${this.dates.map((week: []) => html`
                                     <div class='row'>
                                         ${week.map((day: Date) => html`
-                                        ${day ?
-                html`<div class='${day ? 'date' : ''} 
-                                            ${day.getDate() === this.today ? 'selected' : ''} 
+                                        ${day ? 
+                                            html`<div class='${day ? 'date' : ''} 
+                                            ${day.getDate() === this.day ? 'selected' : ''} 
                                             ${day.getMonth() === this.month ? 'current' : ''}
-                                            '>${day.getDate()}</div>` :
-                html`<div></div>`}                                  
+                                            '
+                                            @click='${() => this.selectDate(day)}'>${day.getDate()}</div>` :
+                                            html`<div></div>`}                                  
                                         `)}
                                     </div>`)}   
                                 </div>
-                                <div class='month-wrapper' hidden>
-                                    <div class='row test'>
-                                        <div class='month'>Jan</div>
-                                        <div class='month'>Feb</div>
-                                        <div class='month'>Mar</div>
-                                    </div>
-                                    <div class='row'>
-                                        <div class='month'>Apr</div>
-                                        <div class='month'>May</div>
-                                        <div class='month'>Jun</div>
-                                    </div>
-                                    <div class='row'>
-                                        <div class='month'>Jul</div>
-                                        <div class='month'>Aug</div>
-                                        <div class='month'>Sep</div>
-                                    </div>
-                                    <div class='row'>
-                                        <div class='month'>Oct</div>
-                                        <div class='month'>Nov</div>
-                                        <div class='month selected'>Dec</div>
-                                    </div>
+                                <div ?hidden='${this.currentTab !== 'month'}'>
+                                    <div class='month-wrapper'>${months.map((month, index) => 
+                                        html`<div class='month ${this.month === index ? 'selected' : ''}' @click='${() => this.selectMonth(index)}'>${month}</div>`)}
+                                    </div>  
                                 </div>
                             </div>
                         </div>
