@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html style='font-size: 14px;'>
+<head>
+    <title>JSD Datepicker</title>
+    <link rel='stylesheet' type='text/css' href='./base-style.css'>
+    <script type='module' src='../components/datepicker/jsd-datepicker.js'></script>
+    <style>
+        .datepicker-wrapper {
+            position: absolute;
+            width: 100%;
+            min-width: 100%;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-secondary);
+            border-radius: 0.5rem;
+            height: 3.3rem;
+            min-height: 3.3rem;
+            max-height: 3.3rem;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: min-width 0.2s, max-height 0.5s ease-out;
+        }
+
+        .datepicker-wrapper:hover,
+        .datepicker-wrapper.hover {
+            background: #ffffff;
+        }
+
+        .datepicker-wrapper:focus {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-primary);
+        }
+
+        .datepicker-wrapper.expanded {
+            height: auto;
+            min-width: 330px;
+            max-height: 500px;
+            background: #ffffff;
+            border: 1px solid var(--color-primary);
+        }
+
+        .datepicker-button {
+            position: absolute;
+            width: 100%;
+            height: calc(3.3rem - 2px);
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            z-index: 1;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: solid 1px transparent;
+            line-height: calc(1.3rem - 2px);
+            color: var(--color-placeholder);
+        }
+
+        .calender-icon {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            height: 12px;
+            width: 12px;
+            border: 1px solid var(--color-placeholder);
+            border-radius: 4px;
+        }
+
+        .calender-icon::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 4px;
+            height: 4px;
+            background-color: var(--color-placeholder);
+            border-radius: 50%;
+        }
+
+        .datepicker {
+            position: relative;
+            margin-top: calc(3.3rem - 2px);
+            transition: max-height 0.8s;
+        }
+
+        .datepicker-wrapper.expanded .datepicker {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .date-nav {
+            position: relative;
+            background-color: var(--color-secondary);
+            height: 3.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .date-link {
+            height: 3.3rem;
+            line-height: 3.3rem;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .date-link.selected,
+        .date-link:hover {
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .arrow {
+            border: solid var(--color-placeholder);
+            border-width: 0 1px 1px 0;
+            display: inline-block;
+            padding: 3px;
+            top: 1.3rem;
+            cursor: pointer;
+        }
+
+        .arrow.prev {
+            transform: rotate(135deg);
+        }
+
+        .arrow.next {
+            transform: rotate(-45deg);
+        }
+
+        .preview {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            height: 100%;
+            color: var(--color-primary);
+        }
+
+        .separator {
+            background-color: var(--color-label);
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            margin: 0 4px;
+        }
+
+        .calender {
+            height: auto;
+            padding: 0.5rem 1rem 1rem;
+            font-size: 1rem;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .row>* {
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .row>.month {
+            font-size: 1rem;
+            width: 62px;
+            border-radius: 5px;
+        }
+
+        .row>*.selected {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: 0 0 0 5px var(--color-secondary);
+        }
+
+        .row>*:hover {
+            border-color: var(--color-primary);
+        }
+
+        .row:last-child {
+            margin-bottom: 0;
+        }
+
+        .header {
+            font-size: 0.8rem;
+            margin: 0;
+            color: var(--color-label);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Datepicker</h1>
+    <div class='wrapper'>
+        <div>
+            <h3>Deafult Datepicker</h3>
+            <input type=date />
+        </div>
+        <div>
+            <h3>JS Datepicker</h3>
+            <div class='jsd-datepicker'>
+                <div class='label'>date</div>
+                <div id='date-picker' class='datepicker-wrapper' onclick='toggleDatePicker()'>
+                    <div class='datepicker-button' tabindex="0">
+                        <span>Select your date</span>
+                        <span class='calender-icon'></span>
+                    </div>
+                    <div class='datepicker'>
+                        <div class='date-nav'>
+                            <div class='arrow prev'></div>
+                            <div class='preview'>
+                                <div class='date-link day'>10</div>
+                                <div class='separator'></div>
+                                <div class='date-link month selected'>Dec</div>
+                                <div class='separator'></div>
+                                <div class='date-link year'>2019</div>
+                            </div>
+                            <div class='arrow next'></div>
+                        </div>
+                        <div class='calender'>
+                            <div class='date-wrapper'>
+                                <div class='header row'>
+                                    <div>S</div>
+                                    <div>M</div>
+                                    <div>T</div>
+                                    <div>W</div>
+                                    <div>T</div>
+                                    <div>F</div>
+                                    <div>S</div>
+                                </div>
+                                <div class='row'>
+                                    <div class='date'>1</div>
+                                    <div class='date'>2</div>
+                                    <div class='date'>3</div>
+                                    <div class='date'>4</div>
+                                    <div class='date'>5</div>
+                                    <div class='date'>6</div>
+                                    <div class='date'>7</div>
+                                </div>
+                                <div class="row">
+                                    <div class='date'>8</div>
+                                    <div class='date'>9</div>
+                                    <div class='date selected'>10</div>
+                                    <div class='date'>11</div>
+                                    <div class='date'>12</div>
+                                    <div class='date'>13</div>
+                                    <div class='date'>14</div>
+                                </div>
+                                <div class="row">
+                                    <div class='date'>15</div>
+                                    <div class='date'>16</div>
+                                    <div class='date'>17</div>
+                                    <div class='date'>18</div>
+                                    <div class='date'>19</div>
+                                    <div class='date'>20</div>
+                                    <div class='date'>21</div>
+                                </div>
+                                <div class="row">
+                                    <div class=date>22</div>
+                                    <div class=date>23</div>
+                                    <div class=date>24</div>
+                                    <div class=date>25</div>
+                                    <div class=date>26</div>
+                                    <div class=date>27</div>
+                                    <div class=date>28</div>
+                                </div>
+                                <div class="row">
+                                    <div class=date>29</div>
+                                    <div class=date>30</div>
+                                    <div class=date>31</div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div class='month-wrapper' hidden>
+                                <div class='row test'>
+                                    <div class='month'>Jan</div>
+                                    <div class='month'>Feb</div>
+                                    <div class='month'>Mar</div>
+                                </div>
+                                <div class='row'>
+                                    <div class='month'>Apr</div>
+                                    <div class='month'>May</div>
+                                    <div class='month'>Jun</div>
+                                </div>
+                                <div class='row'>
+                                    <div class='month'>Jul</div>
+                                    <div class='month'>Aug</div>
+                                    <div class='month'>Sep</div>
+                                </div>
+                                <div class='row'>
+                                    <div class='month'>Oct</div>
+                                    <div class='month'>Nov</div>
+                                    <div class='month selected'>Dec</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>JSD Datepicker</h3>
+            <jsd-datepicker></jsd-datepicker>
+        </div>
+    </div>
+    <script>
+        function toggleDatePicker() {
+            var elem = document.getElementById('date-picker');
+            if (elem.classList.contains('expanded')) {
+                elem.classList.remove('expanded');
+            } else {
+                elem.classList.add('expanded');
+            }
+        }
+    </script>
+</body>
+
+</html>

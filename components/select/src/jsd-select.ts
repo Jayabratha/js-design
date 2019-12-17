@@ -64,15 +64,6 @@ export class Select extends LitElement {
         return [
             baseStyles,
             css`
-            .label {
-                display: block;
-                font-size: 0.8rem;
-                padding: 0.6rem;
-                text-transform: uppercase;
-                letter-spacing: 0.2rem;
-                color: var(--color-label);
-            }
-
             .custom-select-wrapper {
                 position: relative;
                 height: 6rem;
