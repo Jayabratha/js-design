@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
+
 <head>
     <title>JSD Datepicker</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
@@ -306,7 +307,7 @@
         </div>
         <div>
             <h3>JSD Datepicker</h3>
-            <jsd-datepicker></jsd-datepicker>
+            <jsd-datepicker value='1989-11-08'></jsd-datepicker>
         </div>
     </div>
     <script>
@@ -317,6 +318,10 @@
             } else {
                 elem.classList.add('expanded');
             }
+        }
+
+        function formatter(date) {
+            return`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
         }
     </script>
 </body>

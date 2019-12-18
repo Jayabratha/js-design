@@ -11,29 +11,31 @@ export class Datepicker extends LitElement {
     @property({ type: String }) name = '';
     @property({ type: String }) formId = '';
     @property({ type: String }) label = 'select';
-    @property({ type: String }) placeholder = 'Select date'
+    @property({ type: String }) placeholder = 'Select date';
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
-    @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
+    @property({ type: String, attribute: 'value', reflect: true }) selectedValue;
     @property({ type: Boolean, attribute: false }) inFocus = false;
     @property({ type: String, attribute: false }) currentTab = 'day';
     @property({ type: Number, attribute: false }) day;
     @property({ type: Number, attribute: false }) month;
     @property({ type: Number, attribute: false }) year;
+    @property({ type: Number, attribute: false }) years;
 
     datepickerElement: HTMLElement | null;
     dates: any[] = [];
-    today: Date;
+    date: Date;
+    selectedDate: Date | null;
 
     constructor() {
         super();
         this.datepickerElement = null;
-        let now = new Date();
-        this.day = now.getDate();     
-        this.month = now.getMonth();
-        this.year = now.getFullYear();
-        this.today = new Date(this.year, this.month, this.day);
+        this.selectedDate = null;
+        this.date = new Date();
+        this.day = this.date.getDate();
+        this.month = this.date.getMonth();
+        this.year = this.date.getFullYear();
+        this.createYears(this.year);
         this.createDates(this.year, this.month);
-        console.log(this.today.getTime());
     }
 
     firstUpdated() {
@@ -41,6 +43,14 @@ export class Datepicker extends LitElement {
             this.datepickerElement = this.shadowRoot.getElementById(`${this.id}-datepicker`);
         } else {
             this.datepickerElement = document.getElementById(`${this.id}-datepicker`);
+        }
+        if (this.selectedValue) {
+            this.selectedDate = new Date(this.selectedValue);
+            this.day = this.selectedDate.getDate();
+            this.month = this.selectedDate.getMonth();
+            this.year = this.selectedDate.getFullYear();
+            this.createYears(this.year);
+            this.createDates(this.year, this.month);
         }
     }
 
@@ -95,6 +105,10 @@ export class Datepicker extends LitElement {
                 outline: solid 1px transparent;
                 line-height: calc(1.3rem - 2px);
                 color: var(--color-placeholder);
+            }
+
+            .datepicker-wrapper.selected:not(.expanded)>.datepicker-button {
+                color: var(--color-black);
             }
     
             .calender-icon {
@@ -239,13 +253,13 @@ export class Datepicker extends LitElement {
                 color: var(--color-label);
             }
 
-            .month-wrapper {
+            .item-wrapper {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                margin: 0 0.5rem;
+                margin: 0 0.5rem -0.5rem;
             }
-            .month-wrapper .month {
+            .item-wrapper .item {
                 width: 30%;
                 height: 25px;
                 line-height: 25px;
@@ -256,16 +270,24 @@ export class Datepicker extends LitElement {
                 margin: 1rem 0;
                 text-align: center;
             }
-            .month-wrapper .month:hover {
+            .item-wrapper .item:hover {
                 border-color: var(--color-primary);
             }
-            .month-wrapper .month.selected {
+            .item-wrapper .item.selected {
                 background-color: var(--color-primary);
                 color: var(--color-white);
                 box-shadow: 0 0 0 5px var(--color-secondary);
             }
             `
         ]
+    }
+
+    createYears(year: number) {
+        const firstYear = year - (year % 10);
+        this.years = [];
+        for (let i = 0; i < 12; i++) {
+            this.years.push(firstYear + i);
+        }
     }
 
     createDates(year: number, month: number) {
@@ -329,37 +351,61 @@ export class Datepicker extends LitElement {
     }
 
     next() {
-        if (this.currentTab === 'day') {
-            if (this.month === 11) {
-                this.month = 0;
+        switch (this.currentTab) {
+            case 'day': {
+                if (this.month === 11) {
+                    this.month = 0;
+                    this.year = this.year + 1;
+                } else {
+                    this.month = this.month + 1;
+                }
+                this.createDates(this.year, this.month);
+                break;
+            }
+            case 'month': {
                 this.year = this.year + 1;
-            } else {
-                this.month = this.month + 1;
+                break;
+            }
+            case 'year': {
+                this.year = this.year + 10;
+                this.createYears(this.year);
+                break;
             }
         }
-        if (this.currentTab === 'month') {
-            this.year = this.year + 1;
-        }
-        this.createDates(this.year, this.month);
     }
 
     prev() {
-        if (this.currentTab === 'day') {
-            if (this.month === 0) {
-                this.month = 11;
+        switch (this.currentTab) {
+            case 'day': {
+                if (this.month === 0) {
+                    this.month = 11;
+                    this.year = this.year - 1;
+                } else {
+                    this.month = this.month - 1;
+                }
+                this.createDates(this.year, this.month);
+                break;
+            }
+            case 'month': {
                 this.year = this.year - 1;
-            } else {
-                this.month = this.month - 1;
+                break;
+            }
+            case 'year': {
+                this.year = this.year - 10;
+                this.createYears(this.year);
+                break;
             }
         }
-        if (this.currentTab === 'month') {
-            this.year = this.year - 1;
-        }
-        this.createDates(this.year, this.month);
     }
 
     selectDate(day) {
         this.day = day.getDate();
+        this.isExpanded = false;
+        this.selectedDate = new Date(this.year, this.month, this.day);
+        let ISOyear = this.year;
+        let ISOmonth = (this.month + 1) < 10 ? `0${this.month + 1}` : this.month + 1;
+        let ISOday = this.day < 10 ? `0${this.day}` : this.day;
+        this.selectedValue = `${ISOyear}-${ISOmonth}-${ISOday}`;
     }
 
     selectMonth(month) {
@@ -368,11 +414,18 @@ export class Datepicker extends LitElement {
         this.currentTab = 'day';
     }
 
+    selectYear(year) {
+        this.year = year;
+        this.createDates(this.year, this.month);
+        this.currentTab = 'month';
+    }
+
     render() {
         return html`
                 <div class='jsd-datepicker'>
                     <div class='label'>${this.label}</div>
-                    <div id='${this.id}' class='datepicker-wrapper  
+                    <div id='${this.id}' class='datepicker-wrapper 
+                        ${this.selectedValue ? 'selected' : ''}  
                         ${this.isExpanded ? 'expanded' : ''} 
                         ${this.inFocus ? 'focus' : ''}'>
                         <div id='${this.id}-button' class='datepicker-button' 
@@ -381,7 +434,7 @@ export class Datepicker extends LitElement {
                             @focus='${() => this.toggleFocus(false)}'
                             @blur='${() => this.toggleFocus(true)}'
                             >
-                            <span>Select your date</span>
+                            <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
                             <span class='calender-icon'></span>
                         </div>
                         <div id='${this.id}-datepicker' class='datepicker'
@@ -409,23 +462,30 @@ export class Datepicker extends LitElement {
                                         <div>F</div>
                                         <div>S</div>
                                     </div>
-                                    ${this.dates.map((week: []) => html`
-                                    <div class='row'>
-                                        ${week.map((day: Date) => html`
-                                        ${day ? 
-                                            html`<div class='${day ? 'date' : ''} 
-                                            ${day.getDate() === this.day ? 'selected' : ''} 
-                                            ${day.getMonth() === this.month ? 'current' : ''}
-                                            '
-                                            @click='${() => this.selectDate(day)}'>${day.getDate()}</div>` :
-                                            html`<div></div>`}                                  
-                                        `)}
-                                    </div>`)}   
+                                    <div class='animate-wrapper'>
+                                        ${this.dates.map((week: []) => html`
+                                            <div class='row'>
+                                                ${week.map((day: Date) => html`
+                                                ${day ?
+                                                    html`<div class='${day ? 'date' : ''} 
+                                                    ${day.getDate() === this.day ? 'selected' : ''} 
+                                                    ${day.getMonth() === this.month ? 'current' : ''}'
+                                                    @click='${() => this.selectDate(day)}'>${day.getDate()}</div>` :
+                                                    html`<div></div>`}                                  
+                                                `)}
+                                            </div>`
+                                        )}
+                                    </div>  
                                 </div>
                                 <div ?hidden='${this.currentTab !== 'month'}'>
-                                    <div class='month-wrapper'>${months.map((month, index) => 
-                                        html`<div class='month ${this.month === index ? 'selected' : ''}' @click='${() => this.selectMonth(index)}'>${month}</div>`)}
+                                    <div class='item-wrapper'>${months.map((month, index) =>
+                                        html`<div class='item month ${this.month === index ? 'selected' : ''}' @click='${() => this.selectMonth(index)}'>${month}</div>`)}
                                     </div>  
+                                </div>
+                                <div ?hidden='${this.currentTab !== 'year'}'>
+                                    <div class='item-wrapper'>${this.years.map((year) =>
+                                        html`<div class='item year ${this.year === year ? 'selected' : ''}' @click='${() => this.selectYear(year)}'>${year}</div>`)}
+                                    </div>
                                 </div>
                             </div>
                         </div>
