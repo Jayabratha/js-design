@@ -9,6 +9,7 @@ export class Select extends LitElement {
     @property({ type: String }) name = '';
     @property({ type: String }) formId = '';
     @property({ type: String }) label = 'select';
+    @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
     @property({ type: Boolean, attribute: false }) inFocus = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
@@ -88,7 +89,7 @@ export class Select extends LitElement {
                 z-index: 10;
             }
     
-            .select-wrapper:hover {
+            .select-wrapper:not(.disabled):hover {
                 background: var(--color-white);
             }
             .select-wrapper.focus {
@@ -118,11 +119,15 @@ export class Select extends LitElement {
                 box-sizing: border-box;
             }
 
+            .select-wrapper>.button.disabled {
+                cursor: not-allowed;
+            }
+
             .select-wrapper>button::-moz-focus-inner {
                 border: 0;
             }
     
-            .select-wrapper.selected:not(.expanded)>.button {
+            .select-wrapper.selected:not(.expanded):not(.disabled)>.button {
                 color: var(--color-black);
             }
     
@@ -359,17 +364,20 @@ export class Select extends LitElement {
                 <div id='${this.id}' class='select-wrapper 
                     ${this.selectedValue ? 'selected' : ''} 
                     ${this.isExpanded ? 'expanded' : ''}
-                    ${this.inFocus ? 'focus' : ''}'> 
-                    <div id='${this.id}-button' 
-                        class='button'
-                        aria-haspopup='listbox'
-                        tabindex='0'
-                        @focus='${() => this.toggleFocus(false)}'
-                        @blur='${() => this.toggleFocus(true)}'
-                        @click='${() => this.toggleClick(false)}' 
-                        @keydown='${this.handleButtonPress}'
-                        aria-expanded='${this.isExpanded}'
-                        aria-labelledby='state state-button'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>   
+                    ${this.inFocus ? 'focus' : ''}
+                    ${this.disabled ? 'disabled' : ''}'>
+                    ${this.disabled ? 
+                        html`<div id='${this.id}-button' class='button disabled'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>` : 
+                        html`<div id='${this.id}-button' 
+                                class='button'
+                                aria-haspopup='listbox'
+                                tabindex='0'
+                                @focus='${() => this.toggleFocus(false)}'
+                                @blur='${() => this.toggleFocus(true)}'
+                                @click='${() => this.toggleClick(false)}' 
+                                @keydown='${this.handleButtonPress}'
+                                aria-expanded='${this.isExpanded}'
+                                aria-labelledby='state state-button'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>`}
                     <ul id='${this.id}-list' tabindex='-1' class='custom-select' role='listbox'
                         aria-labelledby="state"
                         @blur='${this.handleBlur}'

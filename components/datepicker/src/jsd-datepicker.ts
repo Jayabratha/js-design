@@ -12,6 +12,7 @@ export class Datepicker extends LitElement {
     @property({ type: String }) formId = '';
     @property({ type: String }) label = 'select';
     @property({ type: String }) placeholder = 'Select date';
+    @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue;
     @property({ type: Boolean, attribute: false }) inFocus = false;
@@ -71,8 +72,8 @@ export class Datepicker extends LitElement {
                 transition: min-width 0.2s;
             }
     
-            .datepicker-wrapper:hover,
-            .datepicker-wrapper.hover {
+            .datepicker-wrapper:not(.disabled):hover,
+            .datepicker-wrapper:not(.disabled).hover {
                 background: #ffffff;
             }
             
@@ -88,6 +89,7 @@ export class Datepicker extends LitElement {
                 max-height: 500px;
                 background: #ffffff;
                 border: 1px solid var(--color-primary);
+                z-index: 1;
             }
     
             .datepicker-button {
@@ -97,7 +99,6 @@ export class Datepicker extends LitElement {
                 padding: 1rem;
                 background: transparent;
                 border: none;
-                z-index: 1;
                 cursor: pointer;
                 text-align: left;
                 font-size: 1rem;
@@ -107,8 +108,12 @@ export class Datepicker extends LitElement {
                 color: var(--color-placeholder);
             }
 
-            .datepicker-wrapper.selected:not(.expanded)>.datepicker-button {
+            .datepicker-wrapper.selected:not(.expanded):not(.disabled)>.datepicker-button {
                 color: var(--color-black);
+            }
+
+            .datepicker-button.disabled {
+                cursor: not-allowed;
             }
     
             .calender-icon {
@@ -427,16 +432,22 @@ export class Datepicker extends LitElement {
                     <div id='${this.id}' class='datepicker-wrapper 
                         ${this.selectedValue ? 'selected' : ''}  
                         ${this.isExpanded ? 'expanded' : ''} 
-                        ${this.inFocus ? 'focus' : ''}'>
-                        <div id='${this.id}-button' class='datepicker-button' 
-                            tabindex='0'
-                            @click='${() => this.toggleDatePicker(false)}'
-                            @focus='${() => this.toggleFocus(false)}'
-                            @blur='${() => this.toggleFocus(true)}'
-                            >
-                            <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
-                            <span class='calender-icon'></span>
-                        </div>
+                        ${this.inFocus ? 'focus' : ''}
+                        ${this.disabled ? 'disabled' : ''}'>
+                        ${this.disabled ? 
+                            html`<div id='${this.id}-button' class='datepicker-button disabled'>
+                                    <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
+                                    <span class='calender-icon'></span>
+                                </div>` :
+                            html`<div id='${this.id}-button' class='datepicker-button' 
+                                    tabindex='0'
+                                    @click='${() => this.toggleDatePicker(false)}'
+                                    @focus='${() => this.toggleFocus(false)}'
+                                    @blur='${() => this.toggleFocus(true)}'
+                                    >
+                                    <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
+                                    <span class='calender-icon'></span>
+                            </div>`}    
                         <div id='${this.id}-datepicker' class='datepicker'
                             tabindex='-1' 
                             @blur='${this.handleBlur}'>
@@ -468,7 +479,7 @@ export class Datepicker extends LitElement {
                                                 ${week.map((day: Date) => html`
                                                 ${day ?
                                                     html`<div class='${day ? 'date' : ''} 
-                                                    ${day.getDate() === this.day ? 'selected' : ''} 
+                                                    ${day.getDate() === this.day && day.getMonth() === this.month ? 'selected' : ''} 
                                                     ${day.getMonth() === this.month ? 'current' : ''}'
                                                     @click='${() => this.selectDate(day)}'>${day.getDate()}</div>` :
                                                     html`<div></div>`}                                  

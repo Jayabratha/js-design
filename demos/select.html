@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
+
 <head>
     <title>JSD Select</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
@@ -152,12 +153,6 @@
             <button>Test</button>
         </div>
         <div>
-            <h3>JS Design select</h3>
-            <jsd-select id='state' onchange='test(event)'
-                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
-            </jsd-select>
-        </div>
-        <div>
             <h3>JS select</h3>
             <div class='custom-select-wrapper'>
                 <div for='select' class='label' role='label'>State</div>
@@ -179,6 +174,18 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div>
+            <h3>JSD Select</h3>
+            <jsd-select id='state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>JSD Select - disabled</h3>
+            <jsd-select id='state' onchange='test(event)' disabled
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
         </div>
     </div>
     <script>
