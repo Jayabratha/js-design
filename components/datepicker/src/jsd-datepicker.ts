@@ -175,14 +175,18 @@ export class Datepicker extends LitElement {
             .date-link:hover {
                 border-bottom: 2px solid var(--color-primary);
             }
+
+            .arrow-button {
+                position: relative;
+                padding: 5px;
+                cursor: pointer;
+                height: 10px;
+            }
     
             .arrow {
                 border: solid var(--color-placeholder);
                 border-width: 0 1px 1px 0;
-                display: inline-block;
                 padding: 3px;
-                top: 1.3rem;
-                cursor: pointer;
             }
     
             .arrow.prev {
@@ -425,6 +429,10 @@ export class Datepicker extends LitElement {
         this.currentTab = 'month';
     }
 
+    handleButtonPress() {
+
+    }
+
     render() {
         return html`
                 <div class='jsd-datepicker'>
@@ -443,7 +451,8 @@ export class Datepicker extends LitElement {
                                     tabindex='0'
                                     @click='${() => this.toggleDatePicker(false)}'
                                     @focus='${() => this.toggleFocus(false)}'
-                                    @blur='${() => this.toggleFocus(true)}'
+                                    @blur='${() => this.toggleFocus(true)}' 
+                                    @keydown='${this.handleButtonPress}'
                                     >
                                     <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
                                     <span class='calender-icon'></span>
@@ -452,7 +461,9 @@ export class Datepicker extends LitElement {
                             tabindex='-1' 
                             @blur='${this.handleBlur}'>
                             <div class='date-nav'>
-                                <div class='arrow prev' @click='${this.prev}'></div>
+                                <div class='arrow-button' @click='${this.prev}'>
+                                    <div class='arrow prev'></div>
+                                </div>
                                 <div class='preview'>
                                     <div class='date-link day ${this.currentTab === 'day' ? 'selected' : ''}' @click='${() => this.selectTab('day')}'>${this.day}</div>
                                     <div class='separator'></div>
@@ -460,7 +471,9 @@ export class Datepicker extends LitElement {
                                     <div class='separator'></div>
                                     <div class='date-link year ${this.currentTab === 'year' ? 'selected' : ''}' @click='${() => this.selectTab('year')}'>${this.year}</div>
                                 </div>
-                                <div class='arrow next' @click='${this.next}'></div>
+                                <div class='arrow-button' @click='${this.next}'>
+                                    <div class='arrow next'></div>
+                                </div>
                             </div>
                             <div class='calender'>
                                 <div class='date-wrapper' ?hidden='${this.currentTab !== 'day'}'>
