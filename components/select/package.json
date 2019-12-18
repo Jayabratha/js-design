@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-select",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "custom select web-component jsdesign",
   "main": "jsd-input",
   "scripts": {
