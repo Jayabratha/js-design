@@ -1,6 +1,5 @@
 import { LitElement, customElement, html, css, property } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
-// import { keyCode } from '@jsdesign/jsd-base';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -323,24 +322,20 @@ export class Datepicker extends LitElement {
             }
             this.dates.push(week);
         }
-        console.log(this.dates);
     }
 
     toggleDatePicker(close) {
-        console.log('click');
         if (close) {
             this.isExpanded = false;
         } else {
             this.isExpanded = !this.isExpanded;
             if (this.isExpanded) {
-                console.log('focus datepicker');
                 this.datepickerElement?.focus();
             }
         }
     }
 
     toggleFocus(defocus = false) {
-        console.log('focus');
         if (defocus) {
             this.inFocus = false;
         } else {
@@ -349,7 +344,6 @@ export class Datepicker extends LitElement {
     }
 
     handleBlur(event) {
-        console.log('blur');
         if (!event.relatedTarget || (event.relatedTarget && event.relatedTarget.id !== `${this.id}-button`)) {
             this.toggleDatePicker(true);
         }
@@ -429,10 +423,6 @@ export class Datepicker extends LitElement {
         this.currentTab = 'month';
     }
 
-    handleButtonPress() {
-
-    }
-
     render() {
         return html`
                 <div class='jsd-datepicker'>
@@ -452,7 +442,6 @@ export class Datepicker extends LitElement {
                                     @click='${() => this.toggleDatePicker(false)}'
                                     @focus='${() => this.toggleFocus(false)}'
                                     @blur='${() => this.toggleFocus(true)}' 
-                                    @keydown='${this.handleButtonPress}'
                                     >
                                     <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
                                     <span class='calender-icon'></span>
