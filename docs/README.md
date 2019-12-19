@@ -4,12 +4,12 @@
 
 This project is evolving and currently supports:
 
-* [Button](components-1/button.md)
-* [Text Input](components-1/text-input.md)
-* [Select Input](components-1/select-input.md)
-* [Checkbox](components-1/checkbox.md)
-* [Radio](components-1/radio.md)
-* [Date-picker](components-1/date-picker.md)
+* Button
+* Text Input
+* Select Input
+* Checkbox
+* Radio
+* Date-picker
 
 ## Installation
 
