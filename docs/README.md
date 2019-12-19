@@ -1,15 +1,15 @@
 # Introduction
 
-#### A simple minimalistic web-component set to build form elements irrespective of your choice of web framework.
+### A simple minimalistic web-component set to build form elements irrespective of your choice of web framework.
 
 This project is evolving and currently supports:
 
-* [Button](components/button.md)
-* [Text Input](components/text-input.md)
-* [Select Input](components/select-input.md)
-* [Checkbox](components/checkbox.md)
-* [Radio](components/radio.md)
-* [Date-picker](components/date-picker.md)
+* [Button](components-1/button.md)
+* [Text Input](components-1/text-input.md)
+* [Select Input](components-1/select-input.md)
+* [Checkbox](components-1/checkbox.md)
+* [Radio](components-1/radio.md)
+* [Date-picker](components-1/date-picker.md)
 
 ## Installation
 
