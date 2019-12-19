@@ -16,5 +16,5 @@ This project is evolving and currently supports:
 npm install @jsdesign/{componentName}
 ```
 
-This project uses lit-element to create the the web components. 
+This project uses [lit-element](https://lit-element.polymer-project.org/) to create the the web components. 
 
