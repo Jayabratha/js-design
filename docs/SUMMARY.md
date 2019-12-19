@@ -4,7 +4,7 @@
 
 ## components
 
-* [Button](components/untitled.md)
+* [Button](components/button.md)
 * [Input](components/input.md)
 * [Select](components/select.md)
 * [Checkbox](components/checkbox.md)
