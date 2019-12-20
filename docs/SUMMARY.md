@@ -4,9 +4,9 @@
 
 ## Get Started
 
-* [Installation](installation.md)
-* [React](react.md)
-* [Angular](angular.md)
+* [Installation](get-started/installation.md)
+* [React](get-started/react.md)
+* [Angular](get-started/angular.md)
 
 ## components
 
