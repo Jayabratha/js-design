@@ -4,6 +4,7 @@
 
 ## Get Started
 
+* [Installation](installation.md)
 * [React](react.md)
 * [Angular](angular.md)
 
