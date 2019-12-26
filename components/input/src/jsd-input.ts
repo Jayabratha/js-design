@@ -19,7 +19,7 @@ export class Input extends LitElement {
     @property({ type: String }) errorMsg = '';
     @property({ type: Boolean }) iconPrefix = false;
     @property({ type: Boolean }) iconSuffix = false;
-    @property({ type: Boolean }) fullWidth = false;
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
     @property({ type: Boolean, reflect: true }) required = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -52,6 +52,7 @@ export class Input extends LitElement {
                 color: var(--color-black);
                 transition: all 0.4s;
                 box-sizing: border-box;
+                max-width: 300px;
             }
             .text-input input:hover {
                 border: 1px solid var(--color-border);
@@ -61,6 +62,10 @@ export class Input extends LitElement {
             .text-input input:active {
                 border: 1px solid var(--color-primary);
                 background-color: var(--color-white);
+            }
+            .text-input input.full-width {
+                width: 100%;
+                max-width: 100%;
             }
             .text-input input.error{
                 color: var(--color-error, true);
@@ -115,7 +120,7 @@ export class Input extends LitElement {
                        .value="${this.value}"
                        ?required="${this.required}"
                        ?disabled="${this.disabled}"
-                       class="${this.errorMsg ? 'error' : ''}" 
+                       class="${this.errorMsg ? 'error' : ''} ${this.fullWidth ? 'full-width' : ''}" 
                        placeholder="${this.placeholder}" 
                        @input="${this.handleInputChange}"
                        @change="${this.handleValueChange}"

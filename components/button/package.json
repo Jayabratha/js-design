@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-button",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "JS Design button web component ",
   "main": "jsd-button.js",
   "scripts": {

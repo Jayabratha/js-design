@@ -10,7 +10,7 @@ export class Button extends LitElement {
     @property({ type: Boolean }) tertiary = false;
     @property({ type: Boolean }) iconPrefix = false;
     @property({ type: Boolean }) iconSuffix = false;
-    @property({ type: Boolean }) fullWidth = false;
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
     @property({ type: Boolean, reflect: true }) disabled = false;
     @property({ type: String }) type = 'button';
     @property({ type: String }) formId = '';
