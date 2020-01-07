@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
+
 <head>
     <title>JSD Button</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
@@ -9,6 +10,13 @@
             alert('Test');
         }
     </script>
+    <style>
+        #custom-button {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --border-radius: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,6 +72,11 @@
     <div>
         <h3>Full Width button</h3>
         <jsd-button primary fullWidth label='Icon Button'>
+        </jsd-button>
+    </div>
+    <div>
+        <h3>Custom Color button</h3>
+        <jsd-button id="custom-button" primary label='Icon Button'>
         </jsd-button>
     </div>
     <div>

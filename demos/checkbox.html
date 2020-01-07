@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
+
 <head>
     <title>JSD Checkbox</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
@@ -77,6 +78,13 @@
         .jsd-checkbox-wrapper .checkbox-input:checked+label:hover .checkbox {
             background-color: var(--color-primary-dark);
         }
+
+        #snacks-custom {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --label-case: normal;
+            --label-spacing: 0;
+        }
     </style>
 </head>
 
@@ -130,7 +138,13 @@
         </div>
         <div>
             <h3>JSD Checkbox</h3>
-            <jsd-checkbox id='snacks' label='snacks' values='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]' onchange="test(event)"></jsd-checkbox>
+            <jsd-checkbox id='snacks' label='snacks' values='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'
+                onchange="test(event)"></jsd-checkbox>
+        </div>
+        <div>
+            <h3>Custom JSD Checkbox</h3>
+            <jsd-checkbox id='snacks-custom' label='snacks' values='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'
+                onchange="test(event)"></jsd-checkbox>
         </div>
     </div>
     <script>

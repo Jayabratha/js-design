@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build components/**/tsconfig.json"
+    "build": "npm run build:style && npm run build:typescript",
+    "build:style": "./scripts/styles/build-style.sh",
+    "build:typescript": "tsc --build components/**/tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,8 @@
   "devDependencies": {
     "typescript": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "node-sass-import": "^2.0.1",
+    "sass": "^1.24.2"
+  }
 }

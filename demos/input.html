@@ -10,6 +10,15 @@
             console.log('Test', event);
         }
     </script>
+    <style>
+        #custom-input {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --border-radius: 30px;
+            --label-case: normal;
+            --label-spacing: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,6 +33,11 @@
         <div>
             <h3>Error Input</h3>
             <jsd-input id="error" name="error" label="error" placeholder="Enter your name" errorMsg='Name is required'>
+            </jsd-input>
+        </div>
+        <div>
+            <h3>Custom Input</h3>
+            <jsd-input id="custom-input" name="custom" label="Custom Input" placeholder="Enter your name">
             </jsd-input>
         </div>
         <div>

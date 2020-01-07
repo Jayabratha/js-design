@@ -1,5 +1,6 @@
-import { LitElement, customElement, html, css, property } from 'lit-element';
+import { LitElement, customElement, html, property } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
+import { style } from './jsd-checkbox-css';
 
 @customElement('jsd-checkbox')
 export class Checkbox extends LitElement {
@@ -14,80 +15,7 @@ export class Checkbox extends LitElement {
     static get styles() {
         return [
             baseStyles,
-            css`
-            .jsd-checkbox-wrapper {
-                padding: 0.5rem 0;
-            }
-    
-            .jsd-checkbox-wrapper .jsd-checkbox {
-                display: block;
-                padding: 0.5rem 1.5rem 0.5rem 0;
-            }
-    
-            .jsd-checkbox-wrapper.inline .jsd-checkbox {
-                display: inline-block;
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input {
-                position: absolute;
-                margin: 0;
-                opacity: 0;
-            }
-    
-            .jsd-checkbox-wrapper label {
-                display: flex;
-                color: var(--color-placeholder);
-                cursor: pointer;
-                z-index: 1;
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input:checked+label,
-            .jsd-checkbox-wrapper .jsd-checkbox:hover label {
-                color: var(--color-black);
-            }
-    
-            .jsd-checkbox-wrapper label .checkbox {
-                position: relative;
-                height: calc(1rem + 2px);
-                width: calc(1rem + 2px);
-                margin-right: 0.5rem;
-                border-radius: 4px;
-                border: 1px solid var(--color-border);
-                background-color: var(--color-secondary);
-            }
-    
-            .jsd-checkbox-wrapper label:hover .checkbox {
-                background-color: var(--color-white);
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input:active+label .checkbox,
-            .jsd-checkbox-wrapper .checkbox-input:focus+label .checkbox {
-                background-color: var(--color-white);
-                border-color: var(--color-primary);
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input:checked+label .checkbox {
-                background-color: var(--color-primary);
-                border-color: var(--color-primary);
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input:checked+label .checkbox:after {
-                content: '';
-                border: solid var(--color-white);
-                border-width: 0 2px 2px 0;
-                display: inline-block;
-                padding: 4px 2px;
-                left: 5px;
-                top: 2px;
-                position: absolute;
-                transform: rotate(45deg);
-            }
-    
-            .jsd-checkbox-wrapper .checkbox-input:checked:focus+label .checkbox,
-            .jsd-checkbox-wrapper .checkbox-input:checked+label:hover .checkbox {
-                background-color: var(--color-primary-dark);
-            }
-            `
+            style
         ]
     }
     handleSelect(event) {

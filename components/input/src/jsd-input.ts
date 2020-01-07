@@ -1,5 +1,6 @@
-import { LitElement, customElement, property, html, css, query } from 'lit-element';
+import { LitElement, customElement, property, html, query } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
+import { style } from './jsd-input-css';
 
 export type TextFieldType = 'text' | 'search' | 'tel' | 'url' | 'email' | 'password' |
     'date' | 'month' | 'week' | 'time' | 'datetime-local' | 'number' | 'color';
@@ -27,61 +28,7 @@ export class Input extends LitElement {
     static get styles() {
         return [
             baseStyles,
-            css`
-            .text-input {
-                margin: 20px 0px;
-            }
-            .text-input label {
-                display: block;
-                font-size: 0.8rem;
-                padding: 0.6rem;
-                text-transform: uppercase;
-                letter-spacing: 0.2rem;
-                color: var(--color-label);
-            }
-            .text-input input {
-                outline: none;
-                border: none;
-                width: 100%;
-                height: 3.3rem;
-                border-radius: 0.5rem;
-                font-size: 1rem;
-                padding: 1rem;
-                border: 1px solid var(--color-border);
-                background-color: var(--color-secondary);
-                color: var(--color-black);
-                transition: all 0.4s;
-                box-sizing: border-box;
-                max-width: 300px;
-            }
-            .text-input input:hover {
-                border: 1px solid var(--color-border);
-                background-color: var(--color-white);
-            }
-            .text-input input:focus,
-            .text-input input:active {
-                border: 1px solid var(--color-primary);
-                background-color: var(--color-white);
-            }
-            .text-input input.full-width {
-                width: 100%;
-                max-width: 100%;
-            }
-            .text-input input.error{
-                color: var(--color-error, true);
-                border: 1px solid var(--color-error);
-                background-color: var(--color-error-background);
-            }
-            .text-input input::placeholder {
-                color: var(--color-label);
-            }
-            .text-input .error-message{
-                display: block;
-                font-size: 0.8rem;
-                padding: 0.6rem 1rem;
-                color: var(--color-error);
-            }
-            `
+            style
         ]
     }
 
@@ -113,7 +60,7 @@ export class Input extends LitElement {
     render() {
         return html`
             <div class='text-input' >
-                <label for="${this.id}">${this.label}</label>
+                <label class='label' for="${this.id}">${this.label}</label>
                 <input id="${this.id}"      
                        name="${this.name}" 
                        type="${this.type}" 

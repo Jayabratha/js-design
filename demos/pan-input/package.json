@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material/mwc-button": "^0.12.0",
     "lit-element": "^2.2.1"
   }
 }

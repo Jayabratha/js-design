@@ -17,6 +17,9 @@ export const baseStyles = css `
         --border-radius: 0.5rem;
         --border-width: 1px;
         --border-width-hover: 3px;
+        --label-spacing: 0.2rem;
+        --label-case: uppercase;
+        --label-font-size: 0.8rem;
 
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
             "Segoe UI Emoji", "Segoe UI Symbol";
@@ -27,10 +30,10 @@ export const baseStyles = css `
     }
     .label {
         display: block;
-        font-size: 0.8rem;
+        font-size: var(--label-font-size);
         padding: 0.6rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2rem;
+        text-transform: var(--label-case);
+        letter-spacing: var(--label-spacing);
         color: var(--color-label);
     }
 `;

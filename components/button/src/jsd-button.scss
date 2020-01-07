@@ -1,0 +1,104 @@
+button {
+  position: relative;
+  border: none;
+  width: auto;
+  border-radius: var(--border-radius);
+  padding: 0 3em;
+  margin: 1.2rem 0rem;
+  font-size: 1em;
+  transition: all 0.4s;
+  height: 3.3rem;
+  color: var(--color-white);
+  box-shadow: inset 0px 0px 0px 0px var(--color-primary);
+  background-color: var(--color-primary);
+  cursor: pointer;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: transparent;
+
+  &button::-moz-focus-inner {
+    border: 0;
+  }
+
+  // Disabled Style
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Primary Design
+  &.primary {
+    color: var(--color-white);
+    box-shadow: inset 0px 0px 0px 0px var(--color-primary);
+    background-color: var(--color-primary);
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      background-color: var(--color-primary-dark);
+      box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-primary);
+    }
+
+    &:not([disabled]):active {
+      box-shadow: inset 0px 0px 20px 10px var(--color-primary);
+    }
+
+    &[disabled] {
+      color: var(--color-label);
+    }
+  }
+
+  // Secondary Design
+  &.secondary {
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    box-shadow: inset 0px 0px 0px 0px var(--color-secondary-dark);
+
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      color: var(--color-primary);
+      box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-secondary-dark);
+    }
+
+    &:not([disabled]):active {
+      box-shadow: inset 0px 0px 20px 10px var(--color-secondary-dark);
+    }
+
+    &[disabled] {
+      color: var(--color-label);
+    }
+  }
+
+  // Tertiary Design
+  &.tertiary {
+    padding: 0;
+    background: transparent;
+    color: var(--color-primary);
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    height: 3.3rem;
+
+    &:not([disabled])::after {
+      content: "";
+      background: var(--color-primary);
+      position: absolute;
+      left: 0;
+      height: 1px;
+      bottom: 0;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    &:not([disabled]):hover::after,
+    &:not([disabled]):focus::after {
+      width: 100%;
+    }
+  }
+
+  // Full Width Button
+  &.full-width {
+    width: 100%;
+    padding: 0;
+  }
+}
