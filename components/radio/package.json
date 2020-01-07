@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-radio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "custom radio web-component jsdesign",
   "main": "jsd-radio",
   "scripts": {
@@ -18,7 +18,7 @@
     "web-component"
   ],
   "dependencies": {
-    "@jsdesign/jsd-base": "0.0.5",
+    "@jsdesign/jsd-base": "0.0.7",
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
   }

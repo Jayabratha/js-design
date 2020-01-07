@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
+
 <head>
     <title>JSD Radio</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
@@ -51,6 +52,7 @@
         .jsd-radio-wrapper label:hover .radio {
             background-color: var(--color-white);
         }
+
         .jsd-radio-wrapper .radio-input:active+label .radio,
         .jsd-radio-wrapper .radio-input:focus+label .radio {
             background-color: var(--color-white);
@@ -76,6 +78,14 @@
 
         .jsd-radio-wrapper .radio-input:checked+label:hover .radio:after {
             background-color: var(--color-primary-dark);
+        }
+
+        #custom {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --label-case: normal;
+            --label-spacing: 0;
+            font-style: italic;
         }
     </style>
 </head>
@@ -103,14 +113,16 @@
             <div class='label'>gender</div>
             <div class='jsd-radio-wrapper inline'>
                 <div class='jsd-radio checked'>
-                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-male' type="radio" value='male' checked />
+                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-male' type="radio" value='male'
+                        checked />
                     <label for='jsd-male'>
                         <span class='radio'></span>
                         <span>Male</span>
                     </label>
                 </div>
                 <div class='jsd-radio'>
-                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-female' type="radio" value='female' />
+                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-female' type="radio"
+                        value='female' />
                     <label for='jsd-female'>
                         <span class='radio'></span>
                         <span>Female</span>
@@ -127,12 +139,17 @@
         </div>
         <div>
             <h3>JSD Radio Inline</h3>
-            <jsd-radio id='gender' inline name='gender' value='Male' list='["Male", "Female", "Other"]'
+            <jsd-radio id='gender' inline name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'
                 onchange='test(event)'></jsd-radio>
         </div>
         <div>
             <h3>JSD Radio Vertical</h3>
-            <jsd-radio id='test' name='test' value='Male' list='["Male", "Female", "Other"]' onchange='test(event)'>
+            <jsd-radio id='test' name='test' value='Male' label="gender" list='["Male", "Female", "Other"]' onchange='test(event)'>
+            </jsd-radio>
+        </div>
+        <div>
+            <h3>JSD Radio Custom</h3>
+            <jsd-radio id='custom' name='custom' value='Male' label="Custom" list='["Male", "Female", "Other"]' onchange='test(event)'>
             </jsd-radio>
         </div>
     </div>
