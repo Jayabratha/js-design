@@ -136,6 +136,14 @@
             height: 3.3rem;
             background: #ffffff;
         }
+
+        #custom-state {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --border-radius: 30px;
+            --label-case: normal;
+            --label-spacing: 0;
+        }
     </style>
 </head>
 
@@ -178,6 +186,12 @@
         <div>
             <h3>JSD Select</h3>
             <jsd-select id='state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>JSD Custom Select</h3>
+            <jsd-select id='custom-state' onchange='test(event)'
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>

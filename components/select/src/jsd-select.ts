@@ -1,5 +1,6 @@
-import { LitElement, customElement, html, css, property } from 'lit-element';
+import { LitElement, customElement, html, property } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
+import { style } from './jsd-select-css';
 import { keyCode } from '@jsdesign/jsd-base';
 
 @customElement('jsd-select')
@@ -64,155 +65,7 @@ export class Select extends LitElement {
     static get styles() {
         return [
             baseStyles,
-            css`
-            .custom-select-wrapper {
-                position: relative;
-                height: 6rem;
-            }
-    
-            .select-wrapper {
-                position: absolute;
-                width: 100%;
-                border: 1px solid var(--color-border);
-                background-color: var(--color-secondary);
-                border-radius: 0.5rem;
-                height: 3.3rem;
-                overflow: hidden;
-                box-sizing: border-box;
-                outline: solid 1px transparent;
-            }
-    
-            .select-wrapper.expanded {
-                height: auto;
-                background: var(--color-white);
-                border: 1px solid var(--color-primary);
-                z-index: 10;
-            }
-    
-            .select-wrapper:not(.disabled):hover {
-                background: var(--color-white);
-            }
-            .select-wrapper.focus {
-                background: var(--color-white);
-                border: 1px solid var(--color-primary);
-            }
-    
-            .select-wrapper:focus {
-                background-color: var(--color-white);
-                border: 1px solid var(--color-primary);
-            }
-    
-            .select-wrapper>.button {
-                position: absolute;
-                width: 100%;
-                height: calc(3.3rem - 2px);
-                padding: 1rem;
-                background: transparent;
-                border: none;
-                z-index: 1;
-                cursor: pointer;
-                text-align: left;
-                font-size: 1rem;
-                outline: solid 1px transparent;
-                line-height: calc(1.3rem - 2px);
-                color: var(--color-placeholder);
-                box-sizing: border-box;
-            }
-
-            .select-wrapper>.button.disabled {
-                cursor: not-allowed;
-            }
-
-            .select-wrapper>button::-moz-focus-inner {
-                border: 0;
-            }
-    
-            .select-wrapper.selected:not(.expanded):not(.disabled)>.button {
-                color: var(--color-black);
-            }
-    
-            .select-wrapper>.button::after {
-                content: '';
-                border: solid var(--color-placeholder);
-                border-width: 0 1px 1px 0;
-                display: inline-block;
-                padding: 3px;
-                position: absolute;
-                top: 1.3rem;
-                right: 1rem;
-                transform: rotate(45deg);
-                transition: transform 0.3s;
-            }
-
-            .select-wrapper.expanded .button::after {
-                transform: rotate(-135deg);
-            }
-    
-            ul.custom-select {
-                position: relative;
-                top: 0;
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                margin-top: calc(3.3rem - 2px);
-                outline: none;
-                border: none;
-                width: 100%;
-                height: auto;
-                max-height: 0;
-                font-size: 1rem;
-                color: var(--color-black);
-                transition: all 0.4s;
-                box-sizing: border-box;
-                overflow: hidden;
-                transition: max-height 0.3s;
-                overflow-y: auto;
-            }
-    
-            .select-wrapper.expanded ul.custom-select {
-                height: auto;
-                max-height: 200px;
-                border-top: 1px solid var(--color-border);
-            }
-    
-            ul.custom-select>li {
-                position: relative;
-                height: calc(3.3rem - 2px);
-                line-height: calc(1.3rem - 2px);
-                padding: 1rem;
-                padding-left: 2.1rem;
-                box-sizing: border-box;
-                cursor: pointer;
-            }
-    
-            ul.custom-select>li.selected::before {
-                content: '';
-                border: solid var(--color-primary);
-                border-width: 0 2px 2px 0;
-                display: inline-block;
-                padding: 5px 2px;
-                position: absolute;
-                top: 1.1rem;
-                left: 1rem;
-                transform: rotate(45deg);
-            }
-
-            ul.custom-select>li.current,
-            ul.custom-select>li:hover {
-                background-color: var(--color-secondary);
-            }
-
-            ul.custom-select>li.selected {
-                background-color: var(--color-secondary);
-            }
-    
-            ul.custom-select::before {
-                content: ' ';
-                position: relative;
-                height: 3.3rem;
-                background: #ffffff;
-            }
-            `
+            style
         ]
     }
 
@@ -359,16 +212,16 @@ export class Select extends LitElement {
             selectedItem.selected = true;
         }
         return html`
-            <div class='custom-select-wrapper'>
+            <div class='jsd-select-wrapper'>
                 <div class='label' role='label'>State</div>
                 <div id='${this.id}' class='select-wrapper 
                     ${this.selectedValue ? 'selected' : ''} 
                     ${this.isExpanded ? 'expanded' : ''}
                     ${this.inFocus ? 'focus' : ''}
                     ${this.disabled ? 'disabled' : ''}'>
-                    ${this.disabled ? 
-                        html`<div id='${this.id}-button' class='button disabled'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>` : 
-                        html`<div id='${this.id}-button' 
+                    ${this.disabled ?
+                html`<div id='${this.id}-button' class='button disabled'>${this.selectedValue ? this.selectedValue : 'Select your state'}</div>` :
+                html`<div id='${this.id}-button' 
                                 class='button'
                                 aria-haspopup='listbox'
                                 tabindex='0'
