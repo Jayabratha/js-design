@@ -190,6 +190,14 @@
             margin: 0;
             color: var(--color-label);
         }
+
+        #custom {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --border-radius: 30px;
+            --label-case: normal;
+            --label-spacing: 0;
+        }
     </style>
 </head>
 
@@ -310,6 +318,10 @@
             <jsd-datepicker value='1989-11-08'></jsd-datepicker>
         </div>
         <div>
+            <h3>JSD Custom Datepicker</h3>
+            <jsd-datepicker id='custom' value='1989-11-08' label='Select Date'></jsd-datepicker>
+        </div>
+        <div>
             <h3>JSD Datepicker - disabled</h3>
             <jsd-datepicker value='1989-11-08' disabled></jsd-datepicker>
         </div>
@@ -325,7 +337,7 @@
         }
 
         function formatter(date) {
-            return`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
         }
     </script>
 </body>
