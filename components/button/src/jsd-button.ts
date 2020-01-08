@@ -49,7 +49,7 @@ export class Button extends LitElement {
                     ?disabled="${this.disabled}"
                     @click="${this.handleEvent}">
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}
-                    <span class='label'>${this.label}</span>
+                    <span>${this.label}</span>
                     ${ this.iconSuffix ? html`&nbsp;<slot name='iconSuffix'></slot> ` : ''}
                 </button>
                 `

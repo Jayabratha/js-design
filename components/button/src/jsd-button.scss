@@ -41,10 +41,6 @@ button {
     &:not([disabled]):active {
       box-shadow: inset 0px 0px 20px 10px var(--color-primary);
     }
-
-    &[disabled] {
-      color: var(--color-label);
-    }
   }
 
   // Secondary Design
@@ -93,6 +89,10 @@ button {
     &:not([disabled]):hover::after,
     &:not([disabled]):focus::after {
       width: 100%;
+    }
+
+    &[disabled] {
+      color: var(--color-label);
     }
   }
 
