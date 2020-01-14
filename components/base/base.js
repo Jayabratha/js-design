@@ -5,6 +5,8 @@ export const baseStyles = css `
         --color-primary-dark: #107ce8;
         --color-secondary: #f6f6f6;
         --color-secondary-dark: #efefef;
+        --color-secondary-darktheme: rgba(255, 255, 255, 0.3);
+        --color-secondary-dark-darktheme: rgba(255, 255, 255, 0.6);
         --color-error: #c12316;
         --color-error-background: #f9e8e8;
         --color-placeholder: #737373;

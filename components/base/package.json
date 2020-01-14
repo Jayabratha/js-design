@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-base",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "JS Design Base",
   "main": "base.js",
   "scripts": {

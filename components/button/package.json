@@ -9,7 +9,7 @@
   "author": "Jayabratha Saha <js.design@outlook.com> (https://jayabratha.com)",
   "license": "ISC",
   "dependencies": {
-    "@jsdesign/jsd-base": "0.0.7",
+    "@jsdesign/jsd-base": "0.0.8",
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
   },

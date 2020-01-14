@@ -22,15 +22,24 @@ html {
     font-size: 14px;
 }
 
+body {
+    margin: 0;
+}
+
 
 h1 {
     font-weight: 700;
     letter-spacing: -1px;
+    margin: 20px 10px;
 }
 
 .wrapper {
     display: flex;
     flex-wrap: wrap;
+}
+
+.wrapper.dark {
+    background-color: black;
 }
 
 .wrapper>* {

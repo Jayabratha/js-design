@@ -2,9 +2,10 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>JSD Button</title>
+    <title>jsd Button</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
     <script type='module' src='../components/button/jsd-button.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
         function test(event) {
             alert('Test');
@@ -28,7 +29,7 @@
         </div>
         <div>
             <h3>Primary button</h3>
-            <jsd-button primary label='Primary'></jsd-button>
+            <jsd-button primary label='PRIMARY'></jsd-button>
         </div>
         <div>
             <h3>Secondary button</h3>
@@ -68,22 +69,88 @@
                 <span slot='iconSuffix'>&hearts;</span>
             </jsd-button>
         </div>
+        <div>
+            <h3>Full Width button</h3>
+            <jsd-button primary full-width label='Icon Button'>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Custom Color button</h3>
+            <jsd-button id="custom-button" primary label='ICON BUTTON'>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Form</h3>
+            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+                <input type='gamil' name='test' value='test@gmail.com' />
+                <jsd-button formId='test' type='reset'></jsd-button>
+            </form>
+        </div>
     </div>
-    <div>
-        <h3>Full Width button</h3>
-        <jsd-button primary fullWidth label='Icon Button'>
-        </jsd-button>
-    </div>
-    <div>
-        <h3>Custom Color button</h3>
-        <jsd-button id="custom-button" primary label='Icon Button'>
-        </jsd-button>
-    </div>
-    <div>
-        <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
-            <input type='gamil' name='test' value='test@gmail.com' />
-            <jsd-button formId='test' type='reset'></jsd-button>
-        </form>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Default button</h3>
+            <jsd-button dark type='submit' label='Testing' onclick="test()"></jsd-button>
+        </div>
+        <div>
+            <h3>Primary button</h3>
+            <jsd-button primary dark label='PRIMARY'></jsd-button>
+        </div>
+        <div>
+            <h3>Secondary button</h3>
+            <jsd-button secondary dark label='Secondary'></jsd-button>
+        </div>
+        <div>
+            <h3>Tertiary button</h3>
+            <jsd-button tertiary dark label='Tertiary'></jsd-button>
+        </div>
+        <div>
+            <h3>Prefix Icon button</h3>
+            <jsd-button primary dark iconPrefix label='Icon Button'>
+                <span slot='iconPrefix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Suffix Icon button</h3>
+            <jsd-button primary dark iconSuffix label='Icon Button'>
+                <span slot='iconSuffix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Disabled Primary button</h3>
+            <jsd-button primary dark disabled label='Icon Button'>
+                <span slot='iconSuffix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Disabled Secondary button</h3>
+            <jsd-button secondary dark disabled label='Icon Button'>
+                <span slot='iconSuffix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Disabled Tertiary button</h3>
+            <jsd-button tertiary dark disabled label='Icon Button'>
+                <span slot='iconSuffix'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Full Width button</h3>
+            <jsd-button primary dark full-width label='Icon Button'>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Custom Color button</h3>
+            <jsd-button id="custom-button" primary dark label='ICON BUTTON'>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Form</h3>
+            <form id='test-new' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+                <input type='gamil' name='test' value='test@gmail.com' />
+                <jsd-button formId='test-new' dark type='reset'></jsd-button>
+            </form>
+        </div>
     </div>
 </body>
 

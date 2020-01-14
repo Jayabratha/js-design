@@ -15,6 +15,7 @@ export class Button extends LitElement {
     @property({ type: Boolean, reflect: true }) disabled = false;
     @property({ type: String }) type = 'button';
     @property({ type: String }) formId = '';
+    @property({ type: Boolean}) dark = false;
 
     static get styles() {
         return [
@@ -45,7 +46,7 @@ export class Button extends LitElement {
         }
 
         return html`
-                <button role='button' aria-labelledby='${this.label}' type='${this.type}' class='${style} ${this.fullWidth ? 'full-width' : ''}'
+                <button role='button' aria-labelledby='${this.label}' type='${this.type}' class='${style} ${this.dark ? 'dark' : ''} ${this.fullWidth ? 'full-width' : ''}'
                     ?disabled="${this.disabled}"
                     @click="${this.handleEvent}">
                     ${ this.iconPrefix ? html`<slot name='iconPrefix'></slot>&nbsp;` : ''}

@@ -45,13 +45,13 @@ button {
 
   // Secondary Design
   &.secondary {
+    // Light theme
     color: var(--color-primary);
     background-color: var(--color-secondary);
     box-shadow: inset 0px 0px 0px 0px var(--color-secondary-dark);
 
     &:not([disabled]):hover,
     &:not([disabled]):focus {
-      color: var(--color-primary);
       box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-secondary-dark);
     }
 
@@ -62,10 +62,27 @@ button {
     &[disabled] {
       color: var(--color-label);
     }
+
+    // Dark theme
+    &.dark {
+      color: var(--color-white);
+      background-color: var(--color-secondary-darktheme);
+      box-shadow: inset 0px 0px 0px 0px var(--color-secondary-darktheme);
+
+      &:not([disabled]):hover,
+      &:not([disabled]):focus {
+        box-shadow: inset 0px 0px 0px var(--border-width-hover) var(--color-secondary-darktheme);
+      }
+
+      &:not([disabled]):active {
+        box-shadow: inset 0px 0px 20px 10px var(--color-secondary-darktheme);
+      }
+    }
   }
 
   // Tertiary Design
   &.tertiary {
+    // Light theme
     padding: 0;
     background: transparent;
     color: var(--color-primary);
@@ -93,6 +110,14 @@ button {
 
     &[disabled] {
       color: var(--color-label);
+    }
+
+    // Dark theme
+    &.dark {
+      color: var(--color-white);
+      &:not([disabled])::after {
+        background: var(--color-white);
+      }
     }
   }
 
