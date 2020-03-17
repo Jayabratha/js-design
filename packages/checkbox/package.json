@@ -1,0 +1,29 @@
+{
+  "name": "@jsdesign/jsd-checkbox",
+  "version": "1.0.0",
+  "description": "Zest checkbox web component ",
+  "main": "checkbox.js",
+  "module": "checkbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "checkbox.js",
+    "checkbox-css.js"
+  ],
+  "author": "Jayabratha Saha <js.design@outlook.com> (https://jayabratha.com)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@jsdesign/jsd-base": "^1.0.0",
+    "lit-element": "^2.2.1",
+    "tslib": "^1.10.0"
+  },
+  "keywords": [
+    "Checkbox",
+    "web",
+    "component"
+  ]
+}

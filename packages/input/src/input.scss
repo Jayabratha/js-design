@@ -1,0 +1,17 @@
+.text-input {
+  margin: 10px 0px;
+  input {
+    padding: 1rem;
+    &:invalid {
+      box-shadow: none;
+    }
+  }
+  ::slotted(span) {
+    position: absolute;
+    height: 3.3rem;
+    line-height: 3.3rem;
+    width: 3rem;
+    text-align: center;
+    color: var(--color-icon);
+  }
+}

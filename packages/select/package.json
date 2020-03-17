@@ -1,0 +1,30 @@
+{
+  "name": "@jsdesign/jsd-select",
+  "version": "1.0.0",
+  "description": "Zest select dropdown web component ",
+  "main": "select.js",
+  "module": "select.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "select.js",
+    "select-css.js"
+  ],
+  "author": "Jayabratha Saha <js.design@outlook.com> (https://jayabratha.com)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@jsdesign/jsd-base": "^1.0.0",
+    "lit-element": "^2.2.1",
+    "tslib": "^1.10.0"
+  },
+  "keywords": [
+    "select",
+    "dropdown",
+    "web",
+    "component"
+  ]
+}

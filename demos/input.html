@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html style='font-size: 14px;'>
 <head>
-    <title>JSD Input</title>
+    <title>zest Input</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
-    <script type='module' src='../components/input/jsd-input.js'></script>
-    <script type='module' src='../components/button/jsd-button.js'></script>
+    <script type='module' src='../packages/input/input.js'></script>
+    <script type='module' src='../packages/button/button.js'></script>
     <script>
         function test(event) {
             console.log('Test', event);
@@ -32,7 +32,12 @@
         </div>
         <div>
             <h3>Error Input</h3>
-            <jsd-input id="error" name="error" label="error" placeholder="Enter your name" errorMsg='Name is required'>
+            <jsd-input id="error" name="error" label="error" placeholder="Enter your name" error-msg='Name is required'>
+            </jsd-input>
+        </div>
+        <div>
+            <h3>Help Input</h3>
+            <jsd-input id="help" name="help" label="help" placeholder="Enter your name" help-msg='Name is required'>
             </jsd-input>
         </div>
         <div>
@@ -42,11 +47,64 @@
         </div>
         <div>
             <h3>Form Demo</h3>
-            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+            <form id='test' name='test' onsubmit="alert('submit!');return false;">
                 <jsd-input formId='test' type='text' name='test'></jsd-input>
+                <jsd-button formId='test' type='submit' fullWidth label='Submit' onclick="alert('submit!');"></jsd-button>
+            </form>
+        </div>
+        <div>
+            <h3>Full Width</h3>
+            <jsd-input full-width='true' type='text'></jsd-input>
+        </div>
+        <div>
+            <h3>Disabled Input with Value</h3>
+            <jsd-input disabled='true' type='text' value="Jayabratha" placeholder="Disabled Input"></jsd-input>
+        </div>
+        <div>
+            <h3>Disabled Input</h3>
+            <jsd-input disabled='true' type='text' placeholder="Disabled Input"></jsd-input>
+        </div>
+        <div>
+            <h3>Icon Input</h3>
+            <jsd-input type='text' icon='true' placeholder="Icon Input">
+                <span slot='icon' class='icon'>&hearts;</span>
+            </jsd-input>
+        </div>
+    </div>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Basic Input</h3>
+            <jsd-input theme='dark' id="name" name="name" label="name" placeholder="Enter your name" oninput="test()"
+                onchange="test(event)" value='Jay'></jsd-input>
+        </div>
+        <div>
+            <h3>Error Input</h3>
+            <jsd-input theme='dark' id="error" name="error" label="error" placeholder="Enter your name" error-msg='Name is required'>
+            </jsd-input>
+        </div>
+        <div>
+            <h3>Custom Input</h3>
+            <jsd-input theme='dark' id="custom-input" name="custom" label="Custom Input" placeholder="Enter your name">
+            </jsd-input>
+        </div>
+        <div>
+            <h3>Form Demo</h3>
+            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+                <jsd-input theme='dark' formId='test' type='text' name='test'></jsd-input>
                 <jsd-button formId='test' type='submit' fullWidth label='Submit'></jsd-button>
             </form>
         </div>
+        <div>
+            <h3>Full Width</h3>
+            <jsd-input theme='dark' full-width='true' type='text'></jsd-input>
+        </div>
+        <div>
+            <h3>Disabled Input with Value</h3>
+            <jsd-input theme='dark' disabled='true' type='text' value="Jayabratha" placeholder="Disabled Input"></jsd-input>
+        </div>
+        <div>
+            <h3>Disabled Input</h3>
+            <jsd-input theme='dark' disabled='true' type='text' placeholder="Disabled Input"></jsd-input>
+        </div>
     </div>
-    <jsd-input full-width type='text'></jsd-input>
 </body>

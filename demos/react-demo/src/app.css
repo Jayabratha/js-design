@@ -1,0 +1,126 @@
+.app.dark {
+  background-color: #282c34;
+  color: #ffffff;
+}
+
+.app.light {
+  background-color: #ffffff;
+  color: #282c34;
+}
+
+.desc {
+  margin-bottom: 20px;
+}
+
+.container {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  min-height: 100vh;
+  margin: auto;
+}
+
+h1, h2 {
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-logo {
+    animation: app-logo-spin infinite 20s linear;
+  }
+}
+
+.app-header {
+  font-size: 1rem;
+  padding: 100px 0 20px;
+}
+
+.app-header img {
+  color: #61dafb;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.logo-wrapper {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logos {
+  position: relative;
+  height: 100%;
+}
+
+.logos img.app-logo {
+  pointer-events: none;
+}
+
+.logos img.jsd-logo {
+  height: 80%;
+  margin-right: -20px;
+}
+
+.theme-toggler {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-toggler.dark {
+  background-color: #ffffff;
+}
+
+.theme-toggler.light {
+  background-color: #282c34;
+}
+
+.demo-form {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.form-wrapper {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.model {
+  width: 335px;
+  background-color: #f6f6f6;
+  border: 1px solid #edebeb;
+  margin: 2.8rem 5rem;
+  border-radius: 0.5rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+}
+
+.label {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  color: #909090;
+  padding: 0.6rem;
+  text-align: right;
+  width: 120px;
+}
+
+.value {
+  font-size: 1.1rem;
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

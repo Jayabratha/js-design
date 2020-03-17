@@ -2,92 +2,9 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>JSD Radio</title>
+    <title>zest Radio</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
-    <script type='module' src='../components/radio/jsd-radio.js'></script>
-    <style>
-        .jsd-radio-wrapper {
-            padding: 0.5rem 0;
-        }
-
-        .jsd-radio-wrapper .jsd-radio {
-            display: block;
-            padding: 0.5rem 1.5rem 0.5rem 0;
-        }
-
-        .jsd-radio-wrapper.inline .jsd-radio {
-            display: inline-block;
-        }
-
-        .jsd-radio-wrapper .radio-input {
-            position: absolute;
-            margin: 0;
-            opacity: 0;
-        }
-
-        .jsd-radio-wrapper label {
-            display: flex;
-            align-items: center;
-            color: var(--color-placeholder);
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .jsd-radio-wrapper .radio-input:checked+label,
-        .jsd-radio-wrapper .jsd-radio.checked label,
-        .jsd-radio-wrapper .jsd-radio:hover label {
-            color: var(--color-black);
-        }
-
-        .jsd-radio-wrapper label .radio {
-            position: relative;
-            height: calc(1rem + 2px);
-            width: calc(1rem + 2px);
-            margin-right: 0.5rem;
-            border-radius: 50%;
-            border: 1px solid var(--color-border);
-            background-color: var(--color-secondary);
-        }
-
-        .jsd-radio-wrapper label:hover .radio {
-            background-color: var(--color-white);
-        }
-
-        .jsd-radio-wrapper .radio-input:active+label .radio,
-        .jsd-radio-wrapper .radio-input:focus+label .radio {
-            background-color: var(--color-white);
-            border-color: var(--color-primary);
-        }
-
-        .jsd-radio-wrapper .radio-input+label .radio:after {
-            content: '';
-            position: absolute;
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
-            top: calc(50% - 5px);
-            left: calc(50% - 5px);
-            background-color: var(--color-primary);
-            transform: scale(0);
-            transition: transform 0.2s;
-        }
-
-        .jsd-radio-wrapper .radio-input:checked+label .radio:after {
-            transform: scale(1);
-        }
-
-        .jsd-radio-wrapper .radio-input:checked+label:hover .radio:after {
-            background-color: var(--color-primary-dark);
-        }
-
-        #custom {
-            --color-primary: #1eba68;
-            --color-primary-dark: #1ba75e;
-            --label-case: normal;
-            --label-spacing: 0;
-            font-style: italic;
-        }
-    </style>
+    <script type='module' src='../packages/radio/radio.js'></script>
 </head>
 
 <body>
@@ -109,53 +26,69 @@
             </div>
         </div>
         <div>
-            <h3>JS Radio</h3>
-            <div class='label'>gender</div>
-            <div class='jsd-radio-wrapper inline'>
-                <div class='jsd-radio checked'>
-                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-male' type="radio" value='male'
-                        checked />
-                    <label for='jsd-male'>
-                        <span class='radio'></span>
-                        <span>Male</span>
-                    </label>
-                </div>
-                <div class='jsd-radio'>
-                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-female' type="radio"
-                        value='female' />
-                    <label for='jsd-female'>
-                        <span class='radio'></span>
-                        <span>Female</span>
-                    </label>
-                </div>
-                <div class='jsd-radio'>
-                    <input class='radio-input' tabindex='0' name='jsGender' id='jsd-other' type="radio" value='other' />
-                    <label for='jsd-other'>
-                        <span class='radio'></span>
-                        <span>Other</span>
-                    </label>
-                </div>
-            </div>
+            <h3>Zest Radio Inline</h3>
+            <jsd-radio id='gender' inline='true' name='gender' label="gender" value='Male'
+                list='[{"value": "Male", "label": "Male-T"}, {"value": "Female", "label": "Female-T"},{"value": "Other", "label": "Other-T"}]' onchange='test(event)'></jsd-radio>
         </div>
         <div>
-            <h3>JSD Radio Inline</h3>
-            <jsd-radio id='gender' inline name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'
-                onchange='test(event)'></jsd-radio>
-        </div>
-        <div>
-            <h3>JSD Radio Vertical</h3>
-            <jsd-radio id='test' name='test' value='Male' label="gender" list='["Male", "Female", "Other"]' onchange='test(event)'>
+            <h3>Zest Radio Vertical</h3>
+            <jsd-radio id='test' name='test' value='Male' label="gender" list='["Male", "Female", "Other"]'
+                onchange='test(event)'>
             </jsd-radio>
         </div>
         <div>
-            <h3>JSD Radio Custom</h3>
-            <jsd-radio id='custom' name='custom' value='Male' label="Custom" list='["Male", "Female", "Other"]' onchange='test(event)'>
+            <h3>Zest Error Radio</h3>
+            <jsd-radio id='error' name='error' value='' error-msg="Please select your gender" label="gender" list='["Male", "Female", "Other"]'>
+            </jsd-radio>
+        </div>
+        <div>
+            <h3>Zest Disabled Radio</h3>
+            <jsd-radio id='disabled' name='disabled' disabled='true' value='Male' label="gender" list='["Male", "Female", "Other"]'>
+            </jsd-radio>
+        </div>
+    </div>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Default Radio</h3>
+            <div>
+                <input name='genderTest' id='male' type="radio" value='male' checked />
+                <label for='male'>Male</label>
+            </div>
+            <div>
+                <input name='genderTest' id='female' type="radio" value='female' />
+                <label for='female'>Female</label>
+            </div>
+            <div>
+                <input name='genderTest' id='other' type="radio" value='other' />
+                <label for='other'>Other</label>
+            </div>
+        </div>
+        <div>
+            <h3>Zest Radio Inline</h3>
+            <jsd-radio id='gender' theme='dark' inline='true' name='gender' label="gender" value='Male'
+                list='["Male", "Female", "Other"]' onchange='test(event)'></jsd-radio>
+        </div>
+        <div>
+            <h3>Zest Radio Vertical</h3>
+            <jsd-radio id='test' name='test' theme='dark' value='Male' label="gender" list='["Male", "Female", "Other"]'
+                onchange='test(event)'>
+            </jsd-radio>
+        </div>
+        <div>
+            <h3>Zest Error Radio</h3>
+            <jsd-radio id='custom' name='custom' theme='dark' value='' error-msg="Please select your gender" label="gender" list='["Male", "Female", "Other"]'
+                onchange='test(event)'>
+            </jsd-radio>
+        </div>
+        <div>
+            <h3>Zest Disabled Radio</h3>
+            <jsd-radio id='custom' name='custom' theme='dark' disabled='true' value='Male' label="gender" list='["Male", "Female", "Other"]'>
             </jsd-radio>
         </div>
     </div>
     <script>
         function test(event) {
-            console.log('Changed', event.target.getAttribute('value'));
+            console.log('Changed', event, event.target.getAttribute('value'));
         }
     </script>
 </body>

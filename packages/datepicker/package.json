@@ -1,0 +1,25 @@
+{
+  "name": "@jsdesign/jsd-datepicker",
+  "version": "1.0.0",
+  "description": "custom datepicker web-component jsdesign",
+  "main": "jsd-datepicker",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jayabratha Saha <js.design@outlook.com> (https://jayabratha.com)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jayabratha/js-design/tree/master/packages/datepicker"
+  },
+  "keywords": [
+    "datepicker",
+    "field",
+    "web-component"
+  ],
+  "dependencies": {
+    "@jsdesign/jsd-base": "1.0.0",
+    "lit-element": "^2.2.1",
+    "tslib": "^1.10.0"
+  }
+}

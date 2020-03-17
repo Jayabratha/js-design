@@ -1,0 +1,96 @@
+<div class="app" [ngClass]="theme">
+  <div class="container">
+    <header class="app-header">
+      <div class='logo-wrapper'>
+        <div class='logos'>
+          <img src="/assets/jsd-logo.png" class='jsd-logo' alt="Zest logo" />  
+          <img src="/assets/angular.svg" class="angular-logo" alt="Angular logo" />
+        </div>
+        <div class="theme-toggler" [ngClass]="theme" (click)="toggleTheme()"></div>
+      </div>
+      <h1>Zest UI - Angular Demo</h1>
+      <div class='desc'>A simple minimalistic web-component set to build form elements irrespective of your choice of web framework.</div>
+      <jsd-button label='Explore'></jsd-button><jsd-button btn-style='secondary' [theme]="theme" label='Docs'></jsd-button>
+    </header>
+    <main>
+      <div class='demo-form'>
+        <h2>Demo Form</h2>
+        <div class='form-wrapper'>
+          <form id='form' class='form' (input)='updateForm($event)' (submit)='submitForm($event)'>
+            <jsd-input id='name'
+              name='name'
+              label='name'
+              placeholder='Enter your full name'
+              [attr.theme]='theme'
+              [attr.value]='model.name'
+              [attr.error-msg]='errors.name'
+              full-width='true'
+              autofocus
+              required='true'>
+            </jsd-input>
+            <jsd-input id='age'
+              name='age'
+              label='age'
+              placeholder='Enter your age'
+              [attr.theme]='theme'
+              [attr.value]='model.age'
+              [attr.error-msg]='errors.age'
+              type='number'
+              min='18'
+              max='60'
+              full-width='true'
+              required='true'>
+            </jsd-input>
+            <jsd-input id='address'
+              name='address'
+              label='address'
+              placeholder='Enter your address'
+              [attr.theme]='theme'
+              [attr.value]='model.address'
+              [attr.error-msg]='errors.address'
+              full-width='true'
+              required='true'>
+            </jsd-input>
+            <jsd-radio-chip id='gender'
+              name='gender'
+              label='gender'
+              inline='true'
+              [attr.vtheme]='theme'
+              [attr.value]='model.gender'
+              [attr.error-msg]='errors.gender'
+              required='true'
+              list='["Male", "Female", "Other"]'>
+            </jsd-radio-chip>
+            <jsd-radio id='diet'
+              name='diet'
+              label='diet'
+              inline='true'
+              [attr.theme]='theme'
+              [attr.value]='model.diet'
+              [attr.error-msg]='errors.diet'
+              required='true'
+              list='["Vegeterian", "Non-Vegeterian"]'>
+            </jsd-radio>
+            <jsd-checkbox id='agreement'
+              name='agreement'
+              [attr.attr.theme]='theme'
+              [attr.value]='model.agreement ? "[\"agree\"]" : "[]"'
+              [attr.error-msg]='errors.agreement'
+              required='true'
+              list='[{"value": "agree", "label": "I agree to the <jsd-button btn-style=\"tertiary\" label=\"Terms and Conditions\">Test</jsd-button>"}]'>
+            </jsd-checkbox>
+            <jsd-button type='submit' label='Submit' full-width='true'></jsd-button>
+          </form>
+          <div class='model'>
+            <div><span class='label'>Name -</span><span class='value'>{{model.name}}</span></div>
+            <div><span class='label'>Age -</span><span class='value'>{{model.age}}</span></div>
+            <div><span class='label'>Address -</span><span class='value'>{{model.address}}</span></div>
+            <div><span class='label'>Gender -</span><span class='value'>{{model.gender}}</span></div>
+            <div><span class='label'>Diet -</span><span class='value'>{{model.diet}}</span></div>
+            <div><span class='label'>Agreement -</span><span class='value'>{{model.agreement.toString()}}</span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

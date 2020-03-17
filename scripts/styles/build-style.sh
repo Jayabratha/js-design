@@ -2,7 +2,7 @@ set -e
 
 echo "Building Styles"
 
-sassfiles=(`find components -name "*.scss"`)
+sassfiles=(`find packages -name "*.scss"`)
 
 for sassfile in ${sassfiles[@]}; do
   # skip partials

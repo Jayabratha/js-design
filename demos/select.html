@@ -2,366 +2,99 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>JSD Select</title>
+    <title>zest Select</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
-    <script type='module' src='../components/select/jsd-select.js'></script>
-    <style>
-        .select-wrapper {
-            position: absolute;
-            width: 100%;
-            border: 1px solid var(--color-border);
-            background-color: var(--color-secondary);
-            border-radius: 0.5rem;
-            height: 3.3rem;
-            overflow: hidden;
-            box-sizing: border-box;
-        }
-
-        .select-wrapper.expanded {
-            height: auto;
-            background: #ffffff;
-            border: 1px solid var(--color-primary);
-        }
-
-        .select-wrapper:hover,
-        .select-wrapper.hover {
-            background: #ffffff;
-        }
-
-        .select-wrapper:focus {
-            background-color: var(--color-white);
-            border: 1px solid var(--color-primary);
-        }
-
-        .select-wrapper>.button {
-            position: absolute;
-            width: 100%;
-            height: calc(3.3rem - 2px);
-            padding: 1rem;
-            background: transparent;
-            border: none;
-            z-index: 1;
-            cursor: pointer;
-            text-align: left;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: solid 1px transparent;
-            line-height: calc(1.3rem - 2px);
-            color: var(--color-placeholder);
-        }
-
-        .select-wrapper>.button::-moz-focus-inner {
-            border: 0;
-        }
-
-        .select-wrapper.selected:not(.expanded)>.button {
-            color: var(--color-black);
-        }
-
-        .select-wrapper>.button::after {
-            content: '';
-            border: solid var(--color-placeholder);
-            border-width: 0 1px 1px 0;
-            display: inline-block;
-            padding: 3px;
-            position: absolute;
-            top: 1.3rem;
-            right: 1rem;
-            transform: rotate(45deg);
-            transition: transform 0.3s;
-        }
-
-        ul.custom-select {
-            position: relative;
-            top: 0;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            margin-top: calc(3.3rem - 2px);
-            outline: none;
-            border: none;
-            width: 100%;
-            height: auto;
-            max-height: 0;
-            font-size: 1rem;
-            color: var(--color-black);
-            transition: all 0.4s;
-            box-sizing: border-box;
-            overflow: hidden;
-            transition: max-height 0.3s;
-            overflow-y: auto;
-        }
-
-        .select-wrapper.expanded ul.custom-select {
-            height: auto;
-            max-height: 200px;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .select-wrapper.expanded .button::after {
-            transform: rotate(-135deg);
-        }
-
-        ul.custom-select>li {
-            position: relative;
-            height: calc(3.3rem - 2px);
-            line-height: calc(1.3rem - 2px);
-            padding: 1rem;
-            padding-left: 2.1rem;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
-
-        ul.custom-select>li.selected::before {
-            content: '';
-            border: solid var(--color-primary);
-            border-width: 0 2px 2px 0;
-            display: inline-block;
-            padding: 5px 2px;
-            position: absolute;
-            top: 1.1rem;
-            left: 1rem;
-            transform: rotate(45deg);
-        }
-
-        ul.custom-select>li.selected,
-        ul.custom-select>li.current,
-        ul.custom-select>li:hover {
-            background-color: var(--color-secondary);
-        }
-
-        ul.custom-select::before {
-            content: ' ';
-            position: relative;
-            height: 3.3rem;
-            background: #ffffff;
-        }
-
-        #custom-state {
-            --color-primary: #1eba68;
-            --color-primary-dark: #1ba75e;
-            --border-radius: 30px;
-            --label-case: normal;
-            --label-spacing: 0;
-        }
-    </style>
+    <script type='module' src='../packages/select/select.js'></script>
 </head>
 
 <body>
     <h1> Select </h1>
     <div class='wrapper'>
         <div>
-            <h3>Default select</h3>
-            <select onchange='test(event)'>
-                <option>Select your state</option>
-                <option>West Bengal</option>
-                <option>Karnataka</option>
-                <option>Uttar Pradesh</option>
-            </select>
-            <button>Test</button>
-        </div>
-        <div>
-            <h3>JS select</h3>
-            <div class='custom-select-wrapper'>
-                <div for='select' class='label' role='label'>State</div>
-                <div id='select' class='select-wrapper'>
-                    <div id='select-button' class="button" tabindex="0" aria-haspopup="listbox"
-                        aria-labelledby="state state-button" onclick='select.handleClick()'
-                        onkeydown='select.handleButtonPress(event)' onfocus="select.handleHover()"
-                        onblur="select.handleMouseOut()">Select your
-                        state</div>
-                    <ul id='select-list' class='custom-select' role='listbox' tabindex='-1' aria-labelledby="state"
-                        onblur='select.handleBlur(event)' onclick='select.handleSelect(event.target)'
-                        onkeydown='select.handleKeyPress(event)'>
-                        <li role='option' value='West Bengal'>West Bengal</li>
-                        <li role='option' value='Karnataka'>Karnataka</li>
-                        <li role='option' value='Uttar Pradesh'>Uttar Pradesh</li>
-                        <li role='option' value='Kerala'>Kerala</li>
-                        <li role='option' value='Tamil Nadu'>Tamil Nadu</li>
-                        <li role='option' value='Madhya Pradesh'>Madhya Pradesh</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h3>JSD Select</h3>
-            <jsd-select id='state' onchange='test(event)'
+            <h3>Zest Select</h3>
+            <jsd-select id='test' label='STATE' onchange='test(event)' value='West Bengal' autofocus='true'
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>
         <div>
-            <h3>JSD Custom Select</h3>
+            <h3>Zest Full Width Select</h3>
+            <jsd-select id='state' label='STATE' onchange='test(event)' full-width='true' placeholder="Where are you from"
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh", "Andhra Pradesh", "Telangana", "Gujrat", "Maharastra", "Rajasthan", "Kerala T", "Tamil Nadu T", "Madhya Pradesh T", "Andhra Pradesh T", "Telangana T", "Gujrat T", "Maharastra T", "Rajasthan T"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Select Error</h3>
+            <jsd-select id='state' label='STATE' onchange='test(event)' error-msg='Select an option please'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Select Help</h3>
+            <jsd-select id='state' label='STATE' onchange='test(event)' help-msg='Select an option please'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
             <jsd-select id='custom-state' onchange='test(event)'
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>
         <div>
-            <h3>JSD Select - disabled</h3>
-            <jsd-select id='state' onchange='test(event)' disabled
+            <h3>Zest Select Filter</h3>
+            <jsd-select id='filter-state' filter-on-type='true' placeholder='Type in to filter' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-select id='custom-state' onchange='test(event)' value="KA"
+                list='[{"value": "WB", "label": "West Bengal"}, {"value": "KA", "label": "Karnataka"}]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-select id='custom-state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Select Disabled</h3>
+            <jsd-select id='state-disabled' onchange='test(event)' disabled='true'
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>
     </div>
-    <script>
-        var select = (function () {
-            var selectWrapper = document.querySelector('#select');
-            var selectList = document.querySelector('#select-list');
-            var selectButton = document.querySelector('#select-button');
-            var list = selectWrapper.querySelectorAll('li');
-            var selectedItem;
-            var currentItem = list[0];
-            currentItem.classList.add('current');
-            var isExpanded = false;
-            var keyCode = {
-                BACKSPACE: 8,
-                TAB: 9,
-                RETURN: 13,
-                ESC: 27,
-                SPACE: 32,
-                PAGE_UP: 33,
-                PAGE_DOWN: 34,
-                END: 35,
-                HOME: 36,
-                LEFT: 37,
-                UP: 38,
-                RIGHT: 39,
-                DOWN: 40,
-                DELETE: 46
-            };
-
-            function handleHover(event) {
-                selectWrapper.classList.add('hover');
-            }
-            function handleMouseOut(event) {
-                selectWrapper.classList.remove('hover');
-            }
-            function handleClick(event, close) {
-                console.log('click', event);
-                if (close) {
-                    isExpanded = false;
-                } else {
-                    isExpanded = !isExpanded;
-                }
-
-                if (isExpanded) {
-                    console.log(selectList.scrollHeight, selectList.clientHeight);
-                    selectButton.setAttribute('aria-expanded', 'true');
-                    selectList.focus();
-                    selectWrapper.classList.add('expanded');
-                } else {
-                    selectButton.removeAttribute('aria-expanded');
-                    selectWrapper.classList.remove('expanded');
-                    selectButton.focus();
-                }
-            }
-            function handleBlur(event) {
-                console.log('blur', event);
-                if (event.relatedTarget !== selectButton) {
-                    handleClick(event, true);
-                }
-                handleMouseOut();
-            }
-            function handleSelect(element) {
-                var li = element;
-                var selectedValue = li.getAttribute('value');
-
-                list.forEach(function (item) {
-                    if (item === li) {
-                        if (!item.classList.contains('selected')) {
-                            item.classList.add('selected');
-                            item.setAttribute('aria-selected', true);
-                            selectWrapper.classList.add('selected');
-                            selectedItem = item;
-                            currentItem = item;
-                            currentItem.classList.add('current');
-                            selectButton.innerHTML = selectedValue;
-                        } else {
-                            console.log('test');
-                            item.classList.remove('selected');
-                            item.removeAttribute('aria-selected');
-                            selectWrapper.classList.remove('selected');
-                            selectButton.innerHTML = 'Select your state';
-                            selectedItem = null;
-                            currentItem.classList.remove('current');
-                            currentItem = list[0];
-                            currentItem.classList.add('current');
-                        }
-                    } else {
-                        item.classList.remove('selected');
-                        item.classList.remove('current');
-                        item.removeAttribute('aria-selected');
-                    }
-                });
-
-                setTimeout(() => {
-                    handleClick();
-                }, 200);
-            }
-
-            function handleButtonPress(event) {
-                var key = event.which || event.code;
-
-                console.log('keydown');
-
-                if (key === keyCode.SPACE || key === keyCode.RETURN) {
-                    handleClick();
-                }
-            }
-
-            function handleKeyPress(event) {
-                var key = event.which || event.code;
-                event.preventDefault();
-
-                switch (key) {
-                    case keyCode.UP: {
-                        if (currentItem.previousElementSibling) {
-                            currentItem.classList.remove('current');
-                            currentItem = currentItem.previousElementSibling;
-                            currentItem.classList.add('current');
-                        }
-                        break;
-                    }
-                    case keyCode.DOWN: {
-                        if (currentItem.nextElementSibling) {
-                            currentItem.classList.remove('current');
-                            currentItem = currentItem.nextElementSibling;
-                            currentItem.classList.add('current');
-                        }
-                        break;
-                    }
-                    case keyCode.SPACE:
-                    case keyCode.RETURN: {
-                        currentItem.classList.remove('current');
-                        handleSelect(currentItem);
-                    }
-                }
-
-                if (selectList.scrollHeight > selectList.clientHeight) {
-                    console.log(currentItem);
-                    var currentItemBottom = currentItem.offsetTop + currentItem.offsetHeight;
-                    if (currentItemBottom > (selectList.clientHeight + selectList.scrollTop)) {
-                        selectList.scrollTop = currentItem.offsetTop;
-                    } else if (currentItem.offsetTop < selectList.scrollTop) {
-                        selectList.scrollTop = 0;
-                    }
-                }
-            }
-
-            return {
-                handleHover: handleHover,
-                handleMouseOut: handleMouseOut,
-                handleClick: handleClick,
-                handleBlur: handleBlur,
-                handleSelect: handleSelect,
-                handleKeyPress: handleKeyPress,
-                handleButtonPress: handleButtonPress
-            }
-        })();
-
-        function test(event) {
-            var elem = event.target;
-            var newVal = elem.getAttribute('value');
-            console.log('change', event, newVal);
-        }
-    </script>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Zest Select</h3>
+            <jsd-select id='state-dark' onchange='test(event)' theme='dark' value='West Bengal'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Full Width Select</h3>
+            <jsd-select id='state' onchange='test(event)' full-width='true' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Select Error</h3>
+            <jsd-select id='state' onchange='test(event)' error-msg='Select an option please' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-select id='custom-state' onchange='test(event)' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+        <div>
+            <h3>Zest Select - disabled</h3>
+            <jsd-select id='state-disabled-dark' onchange='test(event)' theme='dark' disabled='true'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-select>
+        </div>
+    </div>
 </body>

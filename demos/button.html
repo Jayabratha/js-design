@@ -2,9 +2,9 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>jsd Button</title>
+    <title>zest Button</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
-    <script type='module' src='../components/button/jsd-button.js'></script>
+    <script type='module' src='../packages/button/button.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
         function test(event) {
@@ -13,8 +13,8 @@
     </script>
     <style>
         #custom-button {
-            --color-primary: #1eba68;
-            --color-primary-dark: #1ba75e;
+            --color-primary: #e9437a;
+            --color-primary-dark: #e9437a;;
             --border-radius: 30px;
         }
     </style>
@@ -29,54 +29,51 @@
         </div>
         <div>
             <h3>Primary button</h3>
-            <jsd-button primary label='PRIMARY'></jsd-button>
+            <jsd-button btn-style='primary' label='PRIMARY'></jsd-button>
         </div>
         <div>
             <h3>Secondary button</h3>
-            <jsd-button secondary label='Secondary'></jsd-button>
+            <jsd-button btn-style='secondary' label='Secondary'></jsd-button>
         </div>
         <div>
             <h3>Tertiary button</h3>
-            <jsd-button tertiary label='Tertiary'></jsd-button>
+            <jsd-button btn-style='tertiary' label='Tertiary'></jsd-button>
         </div>
         <div>
             <h3>Prefix Icon button</h3>
-            <jsd-button primary iconPrefix label='Icon Button'>
-                <span slot='iconPrefix'>&hearts;</span>
+            <jsd-button btn-style='primary' icon="true" label='Icon Button'>
+                <span slot='icon'>&hearts;</span>
             </jsd-button>
         </div>
         <div>
             <h3>Suffix Icon button</h3>
-            <jsd-button primary iconSuffix label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='primary' trailing-icon="true" label='Icon Button'>
+                <span slot='trailingIcon'>&hearts;</span>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Primary button</h3>
-            <jsd-button primary disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='primary' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Secondary button</h3>
-            <jsd-button secondary disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='secondary' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Tertiary button</h3>
-            <jsd-button tertiary disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='tertiary' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Full Width button</h3>
-            <jsd-button primary full-width label='Icon Button'>
+            <jsd-button btn-style='primar' full-width='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Custom Color button</h3>
-            <jsd-button id="custom-button" primary label='ICON BUTTON'>
+            <jsd-button id="custom-button" btn-style='primary' label='ICON BUTTON'>
             </jsd-button>
         </div>
         <div>
@@ -90,65 +87,62 @@
     <div class='wrapper dark'>
         <div>
             <h3>Default button</h3>
-            <jsd-button dark type='submit' label='Testing' onclick="test()"></jsd-button>
+            <jsd-button theme='dark' type='submit' label='Testing' onclick="test()"></jsd-button>
         </div>
         <div>
             <h3>Primary button</h3>
-            <jsd-button primary dark label='PRIMARY'></jsd-button>
+            <jsd-button btn-style='primary' theme='dark' label='PRIMARY'></jsd-button>
         </div>
         <div>
             <h3>Secondary button</h3>
-            <jsd-button secondary dark label='Secondary'></jsd-button>
+            <jsd-button btn-style='secondary' theme='dark' label='Secondary'></jsd-button>
         </div>
         <div>
             <h3>Tertiary button</h3>
-            <jsd-button tertiary dark label='Tertiary'></jsd-button>
+            <jsd-button btn-style='tertiary' theme='dark' label='Tertiary'></jsd-button>
         </div>
         <div>
             <h3>Prefix Icon button</h3>
-            <jsd-button primary dark iconPrefix label='Icon Button'>
-                <span slot='iconPrefix'>&hearts;</span>
+            <jsd-button btn-style='primary' theme='dark' icon='true' label='Icon Button'>
+                <span slot='icon'>&hearts;</span>
             </jsd-button>
         </div>
         <div>
             <h3>Suffix Icon button</h3>
-            <jsd-button primary dark iconSuffix label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='primary' theme='dark' trailing-icon='true' label='Icon Button'>
+                <span slot='trailingIcon'>&hearts;</span>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Primary button</h3>
-            <jsd-button primary dark disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='primary' theme='dark' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Secondary button</h3>
-            <jsd-button secondary dark disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='secondary' theme='dark' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Disabled Tertiary button</h3>
-            <jsd-button tertiary dark disabled label='Icon Button'>
-                <span slot='iconSuffix'>&hearts;</span>
+            <jsd-button btn-style='tertiary' theme='dark' disabled='true' label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Full Width button</h3>
-            <jsd-button primary dark full-width label='Icon Button'>
+            <jsd-button btn-style='primary' theme='dark' full-width label='Icon Button'>
             </jsd-button>
         </div>
         <div>
             <h3>Custom Color button</h3>
-            <jsd-button id="custom-button" primary dark label='ICON BUTTON'>
+            <jsd-button id="custom-button" btn-style='primary' theme='dark' label='CUSTOM BUTTON'>
             </jsd-button>
         </div>
         <div>
             <h3>Form</h3>
-            <form id='test-new' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
                 <input type='gamil' name='test' value='test@gmail.com' />
-                <jsd-button formId='test-new' dark type='reset'></jsd-button>
+                <jsd-button formId='test' theme='dark' type='reset'></jsd-button>
             </form>
         </div>
     </div>

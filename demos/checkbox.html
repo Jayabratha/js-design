@@ -2,149 +2,62 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>JSD Checkbox</title>
+    <title>Zest Checkbox</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
-    <script type='module' src='../components/checkbox/jsd-checkbox.js'></script>
-    <style>
-        .jsd-checkbox-wrapper {
-            padding: 0.5rem 0;
-        }
-
-        .jsd-checkbox-wrapper .jsd-checkbox {
-            display: block;
-            padding: 0.5rem 1.5rem 0.5rem 0;
-        }
-
-        .jsd-checkbox-wrapper.inline .jsd-checkbox {
-            display: inline-block;
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input {
-            position: absolute;
-            margin: 0;
-            opacity: 0;
-        }
-
-        .jsd-checkbox-wrapper label {
-            display: flex;
-            color: var(--color-placeholder);
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input:checked+label,
-        .jsd-checkbox-wrapper .jsd-checkbox:hover label {
-            color: var(--color-black);
-        }
-
-        .jsd-checkbox-wrapper label .checkbox {
-            position: relative;
-            height: calc(1rem + 2px);
-            width: calc(1rem + 2px);
-            margin-right: 0.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--color-border);
-            background-color: var(--color-secondary);
-        }
-
-        .jsd-checkbox-wrapper label:hover .checkbox {
-            background-color: var(--color-white);
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input:active+label .checkbox,
-        .jsd-checkbox-wrapper .checkbox-input:focus+label .checkbox {
-            background-color: var(--color-white);
-            border-color: var(--color-primary);
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input:checked+label .checkbox {
-            background-color: var(--color-primary);
-            border-color: var(--color-primary);
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input:checked+label .checkbox:after {
-            content: '';
-            border: solid var(--color-white);
-            border-width: 0 2px 2px 0;
-            display: inline-block;
-            padding: 4px 2px;
-            left: 5px;
-            top: 2px;
-            position: absolute;
-            transform: rotate(45deg);
-        }
-
-        .jsd-checkbox-wrapper .checkbox-input:checked:focus+label .checkbox,
-        .jsd-checkbox-wrapper .checkbox-input:checked+label:hover .checkbox {
-            background-color: var(--color-primary-dark);
-        }
-
-        #snacks-custom {
-            --color-primary: #1eba68;
-            --color-primary-dark: #1ba75e;
-            --label-case: normal;
-            --label-spacing: 0;
-        }
-    </style>
+    <script type='module' src='../packages/checkbox/checkbox.js'></script>
 </head>
 
 <body>
     <h1>Checkbox</h1>
     <div class='wrapper'>
         <div>
-            <h3>Default Checkbox</h3>
-            <div>
-                <input name='default' id='samosa' type="checkbox" value='samosa' checked />
-                <label for='samosa'>Samosa</label>
-            </div>
-            <div>
-                <input name='default' id='kachori' type="checkbox" value='kachori' />
-                <label for='kachori'>Kachori</label>
-            </div>
-            <div>
-                <input name='default' id='jalebi' type="checkbox" value='jalebi' />
-                <label for='jalebi'>Jalebi</label>
-            </div>
+            <h3>Inline Zest Checkbox</h3>
+            <jsd-checkbox id='snacks' inline='true' label='snacks' values='["Samosa"]'
+                list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
         </div>
         <div>
-            <h3>JS Radio</h3>
-            <div class='label'>snacks</div>
-            <div class='jsd-checkbox-wrapper'>
-                <div class='jsd-checkbox'>
-                    <input class='checkbox-input' tabindex='0' name='jsGender' id='jsd-samosa' type="checkbox"
-                        value='samosa' checked />
-                    <label for='jsd-samosa'>
-                        <span class='checkbox'></span>
-                        <span>Samosa</span>
-                    </label>
-                </div>
-                <div class='jsd-checkbox'>
-                    <input class='checkbox-input' tabindex='0' name='jsGender' id='jsd-kachori' type="checkbox"
-                        value='kachori' />
-                    <label for='jsd-kachori'>
-                        <span class='checkbox'></span>
-                        <span>Kachori</span>
-                    </label>
-                </div>
-                <div class='jsd-checkbox'>
-                    <input class='checkbox-input' tabindex='0' name='jsGender' id='jsd-jalebi' type="checkbox"
-                        value='jalebi' />
-                    <label for='jsd-jalebi'>
-                        <span class='checkbox'></span>
-                        <span>Jalebi</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h3>JSD Checkbox</h3>
+            <h3>Zest Checkbox</h3>
             <jsd-checkbox id='snacks' label='snacks' values='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'
                 onchange="test(event)"></jsd-checkbox>
         </div>
         <div>
-            <h3>Custom JSD Checkbox</h3>
-            <jsd-checkbox id='snacks-custom' label='snacks' values='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'
-                onchange="test(event)"></jsd-checkbox>
+            <h3>Zest Checkbox</h3>
+            <jsd-checkbox id='snackst' label='snacks' onchange="test(event)">
+                <span slot='label'><p>Test <a href='https://www.google.com'>Google</a> gjhfggg ghghgh hjjj hjhjhj hhjjhjhjh hjhjhh</p></span>
+            </jsd-checkbox>
+        </div>
+        <div>
+            <h3>Disabled Zest Checkbox</h3>
+            <jsd-checkbox id='snacks-disabled' disabled='true' label='snacks' values='["Samosa"]'
+                list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
+        </div>
+        <div>
+            <h3>Error Zest Checkbox</h3>
+            <jsd-checkbox id='snacks-disabled' label='snacks' error-msg='Please select your choices'
+                list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
+        </div>
+    </div>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Inline Zest Checkbox</h3>
+            <jsd-checkbox id='snacks' inline='true' theme='dark' label='snacks' values='["Samosa"]'
+                list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
+        </div>
+        <div>
+            <h3>Zest Checkbox</h3>
+            <jsd-checkbox id='snacks' theme='dark' label='snacks' values='["Samosa"]'
+                list='["Samosa", "Kachori", "Jalebi"]' onchange="test(event)"></jsd-checkbox>
+        </div>
+        <div>
+            <h3>Disabled Zest Checkbox</h3>
+            <jsd-checkbox id='snacks-disabled' disabled='true' theme='dark' label='snacks' values='["Samosa"]'
+                list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
+        </div>
+        <div>
+            <h3>Error Zest Checkbox</h3>
+            <jsd-checkbox id='snacks-disabled' theme='dark' label='snacks' error-msg='Please select your choices'
+                list='["Samosa", "Kachori", "Jalebi"]'>
+            </jsd-checkbox>
         </div>
     </div>
     <script>
