@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zest select dropdown web component ",
   "main": "select.js",
   "module": "select.js",
@@ -17,7 +17,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@jsdesign/jsd-base": "^1.0.0",
+    "@jsdesign/jsd-base": "^1.0.1",
     "lit-element": "^2.2.1",
     "tslib": "^1.10.0"
   },
