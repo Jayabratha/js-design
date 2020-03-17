@@ -7,7 +7,6 @@
 
 # dependencies
 node_modules
-lerna-debug.log
 
 # IDEs and editors
 /.idea
@@ -37,8 +36,10 @@ testem.log
 # System Files
 .DS_Store
 
-# Typescript
-*.d.ts
-*.js
-*.js.map
+# Typescript generated files
+packages/**/*.js
+packages/**/*.js.map
+packages/**/*.d.ts
 .tsbuildinfo
+
+*.log
