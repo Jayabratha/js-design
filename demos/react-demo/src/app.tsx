@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import zestLogo from './jsd-logo.png';
+import zestLogo from './js-logo.svg';
 import logo from './logo.svg';
 import { ThemeContext } from './theme-context';
 import './app.css';
@@ -39,7 +39,7 @@ const App: React.FC = () => {
        triggered twice as we are click on label and not the input directly.
        We can also use custom change handler if we can to validate to DOM onchange event instead on each input */
     const form = document.getElementById('form');
-    
+
     function updateState(e: any) {
       // setModel({ ...model});
     }
@@ -66,7 +66,7 @@ const App: React.FC = () => {
       }
       const updatedModel = { ...model, [property]: value }
       setModel(updatedModel);
-      validateForm({[property]: value});
+      validateForm({ [property]: value });
       event = null;
     }, 0);
   }
@@ -82,7 +82,7 @@ const App: React.FC = () => {
   }
 
   const validateForm = (model: any) => {
-    let errorList: any = {...errors};
+    let errorList: any = { ...errors };
     Object.keys(model).forEach((property) => {
       errorList = requiredValidation(property, model[property], errorList);
     });
@@ -104,10 +104,10 @@ const App: React.FC = () => {
               <div className='logos'>
                 <img src={zestLogo} className='jsd-logo' alt="Zest logo" />
                 <img src={logo} className="app-logo" alt="React logo" />
+                <h1>JS Design - React Demo</h1>
               </div>
               <div className={`theme-toggler ${theme}`} onClick={toggleTheme}></div>
             </div>
-            <h1>Zest UI - React Demo</h1>
             <div className='desc'>A simple minimalistic web-component set to build form elements irrespective of your choice of web framework.</div>
             <jsd-button label='Explore'></jsd-button><jsd-button btn-style='secondary' theme={theme} label='Docs'></jsd-button>
           </header>
@@ -116,77 +116,92 @@ const App: React.FC = () => {
               <h2>Demo Form</h2>
               <div className='form-wrapper'>
                 <form id='form' className='form' onInput={updateForm} onSubmit={submitForm}>
-                  <jsd-input id='name'
-                    name='name'
-                    label='name'
-                    placeholder='Enter your full name'
-                    error-msg={errors.name}
-                    full-width='true'
-                    autofocus
-                    theme={theme}
-                    required='true'
-                    value={model.name}>
-                  </jsd-input>
-                  <jsd-input id='age'
-                    name='age'
-                    label='age'
-                    placeholder='Enter your age'
-                    error-msg={errors.age}
-                    type='number'
-                    min='18'
-                    max='60'
-                    full-width='true'
-                    theme={theme}
-                    required='true'
-                    value={model.age}>
-                  </jsd-input>
-                  <jsd-input id='address'
-                    name='address'
-                    label='address'
-                    placeholder='Enter your address'
-                    error-msg={errors.address}
-                    full-width='true'
-                    theme={theme}
-                    required='true'
-                    value={model.address}>
-                  </jsd-input>
-                  <jsd-radio-chip id='gender'
-                    name='gender'
-                    label='gender'
-                    inline='true'
-                    theme={theme}
-                    value={model.gender}
-                    error-msg={errors.gender}
-                    required='true'
-                    list='["Male", "Female", "Other"]'>
-                  </jsd-radio-chip>
-                  <jsd-select id='department'
-                    name='department'
-                    label='department'
-                    full-width='true'
-                    theme={theme}
-                    value={model.department}
-                    error-msg={errors.department}
-                    list='["Product", "Tech", "Growth"]'>
-                  </jsd-select>
-                  <jsd-radio id='diet'
-                    name='diet'
-                    label='diet'
-                    inline='true'
-                    theme={theme}
-                    value={model.diet}
-                    error-msg={errors.diet}
-                    required='true'
-                    list='["Vegeterian", "Non-Vegeterian"]'>
-                  </jsd-radio>
-                  <jsd-checkbox id='agreement'
-                    name='agreement'
-                    theme={theme}
-                    value={model.agreement ? '["agree"]' : '[]'}
-                    error-msg={errors.agreement}
-                    required='true'
-                    list='[{"value": "agree", "label": "I agree to the <jsd-button btn-style=\"tertiary\" label=\"Terms and Conditions\">Test</jsd-button>"}]'>
-                  </jsd-checkbox>
+                  <div className='form-field'>
+                    <jsd-input id='name'
+                      name='name'
+                      label='name'
+                      placeholder='Enter your full name'
+                      error-msg={errors.name}
+                      full-width='true'
+                      autofocus
+                      theme={theme}
+                      required='true'
+                      value={model.name}>
+                    </jsd-input>
+                  </div>
+                  <div className='form-field'>
+                    <jsd-input id='age'
+                      name='age'
+                      label='age'
+                      placeholder='Enter your age'
+                      error-msg={errors.age}
+                      type='number'
+                      min='18'
+                      max='60'
+                      full-width='true'
+                      theme={theme}
+                      required='true'
+                      value={model.age}>
+                    </jsd-input>
+                  </div>
+                  <div className='form-field'>
+
+                    <jsd-input id='address'
+                      name='address'
+                      label='address'
+                      placeholder='Enter your address'
+                      error-msg={errors.address}
+                      full-width='true'
+                      theme={theme}
+                      required='true'
+                      value={model.address}>
+                    </jsd-input>
+                  </div>
+                  <div className='form-field'>
+                    <jsd-radio-chip id='gender'
+                      name='gender'
+                      label='gender'
+                      inline='true'
+                      theme={theme}
+                      value={model.gender}
+                      error-msg={errors.gender}
+                      required='true'
+                      list='["Male", "Female", "Other"]'>
+                    </jsd-radio-chip>
+                  </div>
+                  <div className='form-field'>
+                    <jsd-select id='department'
+                      name='department'
+                      label='department'
+                      full-width='true'
+                      theme={theme}
+                      value={model.department}
+                      error-msg={errors.department}
+                      list='["Product", "Tech", "Growth"]'>
+                    </jsd-select>
+                  </div>
+                  <div className='form-field'>
+                    <jsd-radio id='diet'
+                      name='diet'
+                      label='diet'
+                      inline='true'
+                      theme={theme}
+                      value={model.diet}
+                      error-msg={errors.diet}
+                      required='true'
+                      list='["Vegeterian", "Non-Vegeterian"]'>
+                    </jsd-radio>
+                  </div>
+                  <div className='form-field'>
+                    <jsd-checkbox id='agreement'
+                      name='agreement'
+                      theme={theme}
+                      value={model.agreement ? '["agree"]' : '[]'}
+                      error-msg={errors.agreement}
+                      required='true'
+                      list='[{"value": "agree", "label": "<p style=\"margin: -15px 0 0\">I agree to the <jsd-button btn-style=\"tertiary\" label=\"Terms and Conditions\">Test</jsd-button></p>"}]'>
+                    </jsd-checkbox>
+                  </div>
                   <jsd-button type='submit' label='Submit' full-width='true'></jsd-button>
                 </form>
                 <div className='model'>

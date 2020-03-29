@@ -1,10 +1,10 @@
 declare namespace JSX {
     interface IntrinsicElements {
-        'zest-button': any;
-        'zest-input': any;
-        'zest-radio-chip': any;
-        'zest-radio': any;
-        'zest-checkbox': any;
-        'zest-select': any;
+        'jsd-button': any;
+        'jsd-input': any;
+        'jsd-radio-chip': any;
+        'jsd-radio': any;
+        'jsd-checkbox': any;
+        'jsd-select': any;
     }
 }

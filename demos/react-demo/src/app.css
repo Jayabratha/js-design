@@ -3,13 +3,21 @@
   color: #ffffff;
 }
 
+.app.dark .model {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.app.dark .label {
+  color: #b5b5b5;
+}
+
 .app.light {
   background-color: #ffffff;
   color: #282c34;
 }
 
 .desc {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .container {
@@ -24,6 +32,10 @@ h1, h2 {
   font-weight: 500;
 }
 
+.form-field {
+  padding: 5px 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
     animation: app-logo-spin infinite 20s linear;
@@ -32,7 +44,7 @@ h1, h2 {
 
 .app-header {
   font-size: 1rem;
-  padding: 100px 0 20px;
+  padding: 20px 0 20px;
 }
 
 .app-header img {
@@ -42,7 +54,7 @@ h1, h2 {
 }
 
 .logo-wrapper {
-  height: 100px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,6 +63,8 @@ h1, h2 {
 .logos {
   position: relative;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .logos img.app-logo {
@@ -58,8 +72,7 @@ h1, h2 {
 }
 
 .logos img.jsd-logo {
-  height: 80%;
-  margin-right: -20px;
+  height: 70%;
 }
 
 .theme-toggler {
@@ -80,7 +93,7 @@ h1, h2 {
 
 .demo-form {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .form-wrapper {
@@ -88,11 +101,16 @@ h1, h2 {
   padding-bottom: 20px;
 }
 
+.form {
+  width: 50%;
+  margin-right: 20px;
+}
+
 .model {
-  width: 335px;
+  width: 50%;
   background-color: #f6f6f6;
   border: 1px solid #edebeb;
-  margin: 2.8rem 5rem;
+  margin: 0;
   border-radius: 0.5rem;
   padding: 20px;
   display: flex;

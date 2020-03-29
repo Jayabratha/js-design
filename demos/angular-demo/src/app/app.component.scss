@@ -2,6 +2,12 @@
   &.dark {
     background-color: #282c34;
     color: #ffffff;
+    .model {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .label {
+      color: #b5b5b5;
+    }
   }
   &.light {
     background-color: #ffffff;
@@ -36,7 +42,7 @@
       }
     }
     .desc {
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
     .theme-toggler {
       position: relative;

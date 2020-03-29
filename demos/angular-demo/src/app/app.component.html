@@ -3,12 +3,12 @@
     <header class="app-header">
       <div class='logo-wrapper'>
         <div class='logos'>
-          <img src="/assets/jsd-logo.png" class='jsd-logo' alt="Zest logo" />  
+          <img src="/assets/js-logo.svg" class='jsd-logo' alt="Zest logo" />  
           <img src="/assets/angular.svg" class="angular-logo" alt="Angular logo" />
+          <h1>Zest UI - Angular Demo</h1>
         </div>
         <div class="theme-toggler" [ngClass]="theme" (click)="toggleTheme()"></div>
       </div>
-      <h1>Zest UI - Angular Demo</h1>
       <div class='desc'>A simple minimalistic web-component set to build form elements irrespective of your choice of web framework.</div>
       <jsd-button label='Explore'></jsd-button><jsd-button btn-style='secondary' [theme]="theme" label='Docs'></jsd-button>
     </header>
