@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html style='font-size: 14px;'>
+
+<head>
+    <title>Zest Autocomplete</title>
+    <link rel='stylesheet' type='text/css' href='./base-style.css'>
+    <script type='module' src='../packages/autocomplete/autocomplete.js'></script>
+    <script>
+        function filter(event) {
+            const elem = document.getElementById('imp');
+            const list = ["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh", "Andhra Pradesh", "Telangana", "Gujrat", "Maharastra", "Rajasthan", "Kerala T", "Tamil Nadu T", "Madhya Pradesh T", "Andhra Pradesh T", "Telangana T", "Gujrat T", "Maharastra T", "Rajasthan T"];
+            elem.setAttribute('loading', 'true');
+            setTimeout(() => {
+                let filteredList = []
+                const value = event.target.getAttribute('value');
+                if (value) {
+                    filteredList = list.filter(item => item.toLowerCase().includes(value.toLowerCase()));
+                } else {
+                    filteredList = [];
+                }
+                elem.setAttribute('list', JSON.stringify(filteredList));
+                elem.setAttribute('loading', 'false');
+            }, 1000);
+        }
+    </script>
+</head>
+
+<body>
+    <h1> Select </h1>
+    <div class='wrapper'>
+        <div>
+            <h3>Zest Select</h3>
+            <jsd-autocomplete id='imp' label='STATE' throttle-time='2000' onchange='filter(event)' value='' maxlength="10"
+                autofocus='true' list='[]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Full Width Select</h3>
+            <jsd-autocomplete id='state' label='STATE' onchange='test(event)' full-width='true'
+                placeholder="Where are you from"
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh", "Andhra Pradesh", "Telangana", "Gujrat", "Maharastra", "Rajasthan", "Kerala T", "Tamil Nadu T", "Madhya Pradesh T", "Andhra Pradesh T", "Telangana T", "Gujrat T", "Maharastra T", "Rajasthan T"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Select Error</h3>
+            <jsd-autocomplete id='state' label='STATE' onchange='test(event)' error-msg='Please enter a value'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Select Help</h3>
+            <jsd-autocomplete id='state' label='STATE' onchange='test(event)' help-msg='Type in to get suggestions'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-autocomplete id='custom-state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-autocomplete id='custom-state' onchange='test(event)' value="KA"
+                list='[{"value": "WB", "label": "West Bengal"}, {"value": "KA", "label": "Karnataka"}]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-autocomplete id='custom-state' onchange='test(event)'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Select Disabled</h3>
+            <jsd-autocomplete id='state-disabled' onchange='test(event)' disabled='true'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+    </div>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Zest Select</h3>
+            <jsd-autocomplete id='state-dark' onchange='test(event)' theme='dark' value='West Bengal'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Full Width Select</h3>
+            <jsd-autocomplete id='state' onchange='test(event)' full-width='true' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Select Error</h3>
+            <jsd-autocomplete id='state' onchange='test(event)' error-msg='Select an option please' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Custom Select</h3>
+            <jsd-autocomplete id='custom-state' onchange='test(event)' theme='dark'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+        <div>
+            <h3>Zest Select - disabled</h3>
+            <jsd-autocomplete id='state-disabled-dark' onchange='test(event)' theme='dark' disabled='true'
+                list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
+            </jsd-autocomplete>
+        </div>
+    </div>
+</body>
