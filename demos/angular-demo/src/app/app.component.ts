@@ -32,7 +32,6 @@ export class AppComponent {
   };
 
   toggleTheme() {
-    console.log('Test');
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
   }
 

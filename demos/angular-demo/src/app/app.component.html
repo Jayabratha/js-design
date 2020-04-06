@@ -38,7 +38,7 @@
             </div>
             <div class='form-field'>
               <jsd-radio-chip id='gender' name='gender' label='gender' inline='true' [attr.vtheme]='theme'
-                [attr.value]='model.gender' [attr.error-msg]='errors.gender' required='true'
+                [attr.value]='model.gender' [attr.theme]='theme' [attr.error-msg]='errors.gender' required='true'
                 list='["Male", "Female", "Other"]'>
               </jsd-radio-chip>
             </div>
@@ -48,7 +48,7 @@
               </jsd-radio>
             </div>
             <div class='form-field'>
-              <jsd-checkbox id='agreement' name='agreement' [attr.attr.theme]='theme'
+              <jsd-checkbox id='agreement' name='agreement' [attr.theme]='theme'
                 [attr.value]='model.agreement ? "[\"agree\"]" : "[]"' [attr.error-msg]='errors.agreement'
                 required='true'
                 list='[{"value": "agree", "label": "<p style=\"margin: -15px 0 0\">I agree to the <jsd-button btn-style=\"tertiary\" label=\"Terms and Conditions\">Test</jsd-button></p>"}]'>

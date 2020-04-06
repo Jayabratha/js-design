@@ -2,11 +2,13 @@
   &.dark {
     background-color: #282c34;
     color: #ffffff;
-    .model {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    .label {
-      color: #b5b5b5;
+    .form-wrapper {
+      .model {
+        background: rgba(255, 255, 255, 0.3);
+        .label {
+          color: #b5b5b5;
+        }
+      }
     }
   }
   &.light {
