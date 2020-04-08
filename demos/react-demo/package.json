@@ -1,6 +1,7 @@
 {
   "name": "react-demo",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@jsdesign/jsd-button": "file:../../packages/button",
