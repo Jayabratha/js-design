@@ -5,6 +5,7 @@ import '@jsdesign/jsd-checkbox';
 import '@jsdesign/jsd-radio-chip';
 import '@jsdesign/jsd-input';
 import Model from './model';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ export class AppComponent {
     diet: '',
     agreement: ''
   };
+  deployUrl = environment.deployUrl;
 
   toggleTheme() {
     this.theme = this.theme === 'dark' ? 'light' : 'dark';
