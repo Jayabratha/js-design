@@ -4,6 +4,7 @@ import '@jsdesign/jsd-radio';
 import '@jsdesign/jsd-checkbox';
 import '@jsdesign/jsd-radio-chip';
 import '@jsdesign/jsd-input';
+import '@jsdesign/jsd-select';
 import Model from './model';
 import { environment } from '../environments/environment';
 
@@ -20,6 +21,7 @@ export class AppComponent {
     age: 30,
     address: 'Bangalore',
     gender: '',
+    department: '',
     diet: '',
     agreement: false
   };
@@ -28,6 +30,7 @@ export class AppComponent {
     age: '',
     address: '',
     gender: '',
+    department: '',
     diet: '',
     agreement: ''
   };

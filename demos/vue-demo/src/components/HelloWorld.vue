@@ -44,6 +44,12 @@
                 </jsd-radio-chip>
               </div>
               <div class='form-field'>
+                <jsd-select id='department' name='department' label='department' inline='true' v-bind:theme='theme'
+                  v-bind:value='model.department' v-bind:error-msg='errors.department' full-width='true' required='true'
+                  list='["Product", "Tech", "Growth"]'>
+                </jsd-select>
+              </div>
+              <div class='form-field'>
                 <jsd-radio id='diet' name='diet' label='diet' inline='true' v-bind:theme='theme' v-bind:value='model.diet'
                   v-bind:error-msg='errors.diet' required='true' list='["Vegeterian", "Non-Vegeterian"]'>
                 </jsd-radio>
@@ -62,6 +68,7 @@
               <div><span class='label'>Age -</span><span class='value'>{{model.age}}</span></div>
               <div><span class='label'>Address -</span><span class='value'>{{model.address}}</span></div>
               <div><span class='label'>Gender -</span><span class='value'>{{model.gender}}</span></div>
+              <div><span class='label'>Department -</span><span class='value'>{{model.department}}</span></div>
               <div><span class='label'>Diet -</span><span class='value'>{{model.diet}}</span></div>
               <div><span class='label'>Agreement -</span><span class='value'>{{model.agreement.toString()}}</span></div>
             </div>
@@ -78,6 +85,7 @@ import '@jsdesign/jsd-input';
 import '@jsdesign/jsd-radio';
 import '@jsdesign/jsd-radio-chip';
 import '@jsdesign/jsd-checkbox';
+import '@jsdesign/jsd-select';
 
 export default {
   name: 'HelloWorld',
@@ -90,6 +98,7 @@ export default {
         age: 30,
         address: 'Bangalore',
         gender: '',
+        department: '',
         diet: '',
         agreement: false
       },
@@ -98,6 +107,7 @@ export default {
         age: '',
         address: '',
         gender: '',
+        department: '',
         diet: '',
         agreement: ''
       }
