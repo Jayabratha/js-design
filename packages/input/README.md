@@ -20,7 +20,7 @@ npm install @jsdesign/jsd-input
 | `required` | `string` | `'false'` | When `'true'` the input field is marked mandatory.
 | `value` | `string` | `''` | Sets the value property of the input. Can be used to set default value
 | `placeholder` | `string` | `'Enter value'` | Sets the input placeholder.
-| `autofocus` | `boolean` | `false` | Sets the input autofocus attribute.
+| `autofocus` | `string` | `false` | Sets the input autofocus attribute.
 | `pattern` | `string` | `''` | Sets the input attribute property for validation.
 | `min` | `string` | `''` | Sets the input min attribute for number input.
 | `max` | `string` | `''` | Sets the input max attribute for number input.
