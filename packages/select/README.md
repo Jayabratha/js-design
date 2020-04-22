@@ -17,7 +17,7 @@ npm install @jsdesign/jsd-select
 | `label` | `string` | `''` | Label to display for the select.
 | `placeholder` | `string` | `'Select an option'` | Sets the select placeholder.
 | `disabled` | `string` | `'false'` | When `'true'` select is disabled cannot be interacted with.
-| `autofocus` | `boolean` | `false` | Autofocus the select element.
+| `autofocus` | `string` | `false` | Autofocus the select element.
 | `list` | `Array` | `[]` | Creates the radio list based on this attribute. Should be a array of value string of object with `value` and `label`.
 | `value` | `string` | `''` | Sets the default checked value of the radio.
 | `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.

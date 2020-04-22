@@ -17,7 +17,7 @@ npm install @jsdesign/autocomplete
 | `label` | `string` | `''` | Label to display for the select.
 | `placeholder` | `string` | `'Select an option'` | Sets the select placeholder.
 | `disabled` | `string` | `'false'` | When `'true'` select is disabled cannot be interacted with.
-| `autofocus` | `boolean` | `false` | Autofocus the select element.
+| `autofocus` | `string` | `false` | Autofocus the select element.
 | `list` | `Array` | `[]` | Creates the suggestion list based on this attribute. Should be a array of value string or object with `value` and `label`.
 | `value` | `string` | `''` | Sets the default value to the input.
 | `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
