@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-button",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Zest button web component ",
   "main": "button.js",
   "module": "button.js",
