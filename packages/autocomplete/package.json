@@ -1,7 +1,7 @@
 {
   "name": "@jsdesign/jsd-autocomplete",
   "version": "1.0.2",
-  "description": "Zest select dropdown web component ",
+  "description": "JS Design select dropdown web component ",
   "main": "autocomplete.js",
   "module": "autocomplete.js",
   "scripts": {

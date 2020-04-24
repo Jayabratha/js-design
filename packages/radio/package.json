@@ -1,7 +1,7 @@
 {
   "name": "@jsdesign/jsd-radio",
   "version": "1.0.3",
-  "description": "Zest radio web component ",
+  "description": "JS Design radio web component ",
   "main": "radio.js",
   "module": "radio.js",
   "scripts": {

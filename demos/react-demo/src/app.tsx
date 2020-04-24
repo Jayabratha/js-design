@@ -104,7 +104,7 @@ const App: React.FC = () => {
           <header className="app-header">
             <div className='logo-wrapper'>
               <div className='logos'>
-                <img src={zestLogo} className='jsd-logo' alt="Zest logo" />
+                <img src={zestLogo} className='jsd-logo' alt="JS Design logo" />
                 <img src={logo} className="app-logo" alt="React logo" />
                 <h1>JS Design - React Demo</h1>
               </div>

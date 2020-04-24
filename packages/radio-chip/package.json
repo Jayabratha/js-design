@@ -1,7 +1,7 @@
 {
   "name": "@jsdesign/jsd-radio-chip",
   "version": "1.0.3",
-  "description": "Zest radio web component ",
+  "description": "JS Design radio web component ",
   "main": "radio-chip.js",
   "module": "radio-chip.js",
   "scripts": {

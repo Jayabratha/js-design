@@ -3,7 +3,9 @@ export default interface Model {
     age: number;
     address: string;
     gender: string;
+    dob: string;
     department: string;
     diet: string;
     agreement: boolean;
+    pin: string;
 }

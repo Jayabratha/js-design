@@ -5,6 +5,7 @@ import '@jsdesign/jsd-checkbox';
 import '@jsdesign/jsd-radio-chip';
 import '@jsdesign/jsd-input';
 import '@jsdesign/jsd-select';
+import '@jsdesign/jsd-pin-input';
 import Model from './model';
 import { environment } from '../environments/environment';
 
@@ -21,18 +22,22 @@ export class AppComponent {
     age: 30,
     address: 'Bangalore',
     gender: '',
+    dob: '',
     department: '',
     diet: '',
-    agreement: false
+    agreement: false,
+    pin: ''
   };
   errors: any = {
     name: '',
     age: '',
     address: '',
     gender: '',
+    dob: '',
     department: '',
     diet: '',
-    agreement: ''
+    agreement: '',
+    pin: ''
   };
   deployUrl = environment.deployUrl;
 

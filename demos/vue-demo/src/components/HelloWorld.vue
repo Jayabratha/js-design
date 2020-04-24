@@ -4,9 +4,9 @@
       <header class="app-header">
         <div class='logo-wrapper'>
           <div class='logos'>
-            <img src="../assets/js-logo.svg" class='jsd-logo' alt="Zest logo" />
+            <img src="../assets/js-logo.svg" class='jsd-logo' alt="JS Design logo" />
             <img src="../assets/logo.png" class="angular-logo" alt="Angular logo" />
-            <h1>Zest UI - Vue Demo</h1>
+            <h1>JS Design UI - Vue Demo</h1>
           </div>
           <div class="theme-toggler" v-bind:class="theme" v-on:click="toggleTheme()"></div>
         </div>

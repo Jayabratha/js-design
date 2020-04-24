@@ -1,7 +1,7 @@
 {
   "name": "@jsdesign/jsd-input",
   "version": "1.0.5",
-  "description": "Zest input web component ",
+  "description": "JS Design input web component ",
   "main": "input.js",
   "module": "input.js",
   "scripts": {

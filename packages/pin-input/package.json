@@ -1,8 +1,9 @@
 {
     "name": "@jsdesign/jsd-pin-input",
     "version": "1.0.0",
-    "description": "JS Design Base",
-    "main": "base.js",
+    "description": "JS Design PIN Input",
+    "main": "pin-input.js",
+    "module": "radio-chip.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npm run build:style && npm run build:typescript",
