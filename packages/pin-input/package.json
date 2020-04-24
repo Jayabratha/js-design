@@ -1,6 +1,6 @@
 {
     "name": "@jsdesign/jsd-pin-input",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "JS Design PIN Input",
     "main": "pin-input.js",
     "module": "radio-chip.js",
