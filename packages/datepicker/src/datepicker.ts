@@ -1,6 +1,6 @@
 import { LitElement, customElement, html, property } from 'lit-element';
 import { baseStyles } from '@jsdesign/jsd-base';
-import { style } from './jsd-datepicker-css';
+import { style } from './datepicker-css';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

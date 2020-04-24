@@ -2,7 +2,8 @@
   "name": "@jsdesign/jsd-datepicker",
   "version": "1.0.4",
   "description": "custom datepicker web-component jsdesign",
-  "main": "jsd-datepicker",
+  "main": "datepicker.js",
+  "module": "datepicker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
