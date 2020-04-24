@@ -7,6 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "datepicker.js",
+    "datepicker-css.js"
+  ],
   "author": "Jayabratha Saha <js.design@outlook.com> (https://jayabratha.com)",
   "license": "ISC",
   "repository": {
