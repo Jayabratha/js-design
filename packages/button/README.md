@@ -14,12 +14,12 @@ npm install @jsdesign/jsd-button
 | ---- | ---- | ------- | -----------
 | `label` | `string` | `''` | Label to display for the button, and `aria-label`.
 | `btn-style` | `string` | `'primary'` | Set the button style. Allowed values: `'primary'`, `'secondary'`, `'tertiary'`.
-| `disabled` | `string` | `'false'` | Disabled buttons cannot be interacted with and have no visual interaction effect. Allowed values: `'true'`, `'false'`.
-| `icon` | `string` | `'false'` | When `'true'`, `icon` will be displayed _before_ `label`.
-| `trailing-icon` | `string` | `'false'` | When `'true'`, `icon` will be displayed _after_ `label`.
+| `disabled` | `boolean` | -- | Disabled buttons cannot be interacted with and have no visual interaction effect. Allowed values: attribute is present, `false`.
+| `icon` | `boolean` | -- | When attribute is present, `icon` will be displayed _before_ `label`.
+| `trailing-icon` | `boolean` | -- | When attribute is present, `icon` will be displayed _after_ `label`.
 | `theme` | `string` | `light` |  The button will adapt to dark theme. Allowed values: `'dark'`, `'light'`.
 | `type` | `string` | `'button'` | Set the button type. Allowed values: `'button'`, `'submit'`, `'reset'`.
-| `full-width` | `string` | `'false'` | Makes the button take full available space. Allowed values: `'true'`, `'false'`.
+| `full-width` | `boolean` | -- | Makes the button take full available space. Allowed values: attribute is present, `false`.
 
 
 ## Examples
@@ -46,7 +46,7 @@ npm install @jsdesign/jsd-button
 ![](images/tertiary.png)  ![](images/tertiary-hover.png)
 
 ```html 
-<jsd-button tertiary label='Tertiary'></jsd-button>
+<jsd-button btn-style='tertiary' label='Tertiary'></jsd-button>
 ```
 
 ### Icon Button
@@ -54,11 +54,11 @@ npm install @jsdesign/jsd-button
 ![](images/icon-button.png)  ![](images/trailing-icon-button.png)
 
 ```html 
-<jsd-button icon='true' label='Icon Button'>
+<jsd-button icon label='Icon Button'>
     <span slot='icon'>&hearts;</span>
 </jsd-button>
 
-<jsd-button trailing-icon='true' label='Icon Button'>
+<jsd-button trailing-icon label='Icon Button'>
     <span slot='trailingIcon'>&hearts;</span>
 </jsd-button>
 ```

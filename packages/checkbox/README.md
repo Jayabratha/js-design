@@ -15,12 +15,12 @@ npm install @jsdesign/jsd-checkbox
 | `id` | `string` | `''` | Sets the id attribute for the checkbox input. Preferred when used inside forms.
 | `name` | `string` | `''` | Sets the name attribute for the input. Preferred when used inside forms.
 | `label` | `string` | `''` | Label to display for the checkbox input.
-| `disabled` | `string` | `'false'` | When `'true'` checkbox input is disabled cannot be interacted with.
-| `required` | `string` | `'false'` | When `'true'` the input field is marked mandatory.
+| `disabled` | `boolean` | -- | When attribute is present, checkbox input is disabled cannot be interacted with.
+| `required` | `boolean` | -- | When attribute is present, the input field is marked mandatory.
 | `list` | `Array` | `[]` | Creates the checkbox list based on this attribute. Should be a array of value string.
 | `value` | `Array` | `[]` | Sets the default checked values. Must be list of valid values.
 | `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
-| `inline` | `string` | `'false'` | When `'true'`, the checkbox inputs will be aligned inline.
+| `inline` | `boolean` | -- | When attribute is present, the checkbox inputs will be aligned inline.
 | `error-msg` | `string` | `''` | When error message string is provided, the checkbox input will be error themed and error message is displayed.
 
 
@@ -39,7 +39,7 @@ npm install @jsdesign/jsd-checkbox
 ![](images/checkbox-inline.png)
 
 ```html 
-<jsd-checkbox id='snacks' inline='true' label='snacks' value='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
+<jsd-checkbox id='snacks' inline label='snacks' value='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'></jsd-checkbox>
 ```
 
 ### Radio with error
@@ -56,7 +56,7 @@ npm install @jsdesign/jsd-checkbox
 ![](images/checkbox-disabled.png)
 
 ```html 
-<jsd-checkbox id='snacks-disabled' disabled='true' label='snacks' value='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'>
+<jsd-checkbox id='snacks-disabled' disabled label='snacks' value='["Samosa"]' list='["Samosa", "Kachori", "Jalebi"]'>
 </jsd-checkbox>
 ```
 

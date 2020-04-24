@@ -12,24 +12,12 @@ export class Select extends LitElement {
     @property({ type: String }) formId = '';
     @property({ type: String }) label = '';
     @property({ type: String }) placeholder = 'Enter value';
-    @property({ type: String }) disabled = 'false';
-    @property({
-        type: String, converter: {
-            fromAttribute: (value) => {
-                return value === 'true' ? true : false;
-            }
-        }
-    }) autofocus = false;
-    @property({
-        type: String, converter: {
-            fromAttribute: (value) => {
-                return value === 'true' ? true : false;
-            }
-        }
-    }) loading = false;
+    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean }) autofocus = false;
+    @property({ type: Boolean }) loading = false;
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
     @property({ type: String, attribute: 'error-msg' }) errorMsg = '';
     @property({ type: String, attribute: 'help-msg' }) helpMsg = '';
-    @property({ type: String, attribute: 'full-width' }) fullWidth = 'false';
     @property({ type: String, attribute: 'value', reflect: true }) value = '';
     @property({
         type: String, converter: {
@@ -219,7 +207,7 @@ export class Select extends LitElement {
     }
 
     navigateUp(currentIndex, currentElem) {
-        if (currentIndex > 0 ) {
+        if (currentIndex > 0) {
             let prevIndex = currentIndex - 1;
             this.list[currentIndex].current = false;
             this.list[prevIndex].current = true;
@@ -342,8 +330,8 @@ export class Select extends LitElement {
                     ${this.value ? 'selected' : ''} 
                     ${this.isExpanded && this.list.length ? 'expanded' : ''}
                     ${this.inFocus ? 'focus' : ''}
-                    ${this.disabled === 'true' ? 'disabled' : ''}
-                    ${this.fullWidth === 'true' ? 'full-width' : ''}
+                    ${this.disabled ? 'disabled' : ''}
+                    ${this.fullWidth ? 'full-width' : ''}
                     ${this.errorMsg ? 'error' : ''}'>
                     <div class='input-wrapper ${this.loading ? 'loading' : ''}'
                          aria-haspopup='listbox'

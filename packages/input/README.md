@@ -16,20 +16,20 @@ npm install @jsdesign/jsd-input
 | `name` | `string` | `''` | Sets the name attribute for the input. Preferred when used inside forms.
 | `type` | `string` | `'text` | Allowed input type values: `text`, `search`, `tel`, `url`, `email`, `password`, `date`, `month`, `week`, `time`, `datetime-local`, `number`, `color`
 | `label` | `string` | `''` | Label to display for the input.
-| `disabled` | `string` | `'false'` | When `'true'` input is disabled cannot be interacted with.
-| `required` | `string` | `'false'` | When `'true'` the input field is marked mandatory.
+| `disabled` | `boolean` | -- | When attribute is present, input is disabled cannot be interacted with.
+| `required` | `boolean` | -- | When attribute is present, the input field is marked mandatory.
 | `value` | `string` | `''` | Sets the value property of the input. Can be used to set default value
 | `placeholder` | `string` | `'Enter value'` | Sets the input placeholder.
-| `autofocus` | `string` | `false` | Sets the input autofocus attribute.
+| `autofocus` | `boolean` | -- | Sets the input autofocus attribute.
 | `pattern` | `string` | `''` | Sets the input attribute property for validation.
 | `min` | `string` | `''` | Sets the input min attribute for number input.
 | `max` | `string` | `''` | Sets the input max attribute for number input.
 | `maxlength` | `string` | `''` | Sets the input maxlength attribute.
-| `theme` | `string` | `'light` | When `'true'`, the input will adapt to dark theme.
-| `full-width` | `string` | `'false'` | When `'true'`, the input will take full width of the container. By default the max-width is 300px.
+| `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
+| `full-width` | `boolean` | -- | When attribute is present, the input will take full width of the container. By default the max-width is 300px.
 | `error-msg` | `string` | `''` | When error message string is provided, the input will be error themed and error message is displayed.
 | `help-msg` | `string` | `''` | When help message string is provided, help message is displayed.
-| `icon` | `string` | `'false'` | When `'true'`, `icon` will be displayed _before_  the `placeholder`.
+| `icon` | `boolean` | -- | When attribute is present, `icon` will be displayed _before_  the `placeholder`.
 
 
 ## Examples
@@ -63,9 +63,9 @@ npm install @jsdesign/jsd-input
 ![](images/disabled.png)
 
 ```html 
-<jsd-input disabled='true' type='text' value="Jayabratha" placeholder="Disabled Input"></jsd-input>
+<jsd-input disabled type='text' value="Jayabratha" placeholder="Disabled Input"></jsd-input>
 
-<jsd-input disabled='true' type='text' placeholder="Disabled Input"></jsd-input>
+<jsd-input disabled type='text' placeholder="Disabled Input"></jsd-input>
 ```
 
 ### Icon Input
@@ -73,7 +73,7 @@ npm install @jsdesign/jsd-input
 ![](images/icon-input.png)
 
 ```html
-<jsd-input type='text' icon='true' placeholder="Icon Input">
+<jsd-input type='text' icon placeholder="Icon Input">
     <span slot='icon' class='icon'>&hearts;</span>
 </jsd-input>
 ```

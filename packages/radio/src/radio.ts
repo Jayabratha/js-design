@@ -10,11 +10,11 @@ export class Radio extends LitElement {
     @property({ type: String }) formId = '';
     @property({ type: String, attribute: 'error-msg' }) errorMsg = '';
     @property({ type: String }) label = '';
-    @property({ type: String }) inline = 'false';
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
     @property({ type: Array }) list: Array<string | { value: string | number, label: string }> = [];
-    @property({ type: String }) disabled = 'false';
-    @property({ type: String }) required = 'false';
+    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean }) required = false;
+    @property({ type: Boolean }) inline = false;
     @property({ type: String }) theme: ThemeType = 'light';
 
     static get styles() {
@@ -41,7 +41,7 @@ export class Radio extends LitElement {
     render() {
         return html`
             ${this.label ? html`<div class='label'>${this.label}</div>` : ''}
-            <div id='${this.id}' class='jsd-radio-wrapper ${this.inline === 'true' ? 'inline' : ''} ${this.theme} ${this.errorMsg ? 'error' : ''}'>
+            <div id='${this.id}' class='jsd-radio-wrapper ${this.inline ? 'inline' : ''} ${this.theme} ${this.errorMsg ? 'error' : ''}'>
             ${this.list.map((item: any) => html`
                 <div class='jsd-radio'>
                     <input 
@@ -51,11 +51,11 @@ export class Radio extends LitElement {
                         type="radio" 
                         value='${item.value !== undefined ? item.value : item}' 
                         ?checked='${item === this.selectedValue}' 
-                        ?disabled='${this.disabled === 'true'}'
-                        ?required='${this.required === 'true'}'
+                        ?disabled='${this.disabled}'
+                        ?required='${this.required}'
                         @change='${this.handleSelect}'
-                        @keypress="${(e) => handleFormSubmit(e, this)}"/>
-                    <label for='${this.id}-${item.value !== undefined ? item.value : item}' class='${this.disabled === 'true' ? 'disabled' : ''}'>
+                        @keydown="${(e) => handleFormSubmit(e, this)}"/>
+                    <label for='${this.id}-${item.value !== undefined ? item.value : item}' class='${this.disabled ? 'disabled' : ''}'>
                         <span class='radio'></span>
                         <span>${unsafeHTML(item.label !== undefined ? item.label : item)}</span>
                     </label>

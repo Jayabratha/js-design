@@ -8,13 +8,13 @@ export class Checkbox extends LitElement {
     @property({ type: String }) id = '';
     @property({ type: String }) name = '';
     @property({ type: String }) label = '';
-    @property({ type: String }) inline = 'false';
     @property({ type: Array }) list: Array<string | { value: string | number, label: string }> = [];
-    @property({ type: String }) theme: ThemeType = 'light';
-    @property({ type: String }) disabled = 'false';
     @property({ type: Array, attribute: 'value', reflect: true }) selectedValues: Array<string> = [];
-    @property({ type: String, reflect: true }) checked = 'false';
     @property({ type: String, attribute: 'error-msg' }) errorMsg = '';
+    @property({ type: String }) theme: ThemeType = 'light';
+    @property({ type: Boolean }) inline = false;
+    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean }) checked = false;
 
     static get styles() {
         return [
@@ -24,9 +24,7 @@ export class Checkbox extends LitElement {
     }
 
     handleSelect(event) {
-        if (this.list.length === 0) {
-            this.checked = this.checked === 'true' ? 'false' : 'true';
-        } else {
+        if (this.list.length !== 0) {
             let selectedValue = event.target.value;
             let index = this.selectedValues.indexOf(selectedValue);
             if (index !== -1) {
@@ -53,7 +51,7 @@ export class Checkbox extends LitElement {
     render() {
         return html`
             ${this.label ? html`<div class='label'>${this.label}</div>` : ''}
-            <div id='${this.id}' class='jsd-checkbox-wrapper ${this.inline === 'true' ? 'inline' : ''} ${this.theme} ${this.errorMsg ? 'error' : ''}'>
+            <div id='${this.id}' class='jsd-checkbox-wrapper ${this.inline ? 'inline' : ''} ${this.theme} ${this.errorMsg ? 'error' : ''}'>
             ${this.list.length ? this.list.map((item: any) =>
             html`
                 <div class='jsd-checkbox'>
@@ -64,10 +62,10 @@ export class Checkbox extends LitElement {
                         type="checkbox" 
                         value='${item.value !== undefined ? item.value : item}' 
                         ?checked='${this.selectedValues.indexOf(item.value !== undefined ? item.value : item) !== -1}' 
-                        ?disabled='${this.disabled === 'true'}'
+                        ?disabled='${this.disabled}'
                         @change='${this.handleSelect}'
-                        @keypress="${(e) => handleFormSubmit(e, this)}"/>
-                    <label for='${this.id}-${item.value !== undefined ? item.value : item}' class='${this.disabled === 'true' ? 'disabled' : ''}'>
+                        @keydown="${(e) => handleFormSubmit(e, this)}"/>
+                    <label for='${this.id}-${item.value !== undefined ? item.value : item}' class='${this.disabled ? 'disabled' : ''}'>
                         <div class='checkbox'></div>
                         <div class='checkbox-label'>${unsafeHTML(item.label !== undefined ? item.label : item)}</div>
                     </label>
@@ -80,11 +78,11 @@ export class Checkbox extends LitElement {
                         class='checkbox-input' 
                         name='${this.name}' 
                         type="checkbox" 
-                        ?disabled='${this.disabled === 'true'}'
-                        ?checked='${this.checked === 'true'}'
+                        ?disabled='${this.disabled}'
+                        ?checked='${this.checked}'
                         @change='${this.handleSelect}'
-                        @keypress="${(e) => handleFormSubmit(e, this)}"/>
-                    <label for='${this.id}-input' class='${this.disabled === 'true' ? 'disabled' : ''}'>
+                        @keydown="${(e) => handleFormSubmit(e, this)}"/>
+                    <label for='${this.id}-input' class='${this.disabled ? 'disabled' : ''}'>
                         <div class='checkbox'></div>
                         <div class='checkbox-label'><slot name='label'></slot></div>
                     </label>

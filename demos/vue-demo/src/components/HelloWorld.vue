@@ -38,19 +38,19 @@
                 </jsd-input>
               </div>
               <div class='form-field'>
-                <jsd-radio-chip id='gender' name='gender' label='gender' inline='true' v-bind:theme='theme'
+                <jsd-radio-chip id='gender' name='gender' label='gender'inline v-bind:theme='theme'
                   v-bind:value='model.gender' v-bind:error-msg='errors.gender' required='true'
                   list='["Male", "Female", "Other"]'>
                 </jsd-radio-chip>
               </div>
               <div class='form-field'>
-                <jsd-select id='department' name='department' label='department' inline='true' v-bind:theme='theme'
+                <jsd-select id='department' name='department' label='department'inline v-bind:theme='theme'
                   v-bind:value='model.department' v-bind:error-msg='errors.department' full-width='true' required='true'
                   list='["Product", "Tech", "Growth"]'>
                 </jsd-select>
               </div>
               <div class='form-field'>
-                <jsd-radio id='diet' name='diet' label='diet' inline='true' v-bind:theme='theme' v-bind:value='model.diet'
+                <jsd-radio id='diet' name='diet' label='diet'inline v-bind:theme='theme' v-bind:value='model.diet'
                   v-bind:error-msg='errors.diet' required='true' list='["Vegeterian", "Non-Vegeterian"]'>
                 </jsd-radio>
               </div>

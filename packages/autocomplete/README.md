@@ -16,15 +16,15 @@ npm install @jsdesign/autocomplete
 | `name` | `string` | `''` | Sets the name attribute for the select. Preferred when used inside forms.
 | `label` | `string` | `''` | Label to display for the select.
 | `placeholder` | `string` | `'Select an option'` | Sets the select placeholder.
-| `disabled` | `string` | `'false'` | When `'true'` select is disabled cannot be interacted with.
-| `autofocus` | `string` | `false` | Autofocus the select element.
+| `disabled` | `boolean` | -- | When attribute is present, select is disabled cannot be interacted with.
+| `autofocus` | `boolean` | -- | Autofocus the select element.
 | `list` | `Array` | `[]` | Creates the suggestion list based on this attribute. Should be a array of value string or object with `value` and `label`.
 | `value` | `string` | `''` | Sets the default value to the input.
-| `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
-| `full-width` | `string` | `'false'` | When `'true'`, the  radio chip will take full width of the container.
+| `theme` | `string` | `'light'` | When `'dark'`, the input will adapt to dark theme.
+| `full-width` | `boolean` | -- | When attribute is present, the  radio chip will take full width of the container.
 | `error-msg` | `string` | `''` | When error message string is provided, the input will be error themed and error message is displayed.
 | `help-msg` | `string` | `''` | When help message string is provided, help message is displayed.
-| `loading` | `string` | `'false'` | Sets if to show loading icon on the input. Can be used if creating suggestion takes time.
+| `loading` | `boolean` | -- | Sets if to show loading icon on the input. Can be used if creating suggestion takes time.
 | `throttle-time` | `string` | `0` | Sets the throttle time for change event. The value attribute is not affected by this and is always up to date.
 
 
@@ -63,7 +63,7 @@ npm install @jsdesign/autocomplete
 ![](images/autocomplete-disabled.png)
 
 ```html 
-<jsd-autocomplete id='state' disabled='true' list='[]'>
+<jsd-autocomplete id='state'disabled list='[]'>
 </jsd-autocomplete>
 ```
 

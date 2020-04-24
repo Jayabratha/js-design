@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html style='font-size: 14px;'>
+<head>
+    <title>Zest Pin Input</title>
+    <link rel='stylesheet' type='text/css' href='./base-style.css'>
+    <script type='module' src='../packages/pin-input/pin-input.js'></script>
+    <script type='module' src='../packages/button/button.js'></script>
+    <script>
+        function test(event) {
+            console.log('Test', event);
+        }
+    </script>
+    <style>
+        #custom-pin-pin-input {
+            --color-primary: #1eba68;
+            --color-primary-dark: #1ba75e;
+            --border-radius: 30px;
+            --label-case: normal;
+            --label-spacing: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Inputs</h1>
+
+    <div class='wrapper'>
+        <div>
+            <h3>Basic Input</h3>
+            <jsd-pin-input id="otp" name="otp" label="Enter OTP" type="number" placeholder="Enter your name" onpin-input="test()" autofocus
+                onchange="test(event)" value='1234'></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Error Input</h3>
+            <jsd-pin-input id="error" name="error" label="otp error" placeholder="Enter your name" error-msg='Name is required'>
+            </jsd-pin-input>
+        </div>
+        <div>
+            <h3>Help Input</h3>
+            <jsd-pin-input id="help" name="help" label="otp help" placeholder="Enter your name" help-msg='Name is required'>
+            </jsd-pin-input>
+        </div>
+        <div>
+            <h3>Custom Input</h3>
+            <jsd-pin-input id="custom-pin-input" name="custom" label="Custom Input" placeholder="Enter your name">
+            </jsd-pin-input>
+        </div>
+        <div>
+            <h3>Form Demo</h3>
+            <form id='test' name='test' onsubmit="alert('submit!');return false;">
+                <jsd-pin-input formId='test' type='text' name='test'></jsd-pin-input>
+                <jsd-button formId='test' type='submit' full-width label='Submit' onclick="alert('submit!');"></jsd-button>
+            </form>
+        </div>
+        <div>
+            <h3>Full Width</h3>
+            <jsd-pin-input id="full" name="full" label="otp full" full-width='true' type='text' ></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Disabled Input with Value</h3>
+            <jsd-pin-input label='disabled' disabled type='text' value="1234" placeholder="Disabled Input"></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Disabled Input</h3>
+            <jsd-pin-input label='disabled' disabled type='text' placeholder="Disabled Input"></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Icon Input</h3>
+            <jsd-pin-input type='text' icon='true' placeholder="Icon Input">
+                <span slot='icon' class='icon'>&hearts;</span>
+            </jsd-pin-input>
+        </div>
+    </div>
+    <div class='wrapper dark'>
+        <div>
+            <h3>Basic Input</h3>
+            <jsd-pin-input theme='dark' id="name" name="name" label="name" placeholder="Enter your name" onpin-input="test()"
+                onchange="test(event)" value='Jay'></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Error Input</h3>
+            <jsd-pin-input theme='dark' id="error" name="error" label="error" placeholder="Enter your name" error-msg='Name is required'>
+            </jsd-pin-input>
+        </div>
+        <div>
+            <h3>Custom Input</h3>
+            <jsd-pin-input theme='dark' id="custom-pin-input" name="custom" label="Custom Input" placeholder="Enter your name">
+            </jsd-pin-input>
+        </div>
+        <div>
+            <h3>Form Demo</h3>
+            <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
+                <jsd-pin-input theme='dark' formId='test' type='text' name='test'></jsd-pin-input>
+                <jsd-button formId='test' type='submit' full-width label='Submit'></jsd-button>
+            </form>
+        </div>
+        <div>
+            <h3>Full Width</h3>
+            <jsd-pin-input theme='dark' full-width='true' type='text'></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Disabled Input with Value</h3>
+            <jsd-pin-input theme='dark' disabled type='text' value="Jayabratha" placeholder="Disabled Input"></jsd-pin-input>
+        </div>
+        <div>
+            <h3>Disabled Input</h3>
+            <jsd-pin-input theme='dark' disabled type='text' placeholder="Disabled Input"></jsd-pin-input>
+        </div>
+    </div>
+</body>

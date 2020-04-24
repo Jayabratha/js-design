@@ -1,0 +1,3 @@
+import {css} from 'lit-element';
+
+export const style = css`.input-wrapper{display:flex;align-items:center;justify-content:space-between;margin:0 -5px}.input-wrapper input{width:4rem;text-align:center;font-size:1.2rem;line-height:3.3rem;margin:0 5px}.input-wrapper input[type=number]::-webkit-inner-spin-button,.input-wrapper input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.input-wrapper input[type=number]{-moz-appearance:textfield}.input-wrapper.full-width input{flex-grow:1}`;

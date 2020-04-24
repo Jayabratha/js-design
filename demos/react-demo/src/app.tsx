@@ -95,6 +95,8 @@ const App: React.FC = () => {
     console.log('Submit!');
   }
 
+  const disable = false;
+
   return (
     <ThemeContext.Provider value={theme}>
       <div className={`app ${theme}`}>
@@ -123,9 +125,10 @@ const App: React.FC = () => {
                       placeholder='Enter your full name'
                       error-msg={errors.name}
                       full-width='true'
+                      disabled={disable ? true : undefined}
                       autofocus
                       theme={theme}
-                      required='true'
+                      required
                       value={model.name}>
                     </jsd-input>
                   </div>
@@ -138,22 +141,21 @@ const App: React.FC = () => {
                       type='number'
                       min='18'
                       max='60'
-                      full-width='true'
+                      full-width
                       theme={theme}
-                      required='true'
+                      required
                       value={model.age}>
                     </jsd-input>
                   </div>
                   <div className='form-field'>
-
                     <jsd-input id='address'
                       name='address'
                       label='address'
                       placeholder='Enter your address'
                       error-msg={errors.address}
-                      full-width='true'
+                      full-width
                       theme={theme}
-                      required='true'
+                      required
                       value={model.address}>
                     </jsd-input>
                   </div>
@@ -165,7 +167,7 @@ const App: React.FC = () => {
                       theme={theme}
                       value={model.gender}
                       error-msg={errors.gender}
-                      required='true'
+                      required
                       list='["Male", "Female", "Other"]'>
                     </jsd-radio-chip>
                   </div>
@@ -173,7 +175,7 @@ const App: React.FC = () => {
                     <jsd-select id='department'
                       name='department'
                       label='department'
-                      full-width='true'
+                      full-width
                       theme={theme}
                       value={model.department}
                       error-msg={errors.department}
@@ -188,7 +190,7 @@ const App: React.FC = () => {
                       theme={theme}
                       value={model.diet}
                       error-msg={errors.diet}
-                      required='true'
+                      required
                       list='["Vegeterian", "Non-Vegeterian"]'>
                     </jsd-radio>
                   </div>
@@ -198,7 +200,7 @@ const App: React.FC = () => {
                       theme={theme}
                       value={model.agreement ? '["agree"]' : '[]'}
                       error-msg={errors.agreement}
-                      required='true'
+                      required
                       list='[{"value": "agree", "label": "<p style=\"margin: -15px 0 0\">I agree to the <jsd-button btn-style=\"tertiary\" label=\"Terms and Conditions\">Test</jsd-button></p>"}]'>
                     </jsd-checkbox>
                   </div>

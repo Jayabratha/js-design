@@ -11,13 +11,13 @@ export class Select extends LitElement {
     @property({ type: String }) formId = '';
     @property({ type: String }) label = '';
     @property({ type: String }) placeholder = 'Select an option';
-    @property({ type: String }) disabled = 'false';
-    @property({ type: String }) autofocus = 'false';
+    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean }) autofocus = false;
     @property({ type: String, attribute: 'error-msg' }) errorMsg = '';
     @property({ type: String, attribute: 'help-msg' }) helpMsg = '';
-    @property({ type: String, attribute: 'full-width' }) fullWidth = 'false';
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue = '';
-    @property({ type: String, attribute: 'filter-on-type' }) filterOnType = 'false';
+    @property({ type: Boolean, attribute: 'filter-on-type' }) filterOnType = false;
     @property({ type: String }) theme: ThemeType = 'light';
 
     @property({ type: Boolean, attribute: false }) inFocus = false;
@@ -75,7 +75,7 @@ export class Select extends LitElement {
             this.list[0].current = true;
         }
 
-        if (this.autofocus === 'true') {
+        if (this.autofocus) {
             this.selectButton?.focus();
             this.filterInput?.focus();
         }
@@ -323,13 +323,13 @@ export class Select extends LitElement {
                     ${this.selectedValue ? 'selected' : ''} 
                     ${this.isExpanded ? 'expanded' : ''}
                     ${this.inFocus ? 'focus' : ''}
-                    ${this.disabled === 'true' ? 'disabled' : ''}
-                    ${this.fullWidth === 'true' ? 'full-width' : ''}
+                    ${this.disabled ? 'disabled' : ''}
+                    ${this.fullWidth ? 'full-width' : ''}
                     ${this.errorMsg ? 'error' : ''}'>
-                    ${this.disabled === 'true' ?
-                html`<div id='${this.id}-button' class='button disabled'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>` :
-                this.filterOnType === 'true' ?
-                    html`<div class='input'
+                    ${this.disabled ?
+                        html`<div id='${this.id}-button' class='button disabled'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>` :
+                        this.filterOnType ?
+                            html`<div class='input'
                                 aria-haspopup='listbox'
                                 @blur='${this.toggleFocus}'
                                 @click='${() => this.toggleClick(false)}' 
@@ -344,8 +344,8 @@ export class Select extends LitElement {
                                         placeholder='${this.placeholder}'
                                         aria-labelledby='state state-button' />
                                 </div>`
-                    :
-                    html`<div id='${this.id}-button' 
+                            :
+                            html`<div id='${this.id}-button' 
                                 class='button'
                                 aria-haspopup='listbox'
                                 tabindex='0'
@@ -355,7 +355,7 @@ export class Select extends LitElement {
                                 @keydown='${(e) => this.handleButtonPress(e, this)}'
                                 aria-expanded='${this.isExpanded}'
                                 aria-labelledby='state state-button'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>`
-            }
+                    }
                     <ul id='${this.id}-list' tabindex='-1' class='custom-select' role='listbox'
                         aria-labelledby="state"
                         @blur='${this.handleBlur}'

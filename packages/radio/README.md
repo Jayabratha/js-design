@@ -15,12 +15,12 @@ npm install @jsdesign/jsd-radio
 | `id` | `string` | `''` | Sets the id attribute for the radio input. Preferred when used inside forms.
 | `name` | `string` | `''` | Sets the name attribute for the input. Preferred when used inside forms.
 | `label` | `string` | `''` | Label to display for the radio input.
-| `disabled` | `string` | `'false'` | When `'true'` radio input is disabled cannot be interacted with.
-| `required` | `string` | `'false'` | When `'true'` the input field is marked mandatory.
+| `disabled` | `boolean` | -- | When attribute is present, radio input is disabled cannot be interacted with.
+| `required` | `boolean` | -- | When attribute is present, the input field is marked mandatory.
 | `list` | `Array` | `[]` | Creates the radio list based on this attribute. Should be a array of value string.
+| `inline` | `boolean` | -- | When attribute is present, the radio inputs will be aligned inline.
 | `value` | `string` | `''` | Sets the default checked value.
 | `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
-| `inline` | `string` | `'false'` | When `'true'`, the radio inputs will be aligned inline.
 | `error-msg` | `string` | `''` | When error message string is provided, the radio input will be error themed and error message is displayed.
 
 
@@ -39,7 +39,7 @@ npm install @jsdesign/jsd-radio
 ![](images/radio-inline.png)
 
 ```html 
-<jsd-radio id='gender' inline='true' name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio>
+<jsd-radio id='gender' inline name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio>
 ```
 
 ### Radio with error
@@ -55,7 +55,7 @@ npm install @jsdesign/jsd-radio
 ![](images/radio-disabled.png)
 
 ```html 
-<jsd-radio id='disabled' name='disabled' disabled='true' value='Male' label="gender" list='["Male", "Female", "Other"]'></jsd-radio>
+<jsd-radio id='disabled' name='disabled' disabled value='Male' label="gender" list='["Male", "Female", "Other"]'></jsd-radio>
 ```
 
 ### Cutomizable property list

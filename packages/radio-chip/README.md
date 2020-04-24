@@ -15,12 +15,13 @@ npm install @jsdesign/jsd-radio-chip
 | `id` | `string` | `''` | Sets the id attribute for the radio input. Preferred when used inside forms.
 | `name` | `string` | `''` | Sets the name attribute for the radio input. Preferred when used inside forms.
 | `label` | `string` | `''` | Label to display for the radio input.
-| `disabled` | `string` | `'false'` | When `'true'` radio input is disabled cannot be interacted with.
-| `required` | `string` | `'false'` | When `'true'` the input field is marked mandatory.
+| `disabled` | `boolean` | -- | When attibute is present, radio input is disabled cannot be interacted with.
+| `required` | `boolean` | -- | When attibute is present, the input field is marked mandatory.
 | `list` | `Array` | `[]` | Creates the radio list based on this attribute. Should be a array of value string.
 | `value` | `string` | `''` | Sets the default checked value of the radio.
 | `theme` | `string` | `'light` | When `'dark'`, the input will adapt to dark theme.
-| `full-width` | `string` | `'false'` | When `'true'`, the  radio chip will take full width of the container.
+| `inline` | `boolean` | -- | When attribute is present, the radio chip will be aligned inline.
+| `full-width` | `boolean` | -- | When attribute is present, the  radio chip will take full width of the container.
 | `error-msg` | `string` | `''` | When error message string is provided, the input will be error themed and error message is displayed.
 
 
@@ -39,7 +40,7 @@ npm install @jsdesign/jsd-radio-chip
 ![](images/radio-chip-inline.png)
 
 ```html 
-<jsd-radio-chip id='gender' inline='true' name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio-chip>
+<jsd-radio-chip id='gender' inline name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio-chip>
 ```
 
 ### Full width Radio chip
@@ -47,7 +48,7 @@ npm install @jsdesign/jsd-radio-chip
 ![](images/radio-chip-full-width.png)
 
 ```html 
-<jsd-radio-chip id='gender' full-width='true' name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio-chip>
+<jsd-radio-chip id='gender' full-width name='gender' label="gender" value='Male' list='["Male", "Female", "Other"]'></jsd-radio-chip>
 ```
 
 ### Radio chip with error
@@ -63,7 +64,7 @@ npm install @jsdesign/jsd-radio-chip
 ![](images/radio-chip-disabled.png)
 
 ```html 
-<jsd-radio-chip id='disabled' name='disabled' disabled='true' value='Male' label="gender" list='["Male", "Female", "Other"]'>
+<jsd-radio-chip id='disabled' name='disabled' disabled value='Male' label="gender" list='["Male", "Female", "Other"]'>
 </jsd-radio-chip>
 ```
 

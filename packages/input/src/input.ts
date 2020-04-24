@@ -16,10 +16,10 @@ export class Input extends LitElement {
     @property({ type: String }) label = '';
     @property({ type: String }) type: TextFieldType = 'text';
     @property({ type: String, reflect: true }) value = '';
-    @property({ type: String, reflect: true }) required = 'false';
-    @property({ type: String, reflect: true }) disabled = 'false';
     @property({ type: String }) theme: ThemeType = 'light';
     @property({ type: String }) placeholder = 'Enter value';
+    @property({ type: Boolean }) required = false;
+    @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) autofocus = false;
     @property({ type: String }) pattern = '';
     @property({ type: Number }) min: number | string = '';
@@ -27,8 +27,8 @@ export class Input extends LitElement {
     @property({ type: Number, attribute: 'maxlength' }) maxLength = -1;
     @property({ type: String, attribute: 'error-msg' }) errorMsg = '';
     @property({ type: String, attribute: 'help-msg' }) helpMsg = '';
-    @property({ type: String, attribute: 'full-width' }) fullWidth = 'false';
-    @property({ type: String, attribute: 'icon' }) icon = 'false';
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
+    @property({ type: Boolean}) icon = false;
 
 
     static get styles() {
@@ -42,7 +42,7 @@ export class Input extends LitElement {
         // Moving the property read on another task as we might have a text mask, which might update the value on change.
         setTimeout(() => {
             this.value = this.inputElement.value;
-        }, 0); 
+        }, 0);
     }
 
     handleValueChange() {
@@ -57,23 +57,23 @@ export class Input extends LitElement {
         return html`
             <div class='text-input ${this.theme}' >
                 ${this.label ? html`<label class='label' for="${this.id}">${this.label}</label>` : ''}
-                ${ this.icon === 'true' ? html`<slot name='icon' class='icon'></slot>` : ''}
+                ${ this.icon ? html`<slot name='icon' class='icon'></slot>` : ''}
                 <input id="${this.id}"      
                         name="${this.name}" 
                         type="${this.type}" 
                         .value="${this.value}"
-                        ?required="${this.required === 'true'}"
-                        ?disabled="${this.disabled === 'true'}"
+                        ?required="${this.required}"
+                        ?disabled="${this.disabled}"
                         ?autofocus="${this.autofocus}"
                         maxlength="${ifDefined(this.maxLength === -1 ? undefined : this.maxLength)}"
                         pattern="${ifDefined(this.pattern ? this.pattern : undefined)}"
                         min="${ifDefined(this.min === '' ? undefined : this.min as number)}"
                         max="${ifDefined(this.max === '' ? undefined : this.max as number)}"
-                        class="wrapper-box ${this.errorMsg ? 'error' : ''} ${this.fullWidth === 'true' ? 'full-width' : ''} ${this.icon === 'true' ? 'with-icon' : ''}" 
+                        class="wrapper-box ${this.errorMsg ? 'error' : ''} ${this.fullWidth ? 'full-width' : ''} ${this.icon ? 'with-icon' : ''}" 
                         placeholder="${this.placeholder}" 
                         @input="${this.handleInputChange}"
                         @change="${this.handleValueChange}"
-                        @keypress="${(e) => handleFormSubmit(e, this)}"
+                        @keydown="${(e) => handleFormSubmit(e, this)}"
                         autocomplete="off" />
                 ${this.errorMsg ? html`<div class="error-message">${this.errorMsg}</div>` : ''}
                 ${this.helpMsg && !this.errorMsg ? html`<div class="help-message">${this.helpMsg}</div>` : ''}
