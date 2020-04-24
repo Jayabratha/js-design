@@ -23,7 +23,7 @@
     "@angular/router": "~8.2.4",
     "@jsdesign/jsd-button": "^1.0.5",
     "@jsdesign/jsd-checkbox": "^1.0.4",
-    "@jsdesign/jsd-datepicker": "^1.0.6",
+    "@jsdesign/jsd-datepicker": "^1.0.7",
     "@jsdesign/jsd-input": "^1.0.6",
     "@jsdesign/jsd-pin-input": "^1.0.2",
     "@jsdesign/jsd-radio": "^1.0.4",

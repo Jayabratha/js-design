@@ -183,11 +183,16 @@ export class Datepicker extends LitElement {
         let ISOday = this.day < 10 ? `0${this.day}` : this.day;
         this.selectedValue = `${ISOyear}-${ISOmonth}-${ISOday}`;
         setTimeout(() => {
-            let newEvent = new Event('change', {
+            let changeEvent = new Event('change', {
                 bubbles: true,
                 composed: true
             });
-            this.dispatchEvent(newEvent);
+            this.dispatchEvent(changeEvent);
+            let inputEvent = new Event('input', {
+                bubbles: true,
+                composed: true
+            });
+            this.dispatchEvent(inputEvent);
         }, 0);
 
     }
