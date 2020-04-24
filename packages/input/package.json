@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-input",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "JS Design input web component ",
   "main": "input.js",
   "module": "input.js",

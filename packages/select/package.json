@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-select",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "JS Design select dropdown web component ",
   "main": "select.js",
   "module": "select.js",

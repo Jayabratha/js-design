@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-radio-chip",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "JS Design radio web component ",
   "main": "radio-chip.js",
   "module": "radio-chip.js",

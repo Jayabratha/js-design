@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-checkbox",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "JS Design checkbox web component ",
   "main": "checkbox.js",
   "module": "checkbox.js",

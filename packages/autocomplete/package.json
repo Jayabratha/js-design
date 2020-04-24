@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-autocomplete",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JS Design select dropdown web component ",
   "main": "autocomplete.js",
   "module": "autocomplete.js",
