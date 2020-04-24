@@ -6,6 +6,7 @@ import '@jsdesign/jsd-radio-chip';
 import '@jsdesign/jsd-input';
 import '@jsdesign/jsd-select';
 import '@jsdesign/jsd-pin-input';
+import '@jsdesign/jsd-datepicker';
 import Model from './model';
 import { environment } from '../environments/environment';
 

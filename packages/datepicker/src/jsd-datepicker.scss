@@ -1,10 +1,17 @@
+.jsd-datepicker {
+  margin-bottom: 3.3rem;
+}
+
 .datepicker-wrapper {
   position: absolute;
-  width: 100%;
-  min-width: 100%;
+  width: 300px;
   overflow: hidden;
   box-sizing: border-box;
   transition: min-width 0.2s;
+
+  &.full-width {
+    width: 100%;
+  }
 
   &.focus,
   &:focus {

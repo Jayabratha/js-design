@@ -14,6 +14,7 @@ export class Datepicker extends LitElement {
     @property({ type: String }) placeholder = 'Select date';
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean, attribute: 'is-expanded', reflect: true }) isExpanded = false;
+    @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
     @property({ type: String, attribute: 'value', reflect: true }) selectedValue;
     @property({ type: Boolean, attribute: false }) inFocus = false;
     @property({ type: String, attribute: false }) currentTab = 'day';
@@ -203,6 +204,7 @@ export class Datepicker extends LitElement {
                         ${this.selectedValue ? 'selected' : ''}  
                         ${this.isExpanded ? 'expanded' : ''} 
                         ${this.inFocus ? 'focus' : ''}
+                        ${this.fullWidth ? 'full-width' : ''}
                         ${this.disabled ? 'disabled' : ''}'>
                         ${this.disabled ? 
                             html`<div id='${this.id}-button' class='datepicker-button disabled'>

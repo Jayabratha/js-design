@@ -25,7 +25,7 @@
     "@jsdesign/jsd-checkbox": "^1.0.4",
     "@jsdesign/jsd-datepicker": "^1.0.3",
     "@jsdesign/jsd-input": "^1.0.6",
-    "@jsdesign/jsd-pin-input": "^1.0.1",
+    "@jsdesign/jsd-pin-input": "^1.0.2",
     "@jsdesign/jsd-radio": "^1.0.4",
     "@jsdesign/jsd-radio-chip": "^1.0.4",
     "@jsdesign/jsd-select": "^1.0.5",
