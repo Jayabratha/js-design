@@ -1,6 +1,6 @@
 {
   "name": "@jsdesign/jsd-datepicker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "custom datepicker web-component jsdesign",
   "main": "jsd-datepicker",
   "scripts": {
