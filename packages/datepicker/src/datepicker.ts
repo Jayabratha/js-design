@@ -182,6 +182,14 @@ export class Datepicker extends LitElement {
         let ISOmonth = (this.month + 1) < 10 ? `0${this.month + 1}` : this.month + 1;
         let ISOday = this.day < 10 ? `0${this.day}` : this.day;
         this.selectedValue = `${ISOyear}-${ISOmonth}-${ISOday}`;
+        setTimeout(() => {
+            let newEvent = new Event('change', {
+                bubbles: true,
+                composed: true
+            });
+            this.dispatchEvent(newEvent);
+        }, 0);
+
     }
 
     selectMonth(month) {
@@ -206,12 +214,12 @@ export class Datepicker extends LitElement {
                         ${this.inFocus ? 'focus' : ''}
                         ${this.fullWidth ? 'full-width' : ''}
                         ${this.disabled ? 'disabled' : ''}'>
-                        ${this.disabled ? 
-                            html`<div id='${this.id}-button' class='datepicker-button disabled'>
+                        ${this.disabled ?
+                html`<div id='${this.id}-button' class='datepicker-button disabled'>
                                     <span>${this.selectedDate ? this.selectedDate.toLocaleDateString() : 'Select your date'}</span>
                                     <span class='calender-icon'></span>
                                 </div>` :
-                            html`<div id='${this.id}-button' class='datepicker-button' 
+                html`<div id='${this.id}-button' class='datepicker-button' 
                                     tabindex='0'
                                     @click='${() => this.toggleDatePicker(false)}'
                                     @focus='${() => this.toggleFocus(false)}'
@@ -254,24 +262,24 @@ export class Datepicker extends LitElement {
                                             <div class='row'>
                                                 ${week.map((day: Date) => html`
                                                 ${day ?
-                                                    html`<div class='${day ? 'date' : ''} 
+                        html`<div class='${day ? 'date' : ''} 
                                                     ${day.getDate() === this.day && day.getMonth() === this.month ? 'selected' : ''} 
                                                     ${day.getMonth() === this.month ? 'current' : ''}'
                                                     @click='${() => this.selectDate(day)}'>${day.getDate()}</div>` :
-                                                    html`<div></div>`}                                  
+                        html`<div></div>`}                                  
                                                 `)}
                                             </div>`
-                                        )}
+                )}
                                     </div>  
                                 </div>
                                 <div ?hidden='${this.currentTab !== 'month'}'>
                                     <div class='item-wrapper'>${months.map((month, index) =>
-                                        html`<div class='item month ${this.month === index ? 'selected' : ''}' @click='${() => this.selectMonth(index)}'>${month}</div>`)}
+                    html`<div class='item month ${this.month === index ? 'selected' : ''}' @click='${() => this.selectMonth(index)}'>${month}</div>`)}
                                     </div>  
                                 </div>
                                 <div ?hidden='${this.currentTab !== 'year'}'>
                                     <div class='item-wrapper'>${this.years.map((year) =>
-                                        html`<div class='item year ${this.year === year ? 'selected' : ''}' @click='${() => this.selectYear(year)}'>${year}</div>`)}
+                        html`<div class='item year ${this.year === year ? 'selected' : ''}' @click='${() => this.selectYear(year)}'>${year}</div>`)}
                                     </div>
                                 </div>
                             </div>

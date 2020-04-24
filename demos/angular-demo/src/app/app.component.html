@@ -44,7 +44,7 @@
             </div>
             <div class='form-field'>
               <jsd-datepicker id='dob' name='dob' label='date of birth' [attr.vtheme]='theme'
-                [attr.value]='model.dob' [attr.theme]='theme' [attr.error-msg]='errors.dob' required>
+                [attr.value]='model.dob' [attr.theme]='theme' full-width [attr.error-msg]='errors.dob' required>
               </jsd-datepicker>
             </div>
             <div class='form-field'>
@@ -77,9 +77,11 @@
             <div><span class='label'>Age -</span><span class='value'>{{model.age}}</span></div>
             <div><span class='label'>Address -</span><span class='value'>{{model.address}}</span></div>
             <div><span class='label'>Gender -</span><span class='value'>{{model.gender}}</span></div>
+            <div><span class='label'>D.O.B -</span><span class='value'>{{model.dob}}</span></div>
             <div><span class='label'>Department -</span><span class='value'>{{model.department}}</span></div>
             <div><span class='label'>Diet -</span><span class='value'>{{model.diet}}</span></div>
             <div><span class='label'>Agreement -</span><span class='value'>{{model.agreement.toString()}}</span></div>
+            <div><span class='label'>PIN -</span><span class='value'>{{model.pin.toString()}}</span></div>
           </div>
         </div>
       </div>
