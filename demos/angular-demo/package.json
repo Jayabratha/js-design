@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "update-jsdesign": "npm i @jsdesign/jsd-button@latest @jsdesign/jsd-checkbox@latest @jsdesign/jsd-datepicker@latest @jsdesign/jsd-input@latest @jsdesign/jsd-radio@latest @jsdesign/jsd-radio-chip@latest @jsdesign/jsd-select@latest"
+    "update-jsdesign": "npm i @jsdesign/jsd-button@latest @jsdesign/jsd-checkbox@latest @jsdesign/jsd-datepicker@latest @jsdesign/jsd-input@latest @jsdesign/jsd-radio@latest @jsdesign/jsd-radio-chip@latest @jsdesign/jsd-select@latest @jsdesign/jsd-pin-input@latest"
   },
   "private": true,
   "dependencies": {
@@ -21,14 +21,14 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
-    "@jsdesign/jsd-button": "^1.0.4",
-    "@jsdesign/jsd-checkbox": "^1.0.3",
+    "@jsdesign/jsd-button": "^1.0.5",
+    "@jsdesign/jsd-checkbox": "^1.0.4",
     "@jsdesign/jsd-datepicker": "^1.0.3",
-    "@jsdesign/jsd-input": "^1.0.5",
-    "@jsdesign/jsd-pin-input": "^1.0.0",
-    "@jsdesign/jsd-radio": "^1.0.3",
-    "@jsdesign/jsd-radio-chip": "^1.0.3",
-    "@jsdesign/jsd-select": "^1.0.4",
+    "@jsdesign/jsd-input": "^1.0.6",
+    "@jsdesign/jsd-pin-input": "^1.0.1",
+    "@jsdesign/jsd-radio": "^1.0.4",
+    "@jsdesign/jsd-radio-chip": "^1.0.4",
+    "@jsdesign/jsd-select": "^1.0.5",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

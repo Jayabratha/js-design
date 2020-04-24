@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 300px;
   margin: 0 -5px;
   input {
     width: 4rem;
@@ -19,6 +20,7 @@
     -moz-appearance: textfield;
   }
   &.full-width {
+    width: 100%;
     input {
       flex-grow: 1;
     }
