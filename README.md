@@ -15,3 +15,4 @@ This project is evolving and currently supports:
 
 https://js-design.gitbook.io/js-design/
 
+![](js_design_system.png)
