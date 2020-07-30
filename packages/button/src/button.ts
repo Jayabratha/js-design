@@ -8,7 +8,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
 @customElement('jsd-button')
 export class Button extends LitElement {
 
-    @property({ type: String }) label = 'Button';
+    @property({ type: String }) label = '';
     @property({ type: String, attribute: 'btn-style' }) btnStyle: ButtonStyle = 'primary';
     @property({ type: String }) type: ButtonType = 'button';
     @property({ type: Boolean }) disabled = false;
