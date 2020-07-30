@@ -15,6 +15,7 @@ export class Button extends LitElement {
     @property({ type: Boolean }) icon = false;
     @property({ type: Boolean, attribute: 'trailing-icon' }) trailingIcon = false;
     @property({ type: Boolean, attribute: 'full-width' }) fullWidth = false;
+    @property({ type: Boolean, attribute: 'icon-width' }) iconWidth = false;
     @property({ type: String }) theme: ThemeType = 'light';
 
     static get styles() {
@@ -38,12 +39,12 @@ export class Button extends LitElement {
 
     render() {
         return html`
-                <button role='button' aria-label='${this.label}' type='${this.type}' class='${this.btnStyle} ${this.theme} ${this.fullWidth ? 'full-width' : ''}'
+                <button role='button' aria-label='${this.label}' type='${this.type}' class='${this.btnStyle} ${this.theme} ${this.fullWidth ? 'full-width' : ''} ${this.iconWidth ? 'icon-width' : ''}'
                     ?disabled="${this.disabled}"
                     @click="${this.handleEvent}">
-                    ${ this.icon ? html`<slot name='icon'></slot>&nbsp;` : ''}
+                    ${ this.icon ? html`<slot name='icon'></slot>` : ''}
                     <span>${this.label}</span>
-                    ${ this.trailingIcon ? html`&nbsp;<slot name='trailingIcon'></slot> ` : ''}
+                    ${ this.trailingIcon ? html`<slot name='trailingIcon'></slot> ` : ''}
                 </button>
                 `
     }

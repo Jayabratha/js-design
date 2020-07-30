@@ -41,13 +41,25 @@
         </div>
         <div>
             <h3>Prefix Icon button</h3>
-            <jsd-button btn-style='primary' icon="true" label='Icon Button'>
+            <jsd-button btn-style='primary' icon label='Icon Button'>
                 <span slot='icon'>&hearts;</span>
             </jsd-button>
         </div>
         <div>
             <h3>Suffix Icon button</h3>
-            <jsd-button btn-style='primary' trailing-icon="true" label='Icon Button'>
+            <jsd-button btn-style='primary' trailing-icon label='Icon Button'>
+                <span slot='trailingIcon'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Prefix Icon button</h3>
+            <jsd-button btn-style='primary' icon icon-width>
+                <span slot='icon'>&hearts;</span>
+            </jsd-button>
+        </div>
+        <div>
+            <h3>Suffix Icon button</h3>
+            <jsd-button btn-style='primary' trailing-icon icon-width>
                 <span slot='trailingIcon'>&hearts;</span>
             </jsd-button>
         </div>
@@ -80,7 +92,7 @@
             <h3>Form</h3>
             <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
                 <input type='gamil' name='test' value='test@gmail.com' />
-                <jsd-button formId='test' type='reset'></jsd-button>
+                <jsd-button formId='test' type='reset' label="Submit"></jsd-button>
             </form>
         </div>
     </div>
@@ -142,7 +154,7 @@
             <h3>Form</h3>
             <form id='test' onsubmit="alert('submit!');return false" onreset="alert('reset');">
                 <input type='gamil' name='test' value='test@gmail.com' />
-                <jsd-button formId='test' theme='dark' type='reset'></jsd-button>
+                <jsd-button formId='test' theme='dark' type='reset' label="Submit"></jsd-button>
             </form>
         </div>
     </div>
