@@ -16,3 +16,19 @@ This project is evolving and currently supports:
 https://js-design.gitbook.io/js-design/
 
 ![](js_design_system.png)
+
+## Build
+
+```text
+npm run build
+```
+
+## Run Local Server
+
+```text
+npm start
+```
+
+## View Local Demos
+
+Go to http://localhost:8000/demos/{packageName}.html (e.g. : http://localhost:8000/demos/input.html)
