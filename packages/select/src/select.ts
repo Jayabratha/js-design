@@ -41,14 +41,14 @@ export class Select extends LitElement {
         }
     }) list: Array<any> = [];
 
-    listWrapper: HTMLElement | null;
+    selectWrapper: HTMLElement | null;
     listElement: HTMLElement | null;
     selectButton: HTMLElement | null;
     filterInput: HTMLInputElement | null;
 
     constructor() {
         super();
-        this.listWrapper = null;
+        this.selectWrapper = null;
         this.listElement = null;
         this.selectButton = null;
         this.filterInput = null;
@@ -56,12 +56,12 @@ export class Select extends LitElement {
 
     firstUpdated() {
         if (this.shadowRoot) {
-            this.listWrapper = this.shadowRoot.getElementById(this.id);
+            this.selectWrapper = this.shadowRoot.getElementById(this.id);
             this.listElement = this.shadowRoot.getElementById(`${this.id}-list`);
             this.selectButton = this.shadowRoot.getElementById(`${this.id}-button`);
             this.filterInput = <HTMLInputElement>this.shadowRoot.getElementById(`${this.id}-input`);
         } else {
-            this.listWrapper = document.getElementById(this.id);
+            this.selectWrapper = document.getElementById(this.id);
             this.listElement = document.getElementById(`${this.id}-list`);
             this.selectButton = document.getElementById(`${this.id}-button`);
             this.filterInput = <HTMLInputElement>document.getElementById(`${this.id}-input`);
@@ -89,21 +89,13 @@ export class Select extends LitElement {
         ]
     }
 
-    toggleFocus(defocus = false) {
-        if (defocus) {
-            this.inFocus = false;
-        } else {
-            this.inFocus = !this.inFocus;
-        }
+    setFocus(inFocus = false) {
+        this.inFocus = inFocus;
     }
 
-    toggleClick(close = false) {
-        if (close) {
-            this.isExpanded = false;
-        } else {
-            this.isExpanded = !this.isExpanded;
-        }
-        if (this.listWrapper && this.listElement && (this.selectButton || this.filterInput)) {
+    toggleClick(isExpanded) {
+        this.isExpanded = isExpanded;
+        if (this.selectWrapper && this.listElement && (this.selectButton || this.filterInput)) {
             if (this.isExpanded) {
                 if (!this.filterInput) {
                     this.listElement.focus();
@@ -112,9 +104,6 @@ export class Select extends LitElement {
                     this.list[0].current = true;
                 }
             } else {
-                if (this.selectButton) {
-                    this.selectButton.focus();
-                }
                 this.list.forEach((item) => {
                     if (!item.selected) {
                         item.current = false;
@@ -125,18 +114,26 @@ export class Select extends LitElement {
         }
     }
 
-    hoverList() {
-        let list = this.filterInput ? this.filteredList : this.list;
-        if (list[0].current) {
-            list[0].current = false;
-            list = [...list];
+    hoverList(event) {
+        const target = event.target;
+        let hoverElemValue = '';
+        if (target.tagName === 'LI') {
+            hoverElemValue = target.getAttribute('value');
         }
+        const currentIndex = this.list.findIndex((item) => item.current === true);
+        const newIndex = this.list.findIndex((item) => item.value === hoverElemValue);
+
+        if (currentIndex !== -1) {
+            this.list[currentIndex].current = false;
+        }
+        this.list[newIndex].current = true;
+        this.list = [...this.list];
     }
 
     handleBlur(event: any) {
         if (!event.relatedTarget || (event.relatedTarget && event.relatedTarget.id !== `${this.id}-button` && event.relatedTarget.id !== `${this.id}-list`)) {
-            this.toggleClick(true);
-            this.toggleFocus(true);
+            this.setFocus(false);
+            this.toggleClick(false);
         }
     }
 
@@ -158,6 +155,11 @@ export class Select extends LitElement {
         });
         this.filteredList = [...this.list];
 
+        this.selectButton?.focus();
+        if (this.filterInput) {
+            this.filterInput?.focus();
+        }
+
         setTimeout(() => {
             let inputEvent = new Event('input', {
                 bubbles: true,
@@ -167,25 +169,10 @@ export class Select extends LitElement {
                 bubbles: true,
                 composed: true
             });
-            this.toggleClick(true);
-            if (this.filterInput) {
-                this.filterInput.blur();
-            }
+            this.toggleClick(false);
             this.dispatchEvent(inputEvent);
             this.dispatchEvent(changeEvent);
         }, 200);
-    }
-
-    handleButtonPress(event, element) {
-        let key = event.which || event.code;
-
-        if (key === keyCode.SPACE || key === keyCode.UP || key === keyCode.DOWN) {
-            event.preventDefault();
-            this.toggleClick();
-        } else if (key === keyCode.RETURN) {
-            event.preventDefault();
-            handleFormSubmit(event, element);
-        }
     }
 
     handleListScroll(currentItem) {
@@ -202,84 +189,105 @@ export class Select extends LitElement {
         }
     }
 
+    handleButtonPress(event) {
+        let key = event.which || event.code;
+        if (key === keyCode.SPACE || key === keyCode.UP || key === keyCode.DOWN) {
+            event.preventDefault();
+            this.toggleClick(!this.isExpanded);
+        } else if (key === keyCode.RETURN) {
+            event.preventDefault();
+            handleFormSubmit(event, this);
+        }
+    }
+
     handleKeyPress(event) {
         let list = this.filterInput ? this.filteredList : this.list;
-        if (this.isExpanded) {
-            let key = event.which || event.code;
-            let currentIndex: any = list.findIndex((item) => item.current === true);
-            let currentItem: any = null;
-            if (this.listElement) {
-                currentItem = this.listElement.querySelector('li.current');
-            }
-            if (currentIndex === -1) {
-                currentIndex = 0;
-            }
+        let key = event.which || event.code;
+        let currentIndex: any = list.findIndex((item) => item.current === true);
+        let currentItem: any = null;
+        if (this.listElement) {
+            currentItem = this.listElement.querySelector('li.current');
+        }
+        if (currentIndex === -1) {
+            currentIndex = 0;
+        }
 
-            switch (key) {
-                case keyCode.UP: {
-                    event.preventDefault();
+        switch (key) {
+            case keyCode.UP: {
+                event.preventDefault();
+                if (this.filterInput) {
+                    this.listElement?.focus();
+                }
+                if (currentIndex !== 0) {
+                    let prevIndex = currentIndex - 1;
+                    list[currentIndex].current = false;
+                    list[prevIndex].current = true;
                     if (this.filterInput) {
-                        this.listElement?.focus();
+                        this.filteredList = [...list];
+                    } else {
+                        this.list = [...list];
                     }
-                    if (currentIndex !== 0) {
-                        let prevIndex = currentIndex - 1;
-                        list[currentIndex].current = false;
-                        list[prevIndex].current = true;
-                        if (this.filterInput) {
-                            this.filteredList = [...list];
-                        } else {
-                            this.list = [...list];
-                        }
-                        if (currentItem) {
-                            currentItem = currentItem.previousElementSibling;
-                        }
+                    if (currentItem) {
+                        currentItem = currentItem.previousElementSibling;
                     }
-                    this.handleListScroll(currentItem);
-                    break;
                 }
-                case keyCode.DOWN: {
-                    event.preventDefault();
+                this.handleListScroll(currentItem);
+                break;
+            }
+            case keyCode.DOWN: {
+                event.preventDefault();
+                if (this.filterInput) {
+                    this.listElement?.focus();
+                }
+                if (currentIndex < ((this.filterInput ? this.filteredList.length : this.list.length) - 1)) {
+                    let nextIndex = currentIndex + 1;
+                    list[currentIndex].current = false;
+                    list[nextIndex].current = true;
                     if (this.filterInput) {
-                        this.listElement?.focus();
+                        this.filteredList = [...list];
+                    } else {
+                        this.list = [...list];
                     }
-                    if (currentIndex < (this.list.length - 1)) {
-                        let nextIndex = currentIndex + 1;
-                        list[currentIndex].current = false;
-                        list[nextIndex].current = true;
-                        if (this.filterInput) {
-                            this.filteredList = [...list];
-                        } else {
-                            this.list = [...list];
-                        }
-                        if (currentItem) {
-                            currentItem = currentItem.nextElementSibling;
-                        }
+                    if (currentItem) {
+                        currentItem = currentItem.nextElementSibling;
                     }
-                    this.handleListScroll(currentItem);
-                    break;
                 }
-                case keyCode.SPACE: {
-                    if (!this.filterInput) {
-                        event.preventDefault();
-                        if (this.filterInput) {
-                            this.listElement?.focus();
-                        }
-                        list[currentIndex].current = false;
-                        this.handleSelect(list[currentIndex]);
-                    }
-                    break;
-                }
-                case keyCode.RETURN: {
+                this.handleListScroll(currentItem);
+                break;
+            }
+            case keyCode.SPACE: {
+                if (!this.filterInput) {
                     event.preventDefault();
                     if (this.filterInput) {
                         this.listElement?.focus();
                     }
                     list[currentIndex].current = false;
                     this.handleSelect(list[currentIndex]);
-                    break;
                 }
+                break;
+            }
+            case keyCode.RETURN: {
+                event.preventDefault();
+                list[currentIndex].current = false;
+                this.handleSelect(list[currentIndex]);
+                handleFormSubmit(event, this);
+                break;
+            }
+            case keyCode.ESC: {
+                event.preventDefault();
+                this.toggleClick(false);
+                this.selectButton?.focus();
+                break;
+            }
+            case keyCode.TAB: {
+                // Hack for Chrome
+                this.selectButton?.setAttribute('tabindex', '-1');
+                setTimeout(() => {
+                    this.selectButton?.removeAttribute('tabindex');
+                }, 0);
             }
         }
+
     }
 
     handleFilter() {
@@ -319,7 +327,8 @@ export class Select extends LitElement {
         return html`
             <div class='jsd-select-wrapper ${this.theme}'>
                 ${this.label ? html`<div class='label'>${this.label}</div>` : html`<div class='empty-label'></div>`}
-                <div id='${this.id}' class='wrapper-box select-wrapper 
+                <div id='${this.id}' 
+                    class='wrapper-box select-wrapper 
                     ${this.selectedValue ? 'selected' : ''} 
                     ${this.isExpanded ? 'expanded' : ''}
                     ${this.inFocus ? 'focus' : ''}
@@ -327,40 +336,37 @@ export class Select extends LitElement {
                     ${this.fullWidth ? 'full-width' : ''}
                     ${this.errorMsg ? 'error' : ''}'>
                     ${this.disabled ?
-                        html`<div id='${this.id}-button' class='button disabled'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>` :
-                        this.filterOnType ?
-                            html`<div class='input'
-                                aria-haspopup='listbox'
-                                @blur='${this.toggleFocus}'
-                                @click='${() => this.toggleClick(false)}' 
-                                aria-expanded='${this.isExpanded}'>
-                                    <div class='display-text'>${this.selectedLabel}</div>
-                                    <input id='${this.id}-input' 
-                                        class='${((this.filterInput && this.filterInput.value) || !this.selectedValue) ? 'active' : ''}'
-                                        @focus='${() => this.toggleFocus(false)}'
-                                        @blur='${this.handleBlur}'
-                                        @input='${this.handleFilter}'
-                                        @keydown='${this.handleKeyPress}'
-                                        placeholder='${this.placeholder}'
-                                        aria-labelledby='state state-button' />
-                                </div>`
-                            :
-                            html`<div id='${this.id}-button' 
-                                class='button'
-                                aria-haspopup='listbox'
-                                tabindex='0'
-                                @focus='${() => this.toggleFocus(false)}'
-                                @blur='${() => this.toggleFocus(true)}'
-                                @click='${() => this.toggleClick(false)}' 
-                                @keydown='${(e) => this.handleButtonPress(e, this)}'
-                                aria-expanded='${this.isExpanded}'
-                                aria-labelledby='state state-button'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>`
-                    }
-                    <ul id='${this.id}-list' tabindex='-1' class='custom-select' role='listbox'
-                        aria-labelledby="state"
+                html`<div id='${this.id}-button' class='button disabled'>${this.selectedLabel ? this.selectedLabel : this.placeholder}</div>` :
+                this.filterOnType ?
+                    html`<input id='${this.id}-input' 
+                            role="combobox"
+                            @click='${() => this.toggleClick(!this.isExpanded)}' 
+                            @focus='${() => this.setFocus(true)}'
+                            @blur='${this.handleBlur}'
+                            @keydown='${this.handleKeyPress}'
+                            aria-haspopup="listbox"
+                            @input='${this.handleFilter}'
+                            aria-expanded='${this.isExpanded}'
+                            placeholder='${this.selectedLabel ? this.selectedLabel : this.placeholder}'/>`
+                    :
+                    html`<button id='${this.id}-button' 
+                            class='button'
+                            @click='${() => this.toggleClick(!this.isExpanded)}' 
+                            @focus='${() => this.setFocus(true)}'
+                            @blur='${() => this.setFocus(false)}'
+                            @keydown='${this.handleButtonPress}'
+                            aria-haspopup='listbox'
+                            aria-labelledby='${this.id} ${this.id}-button'
+                            aria-expanded='${this.isExpanded}'>
+                            ${this.selectedLabel ? this.selectedLabel : this.placeholder}
+                        </button>`
+            }
+                    <ul id='${this.id}-list' class='custom-select' role='listbox'
+                        tabindex='-1'
                         @blur='${this.handleBlur}'
                         @mouseover='${this.hoverList}'
-                        @keydown='${this.handleKeyPress}'>
+                        @keydown='${this.handleKeyPress}'
+                        aria-labelledby='${this.id}'>
                         ${list.map((item: any) => html`
                         <li role='option'
                             id='${this.id}-${item.value}'
@@ -368,7 +374,7 @@ export class Select extends LitElement {
                             aria-selected='${item.selected}' 
                             class='${item.selected ? 'selected' : ''} ${item.current ? 'current' : ''}'
                             @click='${() => { this.handleSelect(item) }}'>${unsafeHTML(item.label)}</li>`)}                      
-                    </ul>
+                    </ul>                   
                 </div>
                 ${this.errorMsg ? html`<div class="error-message">${this.errorMsg}</div>` : ''}
                 ${this.helpMsg && !this.errorMsg ? html`<div class="help-message">${this.helpMsg}</div>` : ''}

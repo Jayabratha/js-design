@@ -2,7 +2,7 @@
 <html style='font-size: 14px;'>
 
 <head>
-    <title>zest Select</title>
+    <title>JS Select</title>
     <link rel='stylesheet' type='text/css' href='./base-style.css'>
     <script type='module' src='../packages/select/select.js'></script>
 </head>
@@ -12,7 +12,7 @@
     <div class='wrapper'>
         <div>
             <h3>JS Design Select</h3>
-            <jsd-select id='test' label='STATE' onchange='test(event)' value='West Bengal' autofocus='true'
+            <jsd-select id='test' label='STATE' value='West Bengal'
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>
@@ -42,7 +42,7 @@
         </div>
         <div>
             <h3>JS Design Select Filter</h3>
-            <jsd-select id='filter-state' filter-on-type='true' placeholder='Type in to filter' onchange='test(event)'
+            <jsd-select id='filter-state' filter-on-type='true' placeholder='Type in to filter' autofocus
                 list='["West Bengal", "Karnataka", "Uttar Pradesh", "Kerala", "Tamil Nadu", "Madhya Pradesh"]'>
             </jsd-select>
         </div>

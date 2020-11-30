@@ -2,6 +2,7 @@
   position: relative;
   min-height: 5.1rem;
   height: auto;
+
   .empty-label {
     padding: 1px;
     margin: -1px;
@@ -15,13 +16,18 @@
 
     &.focus {
       background-color: var(--color-white);
+
       &:not(.error) {
         border: 1px solid var(--color-primary);
       }
     }
 
-    > .button,
-    .input {
+    >.button {
+      color: var(--color-placeholder);
+    }
+
+    >.button,
+    input {
       position: absolute;
       width: 100%;
       height: calc(3.3rem - 2px);
@@ -34,9 +40,7 @@
       font-size: 1rem;
       outline: solid 1px transparent;
       line-height: calc(1.3rem - 2px);
-      color: var(--color-placeholder);
       box-sizing: border-box;
-
       &.disabled {
         cursor: not-allowed;
       }
@@ -56,41 +60,6 @@
         right: 1rem;
         transform: rotate(45deg);
         transition: transform 0.3s;
-      }
-    }
-
-    > .input {
-      padding: 0;
-      > .display-text {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: none;
-        background: transparent;
-        padding: 1rem;
-        box-sizing: border-box;
-        color: var(--color-black);
-      }
-      > input {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: none;
-        background: transparent;
-        padding: 1rem;
-        box-sizing: border-box;
-        font-size: 1rem;
-        outline: none;
-        &::placeholder {
-          color: transparent;
-        }
-        &:focus,
-        &.active {
-          background: var(--color-white);
-          &::placeholder {
-            color: var(--color-placeholder);
-          }
-        }
       }
     }
 
@@ -147,8 +116,8 @@
     }
 
     &.disabled {
-      > .button,
-      .input {
+      >.button,
+      input {
         opacity: 0.8;
       }
     }
@@ -162,8 +131,8 @@
         border: 1px solid var(--color-primary);
       }
 
-      > .button,
-      .input {
+      >.button,
+      input {
         &::after {
           transform: rotate(-135deg);
         }
@@ -177,8 +146,14 @@
     }
 
     &.selected:not(.expanded) {
-      > .button {
+      >.button {
         color: var(--color-black);
+      }
+
+      input {
+        &::placeholder {
+          color: var(--color-black);
+        }
       }
     }
   }
@@ -191,9 +166,11 @@
 
   &.dark {
     .select-wrapper {
-      > .button,
-      .input {
+
+      >.button,
+      input {
         color: var(--color-placeholder-darktheme);
+
         &::after {
           border-color: var(--color-placeholder-darktheme);
         }
@@ -201,7 +178,9 @@
 
       ul {
         color: var(--color-white);
+
         li {
+
           &.current,
           &.selected,
           &:hover {
@@ -216,14 +195,15 @@
 
       &.expanded {
         background-color: var(--color-background-darktheme);
+
         ul {
           border-color: var(--color-secondary-dark-darktheme);
         }
       }
 
       &.selected:not(.expanded) {
-        > .button,
-        .input {
+        >.button,
+        input {
           color: var(--color-white);
         }
       }
