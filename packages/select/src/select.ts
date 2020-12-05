@@ -347,6 +347,7 @@ export class Select extends LitElement {
                             aria-haspopup="listbox"
                             @input='${this.handleFilter}'
                             aria-expanded='${this.isExpanded}'
+                            aria-labelledby='${this.id} ${this.id}-input'
                             placeholder='${this.selectedLabel ? this.selectedLabel : this.placeholder}'/>`
                     :
                     html`<button id='${this.id}-button' 

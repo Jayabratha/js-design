@@ -2,6 +2,7 @@
   position: relative;
   min-height: 5.1rem;
   height: auto;
+
   .empty-label {
     padding: 1px;
     margin: -1px;
@@ -15,12 +16,34 @@
 
     &.focus {
       background-color: var(--color-white);
+
       &:not(.error) {
         border: 1px solid var(--color-primary);
       }
     }
 
-    > .input-wrapper {
+    &.loading {
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--color-placeholder) transparent transparent var(--color-placeholder);
+        border-radius: 50%;
+        padding: 3px;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        animation-name: spin;
+        animation-duration: 0.3s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    }
+
+    >input {
       position: absolute;
       width: 100%;
       height: calc(3.3rem - 2px);
@@ -28,7 +51,6 @@
       background: transparent;
       border: none;
       z-index: 1;
-      cursor: pointer;
       text-align: left;
       font-size: 1rem;
       outline: solid 1px transparent;
@@ -43,31 +65,8 @@
         border: 0;
       }
 
-      &.loading {
-        &::after {
-          content: "";
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-width: 1px;
-          border-style: solid;
-          border-color: var(--color-placeholder) transparent transparent var(--color-placeholder);
-          border-radius: 50%;
-          padding: 3px;
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          animation-name: spin;
-          animation-duration: 0.3s;
-          animation-iteration-count: infinite;
-          animation-timing-function: linear;
-        }
-      }
-
-      input {
-        &::placeholder {
-          color: var(--color-placeholder);
-        }
+      &::placeholder {
+        color: var(--color-placeholder);
       }
     }
 
@@ -75,25 +74,25 @@
       from {
         transform: rotate(0deg);
       }
+
       to {
         transform: rotate(360deg);
       }
     }
 
-    > .input-wrapper {
-      padding: 0;
-      > input {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: none;
-        padding: 1rem;
-        box-sizing: border-box;
-        font-size: 1rem;
-        outline: none;
-        border: transparent;
-      }
-    }
+    // >input {
+    //   padding: 0;
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   border: none;
+    //   padding: 1rem;
+    //   box-sizing: border-box;
+    //   font-size: 1rem;
+    //   outline: none;
+    //   border: transparent;
+    //   background-color: transparent;
+    // }
 
     ul {
       position: relative;
@@ -148,7 +147,8 @@
     }
 
     &.disabled {
-      > .button,
+
+      >.button,
       .input-wrapper {
         opacity: 0.5;
       }
@@ -163,7 +163,7 @@
         border: 1px solid var(--color-primary);
       }
 
-      > .button,
+      >.button,
       .input-wrapper {
         &::after {
           transform: rotate(-135deg);
@@ -178,7 +178,7 @@
     }
 
     &.selected:not(.expanded) {
-      > .button {
+      >.button {
         color: var(--color-black);
       }
     }
@@ -192,14 +192,17 @@
 
   &.dark {
     .autocomplete-wrapper {
-      > .button,
+
+      >.button,
       .input-wrapper {
-        > input {
+        >input {
           background-color: transparent;
+
           &::placeholder,
           &::-webkit-input-placeholder {
             color: var(--color-placeholder-darktheme);
           }
+
           &::-moz-placeholder {
             color: var(--color-placeholder-darktheme);
           }
@@ -208,7 +211,9 @@
 
       ul {
         color: var(--color-white);
+
         li {
+
           &.current,
           &.selected,
           &:hover {
@@ -223,13 +228,15 @@
 
       &.expanded {
         background-color: var(--color-background-darktheme);
+
         ul {
           border-color: var(--color-secondary-dark-darktheme);
         }
       }
 
       &.selected:not(.expanded) {
-        > .button,
+
+        >.button,
         .input-wrapper {
           color: var(--color-white);
         }

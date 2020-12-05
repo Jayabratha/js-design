@@ -87,33 +87,23 @@ export class Select extends LitElement {
         ]
     }
 
-    toggleFocus(defocus = false) {
-        if (defocus) {
-            this.inFocus = false;
-        } else {
-            this.inFocus = !this.inFocus;
-        }
-        if (this.inFocus) {
-            this.isExpanded = true;
-        } else {
-            this.isExpanded = false;
-        }
+    setFocus(inFocus = false) {
+        this.inFocus = inFocus;
     }
 
-    toggleClick(close = false) {
-        if (close) {
-            this.isExpanded = false;
-        } else {
-            this.isExpanded = !this.isExpanded;
-        }
-        // Reset current item
-        if (this.listWrapper && this.listElement) {
-            this.list.forEach((item) => {
-                if (!item.selected) {
-                    item.current = false;
-                }
-            });
-            this.list = [...this.list];
+    toggleClick(isExpanded) {
+        this.isExpanded = isExpanded;
+        if (this.listElement && this.inputElement) {
+            if (this.isExpanded) {
+                this.listElement?.focus();
+            } else {
+                this.list.forEach((item) => {
+                    if (!item.selected) {
+                        item.current = false;
+                    }
+                });
+                this.list = [...this.list];
+            }
         }
     }
 
@@ -137,8 +127,8 @@ export class Select extends LitElement {
 
     handleBlur(event: any) {
         if (!event.relatedTarget || (event.relatedTarget && event.relatedTarget.id !== `${this.id}-button` && event.relatedTarget.id !== `${this.id}-list`)) {
-            this.toggleClick(true);
-            this.toggleFocus(true);
+            this.setFocus(false);
+            this.toggleClick(false);
         }
     }
 
@@ -186,7 +176,7 @@ export class Select extends LitElement {
                 bubbles: true,
                 composed: true
             });
-            this.toggleClick(true);
+            this.toggleClick(false);
             this.dispatchEvent(inputEvent);
             this.dispatchEvent(changeEvent);
         }, 200);
@@ -266,15 +256,21 @@ export class Select extends LitElement {
                     this.handleSelect(this.list[currentIndex]);
                     break;
                 }
+                case keyCode.ESC: {
+                    event.preventDefault();
+                    this.toggleClick(false);
+                    this.inputElement?.focus();
+                    break;
+                }
             }
         }
     }
 
-    handleButtonPress(event, element) {
+    handleButtonPress(event) {
         let key = event.which || event.code;
         if (key === keyCode.RETURN) {
             event.preventDefault();
-            handleFormSubmit(event, element);
+            handleFormSubmit(event, this);
         } else if (key === keyCode.UP || key === keyCode.DOWN) {
             event.preventDefault();
             let e: any = new Event('keydown');
@@ -332,23 +328,20 @@ export class Select extends LitElement {
                     ${this.inFocus ? 'focus' : ''}
                     ${this.disabled ? 'disabled' : ''}
                     ${this.fullWidth ? 'full-width' : ''}
-                    ${this.errorMsg ? 'error' : ''}'>
-                    <div class='input-wrapper ${this.loading ? 'loading' : ''}'
-                         aria-haspopup='listbox'
-                         @blur='${this.toggleFocus}'
-                         aria-expanded='${this.isExpanded}'>
-                         <input id='${this.id}-input' 
-                            @focus='${() => this.toggleFocus(false)}'
-                            @blur='${this.handleBlur}' 
-                            @keydown='${(e) => this.handleButtonPress(e, this)}'
-                            @input='${(e) => { this.value = e.target.value; this.throttledFunction(e) }}'
-                            .value='${this.value}'
-                            ?autofocus='${this.autofocus}'
-                            maxlength="${ifDefined(this.maxLength === -1 ? undefined : this.maxLength)}"
-                            pattern="${ifDefined(this.pattern ? this.pattern : undefined)}"
-                            placeholder='${this.placeholder}'
-                            aria-labelledby='state state-button' />
-                    </div>
+                    ${this.errorMsg ? 'error' : ''}
+                    ${this.loading ? 'loading' : ''}'>
+                    <input id='${this.id}-input' 
+                        @focus='${() => this.setFocus(true)}'
+                        @blur='${this.handleBlur}' 
+                        @keydown='${this.handleButtonPress}'
+                        @input='${(e) => { this.value = e.target.value; this.throttledFunction(e) }}'
+                        .value='${this.value}'
+                        ?autofocus='${this.autofocus}'
+                        maxlength="${ifDefined(this.maxLength === -1 ? undefined : this.maxLength)}"
+                        pattern="${ifDefined(this.pattern ? this.pattern : undefined)}"
+                        placeholder='${this.placeholder}'
+                        aria-expanded='${this.isExpanded}'
+                        aria-labelledby='${this.id} ${this.id}-input' />
                     <ul id='${this.id}-list' tabindex='-1' class='custom-select' role='listbox'
                         aria-labelledby="state"
                         @blur='${this.handleBlur}'
