@@ -1,6 +1,6 @@
 {
     "name": "@jsdesign/jsd-pin-input",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "JS Design PIN Input",
     "main": "pin-input.js",
     "module": "radio-chip.js",
@@ -20,7 +20,7 @@
         "access": "public"
     },
     "dependencies": {
-        "@jsdesign/jsd-base": "^1.0.3",
+        "@jsdesign/jsd-base": "^1.0.4",
         "lit-element": "^2.2.1",
         "tslib": "^1.10.0"
     },
